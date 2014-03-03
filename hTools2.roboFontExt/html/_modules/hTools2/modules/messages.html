@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>hTools2.modules.messages &mdash; hTools2</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    <link rel="top" title="hTools2" href="../../../index.html" />
+    <link rel="up" title="hTools2" href="../../hTools2.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">hTools2</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../../hTools2.html" accesskey="U">hTools2</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for hTools2.modules.messages</h1><div class="highlight"><pre>
+<span class="c"># [h] hTools2.modules.messages</span>
+
+<span class="sd">&#39;&#39;&#39;A collection of standard messages used in multiple dialogs.&#39;&#39;&#39;</span>
+
+<span class="c"># functions</span>
+
+<div class="viewcode-block" id="no_x_selected"><a class="viewcode-back" href="../../../modules/messages.html#hTools2.modules.messages.no_x_selected">[docs]</a><span class="k">def</span> <span class="nf">no_x_selected</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s">&#39;No </span><span class="si">%s</span><span class="s"> selected. Please select one or more </span><span class="si">%s</span><span class="s">s before using this dialog.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">message</span>
+</div>
+<div class="viewcode-block" id="no_x_open"><a class="viewcode-back" href="../../../modules/messages.html#hTools2.modules.messages.no_x_open">[docs]</a><span class="k">def</span> <span class="nf">no_x_open</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s">&#39;There is no </span><span class="si">%s</span><span class="s"> window open. Please open at least one </span><span class="si">%s</span><span class="s"> before using this dialog.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">message</span>
+
+<span class="c"># messages</span>
+
+<span class="c"># points </span></div>
+<span class="n">no_point_selected</span> <span class="o">=</span> <span class="n">no_x_selected</span><span class="p">(</span><span class="s">&#39;point&#39;</span><span class="p">)</span>
+<span class="n">only_one_point</span> <span class="o">=</span> <span class="s">&#39;There is only one point selected. Please select at least two points before using this dialog.&#39;</span>
+<span class="n">at_least_two_points</span> <span class="o">=</span> <span class="s">&#39;Please select at least two points before using this dialog.&#39;</span>
+
+<span class="c"># contours</span>
+<span class="n">no_contour_selected</span> <span class="o">=</span> <span class="n">no_x_selected</span><span class="p">(</span><span class="s">&#39;contour&#39;</span><span class="p">)</span>
+
+<span class="c"># glyphs</span>
+<span class="n">no_glyph_open</span> <span class="o">=</span> <span class="n">no_x_open</span><span class="p">(</span><span class="s">&#39;glyph&#39;</span><span class="p">)</span>
+<span class="n">no_glyph_selected</span> <span class="o">=</span> <span class="n">no_x_selected</span><span class="p">(</span><span class="s">&#39;glyph&#39;</span><span class="p">)</span>
+
+<span class="c"># layers</span>
+<span class="n">no_layer_selected</span> <span class="o">=</span> <span class="n">no_x_selected</span><span class="p">(</span><span class="s">&#39;layer&#39;</span><span class="p">)</span>
+
+<span class="c"># fonts</span>
+<span class="n">no_font_open</span> <span class="o">=</span> <span class="n">no_x_open</span><span class="p">(</span><span class="s">&#39;font&#39;</span><span class="p">)</span>
+<span class="n">only_one_font</span> <span class="o">=</span> <span class="s">&#39;There is only one font open. Please open at least one more font before using this dialog.&#39;</span>
+
+<span class="c"># folder</span>
+<span class="n">no_font_in_folder</span> <span class="o">=</span> <span class="s">&#39;There is no font in this folder. Please add some fonts to the folder, or choose another folder.&#39;</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">hTools2</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../../hTools2.html" >hTools2</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Gustavo Ferreira.
+      Last updated on Feb 28, 2014.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>
