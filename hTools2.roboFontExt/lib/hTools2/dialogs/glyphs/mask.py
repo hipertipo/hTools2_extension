@@ -2,19 +2,26 @@
 
 # imports
 
-from mojo.roboFont import CurrentFont
+try:
+    from mojo.roboFont import CurrentFont
+except ImportError:
+    from robofab.world import CurrentFont
 
 from vanilla import *
 
-from hTools2 import hConstants
+from hTools2 import hDialog
 from hTools2.modules.fontutils import get_glyphs
 from hTools2.modules.messages import no_font_open
 
 # objects
 
-class maskDialog(hConstants):
+class maskDialog(hDialog):
 
-    '''A dialog to transfer glyphs to and from the mask layer.'''
+    '''A dialog to transfer glyphs to and from the mask layer.
+
+    .. image:: imgs/glyphs/mask.png
+
+    '''
 
     # attributes
 

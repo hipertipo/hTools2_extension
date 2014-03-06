@@ -4,19 +4,27 @@
 
 import os
 
-from mojo.roboFont import OpenFont
+try:
+    from mojo.roboFont import OpenFont
+except ImportError:
+    from robofab.world import OpenFont
 
 from vanilla import *
 from vanilla.dialogs import getFolder
 
-from hTools2 import hConstants
+from hTools2 import hDialog
 from hTools2.modules.fileutils import walk
+from hTools2.modules.messages import no_font_in_folder
 
 # objects
 
-class OTFsToUFOsDialog(hConstants):
+class OTFsToUFOsDialog(hDialog):
 
-    '''A dialog to generate ``.ufos`` for all ``.otfs`` in a folder.'''
+    '''A dialog to generate ``.ufos`` for all ``.otfs`` in a folder.
+
+    .. image:: imgs/folder/otfs2ufos.png
+
+    '''
 
     # attributes
 
@@ -88,7 +96,7 @@ class OTFsToUFOsDialog(hConstants):
                 if self.ufos_folder is None:
                     self.ufos_folder = self.otfs_folder
                 # print settings
-                boolstring = ("False", "True")
+                boolstring = ["False", "True"]
                 print 'batch generating ufos for all otfs in folder...\n'
                 print '\totfs folder: %s' % self.otfs_folder
                 print '\tufos folder: %s' % self.ufos_folder
@@ -109,3 +117,6 @@ class OTFsToUFOsDialog(hConstants):
                 self.w.bar.stop()
                 print
                 print '...done.\n'
+        # no font in folder
+        else:
+            print no_font_in_folder

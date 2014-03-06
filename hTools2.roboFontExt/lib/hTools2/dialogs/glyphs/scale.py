@@ -2,18 +2,25 @@
 
 # imports
 
-from mojo.roboFont import CurrentFont, CurrentGlyph
+try:
+    from mojo.roboFont import CurrentFont, CurrentGlyph
+except ImportError:
+    from robofab.world import CurrentFont, CurrentGlyph
 
 from vanilla import *
 
-from hTools2 import hConstants
+from hTools2 import hDialog
 from hTools2.modules.fontutils import get_glyphs
 
 # objects
 
-class scaleGlyphsDialog(hConstants):
+class scaleGlyphsDialog(hDialog):
 
-    '''A dialog to scale the selected glyphs in a font.'''
+    '''A dialog to scale the selected glyphs in a font.
+
+    .. image:: imgs/glyphs/scale.png
+
+    '''
 
     # attributes
 
@@ -28,9 +35,7 @@ class scaleGlyphsDialog(hConstants):
         self.title = "scale"
         self.width = (self.nudge_button * 6) + (self.padding_x * 2) - 5
         self.height = (self.nudge_button * 2) + (self.padding_y * 6) + (self.text_height * 3) + (self.button_height * 2)
-        self.w = FloatingWindow(
-                    (self.width, self.height),
-                    self.title)
+        self.w = FloatingWindow((self.width, self.height), self.title)
         # checkboxes
         x = self.padding_x
         y = self.padding_y

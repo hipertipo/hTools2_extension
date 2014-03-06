@@ -8,7 +8,7 @@
     
     <title>hTools2.modules.glyphutils &mdash; hTools2</title>
     
-    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,7 +23,6 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="top" title="hTools2" href="../../../index.html" />
     <link rel="up" title="hTools2" href="../../hTools2.html" /> 
   </head>
@@ -67,18 +66,18 @@
 </div>
 <div class="viewcode-block" id="round_width"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.round_width">[docs]</a><span class="k">def</span> <span class="nf">round_width</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Round ``glyph.width`` to a multiple of ``gridsize``.&#39;&#39;&#39;</span>
-    <span class="n">_width</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">gridsize</span>
+    <span class="n">_width</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">width</span><span class="p">)</span> <span class="o">/</span> <span class="n">gridsize</span>
     <span class="n">glyph</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">_width</span><span class="p">)</span> <span class="o">*</span> <span class="n">gridsize</span>
     <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 </div>
 <div class="viewcode-block" id="round_margins"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.round_margins">[docs]</a><span class="k">def</span> <span class="nf">round_margins</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Round left and/or right margins to multiples of ``gridsize``.&#39;&#39;&#39;</span>
     <span class="k">if</span> <span class="n">left</span><span class="p">:</span>
-        <span class="n">_left</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">leftMargin</span> <span class="o">/</span> <span class="n">gridsize</span>
+        <span class="n">_left</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">leftMargin</span><span class="p">)</span> <span class="o">/</span> <span class="n">gridsize</span>
         <span class="n">glyph</span><span class="o">.</span><span class="n">leftMargin</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">_left</span><span class="p">)</span> <span class="o">*</span> <span class="n">gridsize</span>
         <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">right</span><span class="p">:</span>
-        <span class="n">_right</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">rightMargin</span> <span class="o">/</span> <span class="n">gridsize</span>
+        <span class="n">_right</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">rightMargin</span><span class="p">)</span> <span class="o">/</span> <span class="n">gridsize</span>
         <span class="n">glyph</span><span class="o">.</span><span class="n">rightMargin</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">_right</span><span class="p">)</span> <span class="o">*</span> <span class="n">gridsize</span>
         <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
@@ -90,20 +89,24 @@
     <span class="sd">&#39;&#39;&#39;Check if the name of ``glyph`` has the extension ``suffix``, and returns ``True`` or ``False``.&#39;&#39;&#39;</span>
     <span class="n">has_suffix</span> <span class="o">=</span> <span class="bp">False</span>
     <span class="n">nameParts</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nameParts</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="c"># check for suffix</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nameParts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">nameParts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">suffix</span><span class="p">:</span>
+            <span class="n">has_suffix</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="c"># check for no suffix</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nameParts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">suffix</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">has_suffix</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="k">return</span> <span class="n">has_suffix</span>
 </div>
 <div class="viewcode-block" id="change_suffix"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.change_suffix">[docs]</a><span class="k">def</span> <span class="nf">change_suffix</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">old_suffix</span><span class="p">,</span> <span class="n">new_suffix</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Return a new modified name for ``glyph``, using ``new_suffix`` in place of ``old_suffix``.&#39;&#39;&#39;</span>
-    <span class="n">_base_name</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">_old_suffix</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">base_name</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">new_suffix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">_new_name</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">_base_name</span><span class="p">,</span> <span class="n">new_suffix</span><span class="p">)</span>
+        <span class="n">new_name</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">base_name</span><span class="p">,</span> <span class="n">new_suffix</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">_new_name</span> <span class="o">=</span> <span class="n">_base_name</span>
-    <span class="k">return</span> <span class="n">_new_name</span>
+        <span class="n">new_name</span> <span class="o">=</span> <span class="n">base_name</span>
+    <span class="k">return</span> <span class="n">new_name</span>
 
 <span class="c">#---------------</span>
 <span class="c"># round to grid</span>
@@ -401,7 +404,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Feb 28, 2014.
+      Last updated on Mar 06, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

@@ -2,20 +2,28 @@
 
 # imports
 
+try:
+    from mojo.roboFont import CurrentFont
+    from mojo.events import addObserver, removeObserver
+
+except ImportError:
+    from robofab.world import CurrentFont
+
 from vanilla import *
 
-from mojo.roboFont import CurrentFont
-from mojo.events import addObserver, removeObserver
-
-from hTools2 import hConstants
+from hTools2 import hDialog
 from hTools2.modules.fontutils import get_glyphs
 from hTools2.modules.messages import no_font_open
 
 # object
 
-class copyToLayerDialog(hConstants):
+class copyToLayerDialog(hDialog):
 
-    '''A dialog to copy the foreground layer in the selected glyphs to another layer.'''
+    '''A dialog to copy the foreground layer in the selected glyphs to another layer.
+
+    .. image:: imgs/glyphs/copy-to-layer.png
+
+    '''
 
     # attributes
 
@@ -110,39 +118,43 @@ class copyToLayerDialog(hConstants):
         self.w.layers_target.extend(self.layers)
 
     def apply_callback(self, sender):
-        # no font open
-        if self.font is None:
-            print no_font_open
         # copy to layers
+        if self.font is not None:
+            glyph_names = get_glyphs(self.font)
+            if len(glyph_names) > 0:
+                # get layers and options
+                source = self.w.layers_source.get()
+                targets = self.w.layers_target.getSelection()
+                overwrite = self.w.checkbox_overwrite.get()
+                # get layer names
+                source_layer = self.layers[source]
+                target_layers = []
+                for t in targets:
+                    target_layers.append(self.layers[t])
+                # copy to selected layers
+                print 'copying glyphs between layers...\n'
+                print '\tsource layer: %s' % self.layers[source]
+                print '\ttarget layers: %s' % ' '.join(target_layers)
+                print
+                for glyph_name in glyph_names:
+                    print '\t%s' % glyph_name,
+                    source_glyph = self.font[glyph_name].getLayer(source_layer, clear=False)
+                    for target_layer in target_layers:
+                        target_glyph = self.font[glyph_name].getLayer(target_layer, clear=False)
+                        target_glyph.prepareUndo('copy to layer')
+                        target_glyph = self.font[glyph_name].getLayer(target_layer, clear=overwrite)
+                        source_glyph.copyToLayer(target_layer, clear=False)
+                        target_glyph.performUndo()
+                        target_glyph.update()
+                # done
+                print
+                print '\n...done.\n'
+            # no glyph selected
+            else:
+                print no_glyph_selected
+        # no font open
         else:
-            # get layers and options
-            source = self.w.layers_source.get()
-            targets = self.w.layers_target.getSelection()
-            overwrite = self.w.checkbox_overwrite.get()
-            # get layer names
-            source_layer = self.layers[source]
-            target_layers = []
-            for t in targets:
-                target_layers.append(self.layers[t])
-            # copy to selected layers
-            print 'copying glyphs between layers...\n'
-            print '\tsource layer: %s' % self.layers[source]
-            print '\ttarget layers: %s' % ' '.join(target_layers)
-            print
-            for glyph_name in get_glyphs(self.font):
-                print '\t%s' % glyph_name,
-                source_glyph = self.font[glyph_name].getLayer(source_layer, clear=False)
-                for target_layer in target_layers:
-                    target_glyph = self.font[glyph_name].getLayer(target_layer, clear=False)
-                    target_glyph.prepareUndo('copy to layer')
-                    target_glyph = self.font[glyph_name].getLayer(target_layer, clear=overwrite)
-                    source_glyph.copyToLayer(target_layer, clear=False)
-                    target_glyph.performUndo()
-                    target_glyph.update()
-            # done
-            print
-            print '\n...done.\n'
+            print no_font_open
 
     def on_close_window(self, sender):
-        '''Remove observers when font window is closed.'''
         removeObserver(self, "fontResignCurrent")

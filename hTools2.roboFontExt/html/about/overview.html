@@ -8,7 +8,7 @@
     
     <title>Overview &mdash; hTools2</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,11 +23,10 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="top" title="hTools2" href="../index.html" />
     <link rel="up" title="Introduction" href="introduction.html" />
-    <link rel="next" title="Installing (manually)" href="installation.html" />
-    <link rel="prev" title="About" href="about.html" /> 
+    <link rel="next" title="Installing hTools2 manually" href="installation.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
   </head>
   <body>
     <div class="related">
@@ -40,10 +39,10 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Installing (manually)"
+          <a href="installation.html" title="Installing hTools2 manually"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="about.html" title="About"
+          <a href="introduction.html" title="Introduction"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">hTools2</a> &raquo;</li>
           <li><a href="introduction.html" accesskey="U">Introduction</a> &raquo;</li> 
@@ -57,27 +56,36 @@
             
   <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about">
+<h2>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">hTools2</span></tt> is a collection of tools and objects for type-design &amp; font-production work. It is written in <a class="reference external" href="http://python.org/">Python</a> and specially tailored for use with <a class="reference external" href="http://robofont.com/">RoboFont</a>.</p>
+<p>The core Python modules and objects can also be used with <a class="reference external" href="http://www.fontlab.com/font-editor/fontlab-studio/">FontLab Studio</a>, ‘NoneLab’ (pure Python) and <a class="reference external" href="http://drawbot.com/">DrawBot</a>.</p>
+<p><tt class="docutils literal"><span class="pre">hTools2</span></tt> is built with <a class="reference external" href="http://robofab.org/">RoboFab</a> and <a class="reference external" href="http://code.typesupply.com/wiki/Vanilla">vanilla</a>. It uses the <a class="reference external" href="http://unifiedfontobject.org/">UFO</a> font format to store font sources, and <a class="reference external" href="https://en.wikipedia.org/wiki/Property_list">plist</a> files to store different kinds of font data.</p>
+</div>
+<div class="section" id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="../index.html#module-hTools2" title="hTools2"><tt class="xref py py-mod docutils literal"><span class="pre">hTools2</span></tt></a> is organized in three main packages: <tt class="xref py py-mod docutils literal"><span class="pre">modules</span></tt>, <tt class="xref py py-mod docutils literal"><span class="pre">objects</span></tt> and <tt class="xref py py-mod docutils literal"><span class="pre">dialogs</span></tt>.</p>
 <p>The additional package <tt class="xref py py-mod docutils literal"><span class="pre">extras</span></tt> is used to keep custom modules which are not part of the public distribution of <a class="reference internal" href="../index.html#module-hTools2" title="hTools2"><tt class="xref py py-mod docutils literal"><span class="pre">hTools2</span></tt></a>.</p>
 <div class="section" id="modules">
-<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<h3>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h3>
 <p>Modules are the base layer of <a class="reference internal" href="../index.html#module-hTools2" title="hTools2"><tt class="xref py py-mod docutils literal"><span class="pre">hTools2</span></tt></a>, and are used to collect and organize low-level, generic, reusable functions.</p>
 <p>Each module is dedicated to one aspect of font data – for example <tt class="xref py py-mod docutils literal"><span class="pre">interpol</span></tt> contains functions to work with interpolation, <tt class="xref py py-mod docutils literal"><span class="pre">anchors</span></tt> deals with anchors, and so on.</p>
 <p><a class="reference internal" href="../index.html#module-hTools2" title="hTools2"><tt class="xref py py-mod docutils literal"><span class="pre">hTools2</span></tt></a> modules rely heavily on underlying functionality provided by <a class="reference external" href="http://robofab.org/">RoboFab</a> and <a class="reference external" href="http://robofont.com/">RoboFont</a> to manipulate fonts.</p>
 <p><a class="reference internal" href="../index.html#module-hTools2" title="hTools2"><tt class="xref py py-mod docutils literal"><span class="pre">hTools2</span></tt></a> also integrates a few third-party external modules in a special <tt class="xref py py-mod docutils literal"><span class="pre">extras</span></tt> package, for example <tt class="xref py py-mod docutils literal"><span class="pre">colorsys</span></tt> for dealing with color conversions and <tt class="xref py py-mod docutils literal"><span class="pre">nudge</span></tt> for special manipulation of bezier points.</p>
 </div>
 <div class="section" id="objects">
-<h2>Objects<a class="headerlink" href="#objects" title="Permalink to this headline">¶</a></h2>
+<h3>Objects<a class="headerlink" href="#objects" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="../index.html#module-hTools2" title="hTools2"><tt class="xref py py-mod docutils literal"><span class="pre">hTools2</span></tt></a> objects are built on top of the functionality contained in the modules, and provide a simple API for manipulating font files and related data in projects.</p>
 </div>
 <div class="section" id="libs">
-<h2>Libs<a class="headerlink" href="#libs" title="Permalink to this headline">¶</a></h2>
+<h3>Libs<a class="headerlink" href="#libs" title="Permalink to this headline">¶</a></h3>
 <p>Metadata in font projects is stored in standardized <tt class="docutils literal"><span class="pre">plist</span></tt> and plain text files.</p>
 </div>
 <div class="section" id="dialogs">
-<h2>Dialogs<a class="headerlink" href="#dialogs" title="Permalink to this headline">¶</a></h2>
+<h3>Dialogs<a class="headerlink" href="#dialogs" title="Permalink to this headline">¶</a></h3>
 <p>Scripts and dialogs make <a class="reference internal" href="../index.html#module-hTools2" title="hTools2"><tt class="xref py py-mod docutils literal"><span class="pre">hTools2</span></tt></a> objects and modules easily accessible in applications. Current scripts in <a class="reference internal" href="../index.html#module-hTools2" title="hTools2"><tt class="xref py py-mod docutils literal"><span class="pre">hTools2</span></tt></a> are built specially for use with RoboFont.</p>
 <p>In RoboFont, scripts can be accessed with the ‘Extensions’ section of the main application menu, or via keyboard shortcuts (if properly configured).</p>
+</div>
 </div>
 </div>
 
@@ -90,6 +98,8 @@
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Overview</a><ul>
+<li><a class="reference internal" href="#about">About</a></li>
+<li><a class="reference internal" href="#structure">Structure</a><ul>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 <li><a class="reference internal" href="#objects">Objects</a></li>
 <li><a class="reference internal" href="#libs">Libs</a></li>
@@ -97,13 +107,15 @@
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="about.html"
-                        title="previous chapter">About</a></p>
+  <p class="topless"><a href="introduction.html"
+                        title="previous chapter">Introduction</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="installation.html"
-                        title="next chapter">Installing (manually)</a></p>
+                        title="next chapter">Installing hTools2 manually</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/about/overview.txt"
@@ -136,10 +148,10 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Installing (manually)"
+          <a href="installation.html" title="Installing hTools2 manually"
              >next</a> |</li>
         <li class="right" >
-          <a href="about.html" title="About"
+          <a href="introduction.html" title="Introduction"
              >previous</a> |</li>
         <li><a href="../index.html">hTools2</a> &raquo;</li>
           <li><a href="introduction.html" >Introduction</a> &raquo;</li> 
@@ -147,7 +159,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Nov 29, 2013.
+      Last updated on Mar 06, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

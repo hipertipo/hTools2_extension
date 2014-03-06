@@ -8,18 +8,26 @@
 
 import os
 
-from mojo.roboFont import CurrentFont, RFont
-
+try:
+    from mojo.roboFont import CurrentFont, RFont
+except ImportError:
+    from robofab.world import CurrentFont, RFont
+    
 from vanilla import *
 from vanilla.dialogs import getFile
 
-from hTools2 import hConstants
+from hTools2 import hDialog
+from hTools2.modules.messages import no_font_open
 
 # object
 
-class importUFOIntoLayerDialog(hConstants):
+class importUFOIntoLayerDialog(hDialog):
 
-    '''A dialog to import a font from an external file into a background layer of the current font.'''
+    '''A dialog to import a font from an external file into a background layer of the current font.
+
+    .. image:: imgs/font/import-layer.png
+
+    '''
 
     # attributes
 
@@ -73,5 +81,6 @@ class importUFOIntoLayerDialog(hConstants):
                     f[glyph_name].update()
             f.update()
             print '...done.\n'
+        # no font open
         else:
-            print 'please open a font first.\n'
+            print no_font_open

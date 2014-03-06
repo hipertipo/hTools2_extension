@@ -4,17 +4,25 @@
 
 from vanilla import *
 
-from mojo.roboFont import CurrentFont
-from mojo.events import addObserver, removeObserver
+try:
+    from mojo.roboFont import CurrentFont
+    from mojo.events import addObserver, removeObserver
 
-from hTools2 import hConstants
+except ImportError:
+    from robofab.world import CurrentFont
+
+from hTools2 import hDialog
 from hTools2.modules.messages import no_font_open
 
 # object
 
-class deleteLayerDialog(hConstants):
+class deleteLayerDialog(hDialog):
 
-    '''A dialog to delete a layer in a font.'''
+    '''A dialog to delete a layer in a font.
+
+    .. image:: imgs/font/delete-layer.png
+
+    '''
 
     # attributes
 
@@ -103,5 +111,4 @@ class deleteLayerDialog(hConstants):
                 print 'Font does not have layer %s.' % layer_name
 
     def on_close_window(self, sender):
-        '''Remove observers when font window is closed.'''
         removeObserver(self, "fontBecameCurrent")

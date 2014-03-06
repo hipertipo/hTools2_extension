@@ -2,21 +2,29 @@
 
 # imports
 
-from mojo.roboFont import AllFonts
-from mojo.events import addObserver, removeObserver
+try:
+    from mojo.roboFont import AllFonts
+    from mojo.events import addObserver, removeObserver
+
+except ImportError:
+    from robofab.world import AllFonts
 
 from vanilla import *
 
-from hTools2 import hConstants
+from hTools2 import hDialog
 from hTools2.modules.fontutils import get_full_name, get_glyphs
 from hTools2.modules.glyphutils import center_glyph
 from hTools2.modules.messages import no_font_open, only_one_font
 
 # objects
 
-class copyWidthsDialog(hConstants):
+class copyWidthsDialog(hDialog):
 
-    '''A dialog to copy the advance width of selected glyphs in one font to the same glyphs in another font.'''
+    '''A dialog to copy the advance width of selected glyphs in one font to the same glyphs in another font.
+
+    .. image:: imgs/glyphs/copy-widths.png
+
+    '''
 
     # attributes
 
@@ -29,7 +37,6 @@ class copyWidthsDialog(hConstants):
         self._get_fonts()
         # window
         self.title = 'widths'
-        self.width = 123
         self.height = (self.button_height) + (self.text_height * 2) + (self.padding_y * 6) + (self.button_height * 2)
         self.w = FloatingWindow((self.width, self.height), self.title)
         # source font

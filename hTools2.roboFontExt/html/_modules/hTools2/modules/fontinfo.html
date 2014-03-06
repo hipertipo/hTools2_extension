@@ -8,7 +8,7 @@
     
     <title>hTools2.modules.fontinfo &mdash; hTools2</title>
     
-    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,7 +23,6 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="top" title="hTools2" href="../../../index.html" />
     <link rel="up" title="hTools2" href="../../hTools2.html" /> 
   </head>
@@ -101,7 +100,7 @@
 <div class="viewcode-block" id="set_vmetrics"><a class="viewcode-back" href="../../../modules/fontinfo.html#hTools2.modules.fontinfo.set_vmetrics">[docs]</a><span class="k">def</span> <span class="nf">set_vmetrics</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">xheight</span><span class="p">,</span> <span class="n">capheight</span><span class="p">,</span> <span class="n">ascender</span><span class="p">,</span> <span class="n">descender</span><span class="p">,</span> <span class="n">emsquare</span><span class="p">,</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">xHeight</span> <span class="o">=</span> <span class="n">xheight</span> <span class="o">*</span> <span class="n">gridsize</span>
     <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">capHeight</span> <span class="o">=</span> <span class="n">capheight</span> <span class="o">*</span> <span class="n">gridsize</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">descender</span> <span class="o">=</span> <span class="n">descender</span> <span class="o">*</span> <span class="n">gridsize</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">descender</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">descender</span> <span class="o">*</span> <span class="n">gridsize</span><span class="p">)</span>
     <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">ascender</span> <span class="o">=</span> <span class="n">ascender</span> <span class="o">*</span> <span class="n">gridsize</span>
     <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">unitsPerEm</span> <span class="o">=</span> <span class="n">emsquare</span> <span class="o">*</span> <span class="n">gridsize</span>
 
@@ -471,7 +470,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Feb 28, 2014.
+      Last updated on Mar 06, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

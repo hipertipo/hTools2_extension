@@ -1,8 +1,13 @@
 # [h] clean-up spacing groups
 
-'''Clean-up quoted glyph-names in FontLab dirty spacing groups.'''
+'''Clean-up quoted glyph-names in FontLab spacing groups.'''
 
-# function
+try:
+    from mojo.roboFont import CurrentFont
+except ImportError:
+    from robofab.world import CurrentFont
+
+from hTools2.modules.messages import no_font_open
 
 def clean_FL_groups(font):
     '''remove quotes from names of master glyphs in FL spacing classes'''
@@ -13,11 +18,11 @@ def clean_FL_groups(font):
                 glyph_name = glyph_name.replace("'", "")
             glyph_names.append(glyph_name)
         f.groups[group_name] = glyph_names
-        # print group_name
-        # print f.groups[group_name]
-        # print
-
-# run
 
 f = CurrentFont()
-clean_FL_groups(f)
+
+if f is not None:
+    clean_FL_groups(f)
+
+else:
+    no_font_open

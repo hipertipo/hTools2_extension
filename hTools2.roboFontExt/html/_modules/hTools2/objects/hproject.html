@@ -8,7 +8,7 @@
     
     <title>hTools2.objects.hproject &mdash; hTools2</title>
     
-    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,7 +23,6 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="top" title="hTools2" href="../../../index.html" />
     <link rel="up" title="hTools2" href="../../hTools2.html" /> 
   </head>
@@ -51,11 +50,6 @@
   <h1>Source code for hTools2.objects.hproject</h1><div class="highlight"><pre>
 <span class="c"># [h] hProject</span>
 
-<span class="c"># debug</span>
-
-<span class="kn">import</span> <span class="nn">hTools2.modules.git</span>
-<span class="nb">reload</span><span class="p">(</span><span class="n">hTools2</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">git</span><span class="p">)</span>
-
 <span class="c"># imports</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
@@ -67,9 +61,9 @@
     <span class="kn">from</span> <span class="nn">robofab.world</span> <span class="kn">import</span> <span class="n">RFont</span><span class="p">,</span> <span class="n">NewFont</span>
 
 <span class="kn">from</span> <span class="nn">hTools2.objects.hworld</span> <span class="kn">import</span> <span class="n">hWorld</span>
+<span class="kn">from</span> <span class="nn">hTools2.modules.encoding</span> <span class="kn">import</span> <span class="n">import_encoding</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.fileutils</span> <span class="kn">import</span> <span class="n">walk</span><span class="p">,</span> <span class="n">get_names_from_path</span><span class="p">,</span> <span class="n">delete_files</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.fontutils</span> <span class="kn">import</span> <span class="n">parse_glyphs_groups</span>
-<span class="kn">from</span> <span class="nn">hTools2.modules.encoding</span> <span class="kn">import</span> <span class="n">import_encoding</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.ftp</span> <span class="kn">import</span> <span class="n">connect_to_server</span><span class="p">,</span> <span class="n">upload_file</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.git</span> <span class="kn">import</span> <span class="n">GitHandler</span>
 
@@ -601,9 +595,11 @@
         <span class="c"># generate css code</span>
         <span class="n">css_links</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
         <span class="n">css_styles</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-        <span class="k">for</span> <span class="n">woff</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">woffs</span><span class="p">():</span>
-            <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">woff</span><span class="p">)</span>
-            <span class="n">font_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file_name</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">font_files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufos</span><span class="p">()</span> <span class="c"># self.woffs()</span>
+        <span class="k">for</span> <span class="n">font</span> <span class="ow">in</span> <span class="n">font_files</span><span class="p">:</span>
+            <span class="n">ufo_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+            <span class="n">font_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">ufo_name</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">file_name</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.woff&#39;</span> <span class="o">%</span> <span class="n">font_name</span>
             <span class="n">css_links</span> <span class="o">+=</span> <span class="s">&quot;@font-face { font-family: &#39;</span><span class="si">%s</span><span class="s">&#39;; src: url(&#39;</span><span class="si">%s</span><span class="s">&#39;) format(&#39;woff&#39;); }</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">font_name</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
             <span class="n">css_styles</span> <span class="o">+=</span> <span class="s">&quot;.</span><span class="si">%s</span><span class="s"> { font-family: &#39;</span><span class="si">%s</span><span class="s">&#39;; }</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">font_name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">font_name</span><span class="p">)</span>
         <span class="n">css_code</span> <span class="o">=</span> <span class="s">&#39;/* ----- </span><span class="si">%s</span><span class="s"> ----- */</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
@@ -679,7 +675,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Feb 28, 2014.
+      Last updated on Mar 06, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

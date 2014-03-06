@@ -8,7 +8,7 @@
     
     <title>hTools2.modules.sysutils &mdash; hTools2</title>
     
-    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,7 +23,6 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="top" title="hTools2" href="../../../index.html" />
     <link rel="up" title="hTools2" href="../../hTools2.html" /> 
   </head>
@@ -56,7 +55,7 @@
 <span class="c"># functions</span>
 
 <div class="viewcode-block" id="clean_pyc"><a class="viewcode-back" href="../../../modules/sysutils.html#hTools2.modules.sysutils.clean_pyc">[docs]</a><span class="k">def</span> <span class="nf">clean_pyc</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Remove .pyc files recursively in path.&#39;&#39;&#39;</span>
+    <span class="sd">&#39;&#39;&#39;Remove all .pyc files recursively in path.&#39;&#39;&#39;</span>
     <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">directory</span><span class="p">:</span>
         <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">file_name</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">==</span> <span class="s">&#39;pyc&#39;</span><span class="p">:</span>
@@ -88,14 +87,14 @@
     <span class="k">except</span><span class="p">:</span>
         <span class="n">in_DB</span> <span class="o">=</span> <span class="bp">False</span>
     <span class="k">return</span> <span class="n">in_DB</span>
-
-<span class="c"># def in_NodeBox():</span>
-<span class="c">#     try:</span>
-<span class="c">#         import _ctx</span>
-<span class="c">#         in_NB = True</span>
-<span class="c">#     except:</span>
-<span class="c">#         in_NB = False</span>
-<span class="c">#     return in_NB</span>
+</div>
+<div class="viewcode-block" id="in_NodeBox"><a class="viewcode-back" href="../../../modules/sysutils.html#hTools2.modules.sysutils.in_NodeBox">[docs]</a><span class="k">def</span> <span class="nf">in_NodeBox</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">_ctx</span>
+        <span class="n">in_NB</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">in_NB</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="n">in_NB</span>
 </div>
 <div class="viewcode-block" id="get_context"><a class="viewcode-back" href="../../../modules/sysutils.html#hTools2.modules.sysutils.get_context">[docs]</a><span class="k">def</span> <span class="nf">get_context</span><span class="p">():</span>
     <span class="sd">&#39;&#39;&#39;Get the current environment in which hTools2 is running.&#39;&#39;&#39;</span>
@@ -117,13 +116,17 @@
 <span class="c">#         except:</span>
 <span class="c">#             print &#39;could not import module %s&#39; % module_name</span>
 
-<span class="c"># RoboFont shortcut tools</span>
+<span class="c">#----------------</span>
+<span class="c"># RoboFont tools</span>
+<span class="c">#----------------</span>
 </div>
 <span class="n">_ctx</span> <span class="o">=</span> <span class="n">get_context</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="n">_ctx</span> <span class="o">==</span> <span class="s">&#39;RoboFont&#39;</span><span class="p">:</span>
 
-    <span class="kn">from</span> <span class="nn">mojo.UI</span> <span class="kn">import</span> <span class="n">getScriptingMenuNamingShortKey</span><span class="p">,</span> <span class="n">setScriptingMenuNamingShortKey</span>
+    <span class="kn">from</span> <span class="nn">AppKit</span> <span class="kn">import</span> <span class="n">NSApp</span><span class="p">,</span> <span class="n">NSPanel</span>
+    <span class="kn">from</span> <span class="nn">mojo.extensions</span> <span class="kn">import</span> <span class="n">getExtensionDefault</span><span class="p">,</span> <span class="n">setExtensionDefault</span>
+    <span class="kn">from</span> <span class="nn">mojo.UI</span> <span class="kn">import</span> <span class="n">getScriptingMenuNamingShortKey</span><span class="p">,</span> <span class="n">setScriptingMenuNamingShortKey</span><span class="p">,</span> <span class="n">createModifier</span><span class="p">,</span> <span class="n">setScriptingMenuNamingShortKeyForPath</span>
 
     <span class="k">def</span> <span class="nf">clear_shortcuts</span><span class="p">():</span>
         <span class="sd">&#39;&#39;&#39;Remove all current shorcuts.&#39;&#39;&#39;</span>
@@ -145,7 +148,31 @@
 
     <span class="k">def</span> <span class="nf">set_shortcuts</span><span class="p">(</span><span class="n">shortcuts_dict</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Set RoboFont shortcuts from a dictionary.&#39;&#39;&#39;</span>
-        <span class="n">setScriptingMenuNamingShortKey</span><span class="p">(</span><span class="n">shortcuts_dict</span><span class="p">)</span>
+        <span class="c"># setScriptingMenuNamingShortKey(shortcuts_dict)</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">shortcuts_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">preferredName</span> <span class="o">=</span> <span class="n">shortcuts_dict</span><span class="p">[</span><span class="n">path</span><span class="p">][</span><span class="s">&#39;preferredName&#39;</span><span class="p">]</span>
+            <span class="n">shortKey</span> <span class="o">=</span> <span class="n">shortcuts_dict</span><span class="p">[</span><span class="n">path</span><span class="p">][</span><span class="s">&#39;shortKey&#39;</span><span class="p">]</span>
+            <span class="n">modifier</span> <span class="o">=</span> <span class="n">shortcuts_dict</span><span class="p">[</span><span class="n">path</span><span class="p">][</span><span class="s">&#39;modifier&#39;</span><span class="p">]</span>
+            <span class="n">setScriptingMenuNamingShortKeyForPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">preferredName</span><span class="p">,</span> <span class="n">shortKey</span><span class="p">,</span> <span class="n">modifier</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">toggle_panels</span><span class="p">():</span>
+        <span class="sd">&#39;&#39;&#39;Show/hide all floating windows in the current workspace.&#39;&#39;&#39;</span>
+        <span class="c"># get panels</span>
+        <span class="n">windows</span> <span class="o">=</span> <span class="n">NSApp</span><span class="o">.</span><span class="n">windows</span><span class="p">()</span>
+        <span class="n">panels</span> <span class="o">=</span> <span class="p">[</span> <span class="n">window</span> <span class="k">for</span> <span class="n">window</span> <span class="ow">in</span> <span class="n">windows</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">NSPanel</span><span class="p">)</span> <span class="p">]</span>
+        <span class="c"># get state</span>
+        <span class="n">show_panels</span> <span class="o">=</span> <span class="n">getExtensionDefault</span><span class="p">(</span><span class="s">&#39;com.hipertipo.showHidePanels&#39;</span><span class="p">,</span> <span class="n">fallback</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="c"># hide panels</span>
+        <span class="k">if</span> <span class="n">show_panels</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">panel</span> <span class="ow">in</span> <span class="n">panels</span><span class="p">:</span>
+                <span class="n">panel</span><span class="o">.</span><span class="n">orderOut_</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+            <span class="n">setExtensionDefault</span><span class="p">(</span><span class="s">&#39;com.hipertipo.showHidePanels&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+        <span class="c"># show panels</span>
+        <span class="k">if</span> <span class="n">show_panels</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">panel</span> <span class="ow">in</span> <span class="n">panels</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">panel</span><span class="p">))</span> <span class="o">!=</span> <span class="s">&#39;&lt;objective-c class NSColorPanel at 0x7fff750fad60&gt;&#39;</span><span class="p">:</span>
+                    <span class="n">panel</span><span class="o">.</span><span class="n">orderBack_</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+            <span class="n">setExtensionDefault</span><span class="p">(</span><span class="s">&#39;com.hipertipo.showHidePanels&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 
 <div class="viewcode-block" id="build_shortcuts_dict"><a class="viewcode-back" href="../../../modules/sysutils.html#hTools2.modules.sysutils.build_shortcuts_dict">[docs]</a><span class="k">def</span> <span class="nf">build_shortcuts_dict</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">shortcuts</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Build a shortcuts dictionary with script paths, names and shortcut keys.&#39;&#39;&#39;</span>
@@ -153,6 +180,7 @@
     <span class="c">#       u&#39;/path/to/script.py&#39;: {</span>
     <span class="c">#           &#39;preferredName&#39; : &#39;my script&#39;,</span>
     <span class="c">#           &#39;shortKey&#39; : &#39;n&#39;,</span>
+    <span class="c">#           &#39;modifier&#39; : createModifier(command=True, shift=True),</span>
     <span class="c">#       }</span>
     <span class="c">#   }</span>
     <span class="n">_shortcuts_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -163,6 +191,7 @@
             <span class="n">_shortcuts_dict</span><span class="p">[</span><span class="n">_file_path</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="n">_shortcuts_dict</span><span class="p">[</span><span class="n">_file_path</span><span class="p">][</span><span class="s">&#39;preferredName&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_name</span>
             <span class="n">_shortcuts_dict</span><span class="p">[</span><span class="n">_file_path</span><span class="p">][</span><span class="s">&#39;shortKey&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_key</span>
+            <span class="n">_shortcuts_dict</span><span class="p">[</span><span class="n">_file_path</span><span class="p">][</span><span class="s">&#39;modifier&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">createModifier</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> does not exist.&#39;</span> <span class="o">%</span> <span class="n">_file_path</span>
     <span class="k">return</span> <span class="n">_shortcuts_dict</span>
@@ -214,7 +243,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Feb 28, 2014.
+      Last updated on Mar 06, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

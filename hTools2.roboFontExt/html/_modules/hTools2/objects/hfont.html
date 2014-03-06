@@ -8,7 +8,7 @@
     
     <title>hTools2.objects.hfont &mdash; hTools2</title>
     
-    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,7 +23,6 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="top" title="hTools2" href="../../../index.html" />
     <link rel="up" title="hTools2" href="../../hTools2.html" /> 
   </head>
@@ -58,35 +57,17 @@
 <span class="kn">from</span> <span class="nn">hproject</span> <span class="kn">import</span> <span class="n">hProject</span>
 
 <span class="kn">from</span> <span class="nn">hTools2.modules.anchors</span> <span class="kn">import</span> <span class="n">clear_anchors</span><span class="p">,</span> <span class="n">get_anchors_dict</span>
-<span class="kn">from</span> <span class="nn">hTools2.modules.color</span> <span class="kn">import</span> <span class="n">clear_colors</span><span class="p">,</span> <span class="n">hls_to_rgb</span>
+<span class="kn">from</span> <span class="nn">hTools2.modules.color</span> <span class="kn">import</span> <span class="n">clear_colors</span><span class="p">,</span> <span class="n">hls_to_rgb</span><span class="p">,</span> <span class="n">x11_colors</span><span class="p">,</span> <span class="n">convert_to_1</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.encoding</span> <span class="kn">import</span> <span class="n">paint_groups</span><span class="p">,</span> <span class="n">auto_unicodes</span><span class="p">,</span> <span class="n">crop_glyphset</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.fontinfo</span> <span class="kn">import</span> <span class="n">set_names_from_path</span><span class="p">,</span> <span class="n">set_vmetrics</span><span class="p">,</span> <span class="n">get_stems</span><span class="p">,</span> <span class="n">set_stems</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.fontutils</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.ftp</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">hTools2.modules.opentype</span> <span class="kn">import</span> <span class="n">import_features</span><span class="p">,</span> <span class="n">clear_features</span><span class="p">,</span> <span class="n">import_kern_feature</span>
-
-<span class="kn">from</span> <span class="nn">fontTools.ttLib</span> <span class="kn">import</span> <span class="n">TTFont</span>
-
-<span class="c"># functions</span>
-
-<div class="viewcode-block" id="strip_names"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.strip_names">[docs]</a><span class="k">def</span> <span class="nf">strip_names</span><span class="p">(</span><span class="n">ttx_path</span><span class="p">):</span>
-    <span class="kn">import</span> <span class="nn">hTools2.extras.ElementTree</span> <span class="kn">as</span> <span class="nn">ET</span>
-    <span class="c"># nameIDs which will be erased</span>
-    <span class="n">nameIDs</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span> <span class="p">]</span>
-    <span class="n">tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">ttx_path</span><span class="p">)</span>
-    <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s">&#39;nameID&#39;</span><span class="p">])</span> <span class="ow">in</span> <span class="n">nameIDs</span><span class="p">:</span>
-            <span class="n">child</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">&#39; &#39;</span>
-    <span class="n">tree</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ttx_path</span><span class="p">)</span>
-</div>
-<div class="viewcode-block" id="ttx2otf"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.ttx2otf">[docs]</a><span class="k">def</span> <span class="nf">ttx2otf</span><span class="p">(</span><span class="n">ttx_path</span><span class="p">,</span> <span class="n">otf_path</span><span class="p">):</span>
-    <span class="n">tt</span> <span class="o">=</span> <span class="n">TTFont</span><span class="p">()</span>
-    <span class="n">tt</span><span class="o">.</span><span class="n">importXML</span><span class="p">(</span><span class="n">ttx_path</span><span class="p">)</span>
-    <span class="n">tt</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">otf_path</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">hTools2.modules.opentype</span> <span class="kn">import</span> <span class="n">import_features</span><span class="p">,</span> <span class="n">export_features</span><span class="p">,</span> <span class="n">clear_features</span><span class="p">,</span> <span class="n">import_kern_feature</span>
+<span class="kn">from</span> <span class="nn">hTools2.modules.messages</span> <span class="kn">import</span> <span class="n">no_glyph_selected</span>
+<span class="kn">from</span> <span class="nn">hTools2.modules.ttx</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="c"># objects</span>
-</div>
+
 <div class="viewcode-block" id="hFont"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont">[docs]</a><span class="k">class</span> <span class="nc">hFont</span><span class="p">:</span>
 
     <span class="sd">&#39;&#39;&#39;An object to represent a ``.ufo`` font source, wrapped in a few useful functions.&#39;&#39;&#39;</span>
@@ -155,6 +136,13 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">True</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">newGlyph</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="hFont.get_glyph_names"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.get_glyph_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_glyph_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gstring</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">gstring</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">glyph_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">parse_gstring</span><span class="p">(</span><span class="n">gstring</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">glyph_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">all_glyphs</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">glyph_names</span>
 </div>
 <div class="viewcode-block" id="hFont.glyphset"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.glyphset">[docs]</a>    <span class="k">def</span> <span class="nf">glyphset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Return a list with all glyph names in the font&#39;s glyphset.&#39;&#39;&#39;</span>
@@ -306,11 +294,7 @@
 </div>
 <div class="viewcode-block" id="hFont.round_to_grid"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.round_to_grid">[docs]</a>    <span class="k">def</span> <span class="nf">round_to_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">,</span> <span class="n">gstring</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Round points in all given glyphs in the font to the given ``gridsize``.&#39;&#39;&#39;</span>
-        <span class="n">glyph_names</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="k">if</span> <span class="n">gstring</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">names</span> <span class="o">=</span> <span class="n">gstring</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
-            <span class="n">groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;groups&#39;</span><span class="p">][</span><span class="s">&#39;glyphs&#39;</span><span class="p">]</span>
-            <span class="n">glyph_names</span> <span class="o">=</span> <span class="n">parse_glyphs_groups</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+        <span class="n">glyph_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_glyph_names</span><span class="p">(</span><span class="n">gstring</span><span class="p">)</span>
         <span class="n">round_to_grid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">,</span> <span class="n">glyph_names</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="hFont.delete_layers"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.delete_layers">[docs]</a>    <span class="k">def</span> <span class="nf">delete_layers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -323,13 +307,10 @@
 </div>
 <div class="viewcode-block" id="hFont.clear_anchors"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.clear_anchors">[docs]</a>    <span class="k">def</span> <span class="nf">clear_anchors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gstring</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Delete all anchors in the font.&#39;&#39;&#39;</span>
-        <span class="k">if</span> <span class="n">gstring</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">_glyph_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">parse_gstring</span><span class="p">(</span><span class="n">gstring</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">_glyph_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">all_glyphs</span><span class="p">()</span>
-        <span class="n">clear_anchors</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">,</span> <span class="n">glyph_names</span><span class="o">=</span><span class="n">_glyph_names</span><span class="p">)</span>
+        <span class="n">glyph_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_glyph_names</span><span class="p">(</span><span class="n">gstring</span><span class="p">)</span>
+        <span class="n">clear_anchors</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">,</span> <span class="n">glyph_names</span><span class="o">=</span><span class="n">glyph_names</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="hFont.build_glyph"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.build_glyph">[docs]</a>    <span class="k">def</span> <span class="nf">build_glyph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">glyph_name</span><span class="p">):</span>
+<div class="viewcode-block" id="hFont.build_glyph"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.build_glyph">[docs]</a>    <span class="k">def</span> <span class="nf">build_glyph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">glyph_name</span><span class="p">,</span> <span class="n">composed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Build glyph with the given ``glyph_name`` from components based on the project&#39;s ``accents`` or ``composed`` libs.&#39;&#39;&#39;</span>
         <span class="c"># accents</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;accents&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">):</span>
@@ -337,25 +318,32 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">removeGlyph</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">compileGlyph</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">,</span> <span class="n">base_glyph</span><span class="p">,</span> <span class="n">accents</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="k">return</span> <span class="bp">True</span>
         <span class="c"># composed</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;composed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">newGlyph</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
             <span class="n">components</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;composed&#39;</span><span class="p">][</span><span class="n">glyph_name</span><span class="p">]</span>
-            <span class="n">_offset_x</span><span class="p">,</span> <span class="n">_offset_y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
-            <span class="n">_scale_x</span><span class="p">,</span> <span class="n">_scale_y</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+            <span class="n">offset_x</span><span class="p">,</span> <span class="n">offset_y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+            <span class="n">scale_x</span><span class="p">,</span> <span class="n">scale_y</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
             <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">components</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">appendComponent</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="p">(</span><span class="n">_offset_x</span><span class="p">,</span> <span class="n">_offset_y</span><span class="p">),</span> <span class="p">(</span><span class="n">_scale_x</span><span class="p">,</span> <span class="n">_scale_y</span><span class="p">))</span>
-                <span class="n">_offset_x</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">[</span><span class="n">component</span><span class="p">]</span><span class="o">.</span><span class="n">width</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">appendComponent</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="p">(</span><span class="n">offset_x</span><span class="p">,</span> <span class="n">offset_y</span><span class="p">),</span> <span class="p">(</span><span class="n">scale_x</span><span class="p">,</span> <span class="n">scale_y</span><span class="p">))</span>
+                <span class="n">offset_x</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">[</span><span class="n">component</span><span class="p">]</span><span class="o">.</span><span class="n">width</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="k">return</span> <span class="bp">True</span>
         <span class="c"># not composed</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> is not composed.</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">glyph_name</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="k">print</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> is not composed.&#39;</span> <span class="o">%</span> <span class="n">glyph_name</span>
+            <span class="k">return</span> <span class="bp">False</span>
 </div>
-<div class="viewcode-block" id="hFont.build_accents"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.build_accents">[docs]</a>    <span class="k">def</span> <span class="nf">build_accents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="hFont.build_accents"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.build_accents">[docs]</a>    <span class="k">def</span> <span class="nf">build_accents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gstring</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="p">[],</span> <span class="n">composed</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Build all accented glyphs in the font based on the project&#39;s ``accents`` libs.&#39;&#39;&#39;</span>
-        <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;accents&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">glyph_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_glyph_names</span><span class="p">(</span><span class="n">gstring</span><span class="p">)</span>
+        <span class="c"># build glyphs</span>
+        <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">glyph_names</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">build_glyph</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span>
+                <span class="c"># skip glyphs in ignore list</span>
+                <span class="k">if</span> <span class="n">glyph_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ignore</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">build_glyph</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">,</span> <span class="n">composed</span><span class="o">=</span><span class="n">composed</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="hFont.build_composed"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.build_composed">[docs]</a>    <span class="k">def</span> <span class="nf">build_composed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Build all composed glyphs in the font based on the project&#39;s ``composed`` libs.&#39;&#39;&#39;</span>
@@ -405,6 +393,24 @@
                 <span class="n">glyph</span><span class="o">.</span><span class="n">appendAnchor</span><span class="p">(</span><span class="s">&#39;_top&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x_center</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
         <span class="c"># done font</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="hFont.build_selected_glyphs"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.build_selected_glyphs">[docs]</a>    <span class="k">def</span> <span class="nf">build_selected_glyphs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># get glyphs</span>
+        <span class="n">glyph_names</span> <span class="o">=</span> <span class="n">get_glyphs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">)</span>
+        <span class="c"># get color</span>
+        <span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">x11_colors</span><span class="p">[</span><span class="s">&#39;Orange&#39;</span><span class="p">]</span>
+        <span class="n">mark_color</span> <span class="o">=</span> <span class="n">convert_to_1</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">mark_color</span> <span class="o">+=</span> <span class="p">(</span><span class="o">.</span><span class="mi">35</span><span class="p">,)</span>
+        <span class="c"># build glyphs</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">glyph_names</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">glyph_names</span><span class="p">:</span>
+                <span class="n">composed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_glyph</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span>
+                <span class="c"># paint glyph</span>
+                <span class="k">if</span> <span class="n">composed</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="n">mark_color</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="n">no_glyph_selected</span>
 
     <span class="c"># OT features</span>
 </div>
@@ -777,7 +783,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Feb 28, 2014.
+      Last updated on Mar 06, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

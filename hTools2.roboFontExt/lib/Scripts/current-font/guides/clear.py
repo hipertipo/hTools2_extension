@@ -1,12 +1,17 @@
 # [h] clear font guides
 
-'''Remove all global guides in the font.'''
+try:
+    from mojo.roboFont import CurrentFont
+except ImportError:
+    from robofab.world import CurrentFont
 
-# imports
-
-from hTools2.modules.fontutils import get_glyphs, clear_guides
-
-# run
+from hTools2.modules.fontutils import clear_guides
+from hTools2.modules.messages import no_font_open
 
 f = CurrentFont()
-clear_guides(f)
+
+if f is not None:
+    clear_guides(f)
+
+else:
+    print no_font_open
