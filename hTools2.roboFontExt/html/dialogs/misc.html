@@ -26,7 +26,7 @@
     <link rel="top" title="hTools2" href="../index.html" />
     <link rel="up" title="Dialogs" href="dialogs.html" />
     <link rel="next" title="Objects" href="../objects/objects.html" />
-    <link rel="prev" title="allfonts" href="allfonts.html" /> 
+    <link rel="prev" title="all_fonts" href="all_fonts.html" /> 
   </head>
   <body>
     <div class="related">
@@ -42,7 +42,7 @@
           <a href="../objects/objects.html" title="Objects"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="allfonts.html" title="allfonts"
+          <a href="all_fonts.html" title="all_fonts"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">hTools2</a> &raquo;</li>
           <li><a href="dialogs.html" accesskey="U">Dialogs</a> &raquo;</li> 
@@ -59,54 +59,54 @@
 <dl class="class">
 <dt id="hTools2.dialogs.misc.SelectFonts">
 <em class="property">class </em><tt class="descclassname">hTools2.dialogs.misc.</tt><tt class="descname">SelectFonts</tt><big>(</big><em>verbose=False</em><big>)</big><a class="headerlink" href="#hTools2.dialogs.misc.SelectFonts" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="hTools2.dialogs.misc.SelectFonts.apply_callback">
-<tt class="descname">apply_callback</tt><big>(</big><em>sender</em><big>)</big><a class="headerlink" href="#hTools2.dialogs.misc.SelectFonts.apply_callback" title="Permalink to this definition">¶</a></dt>
-<dd><p>triggered when the <cite>OK</cite> button is clicked</p>
-</dd></dl>
+<dd><p>A dialog to select fonts in different ways.</p>
+<img alt="../_images/select-fonts.png" src="../_images/select-fonts.png" />
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">hTools2.dialogs.misc</span> <span class="kn">import</span> <span class="n">SelectFonts</span>
 
-<dl class="method">
-<dt id="hTools2.dialogs.misc.SelectFonts.cancel_callback">
-<tt class="descname">cancel_callback</tt><big>(</big><em>sender</em><big>)</big><a class="headerlink" href="#hTools2.dialogs.misc.SelectFonts.cancel_callback" title="Permalink to this definition">¶</a></dt>
-<dd><p>triggered when the <cite>cancel</cite> button is clicked</p>
-</dd></dl>
+<span class="k">for</span> <span class="n">font</span> <span class="ow">in</span> <span class="n">SelectFonts</span><span class="p">():</span>
+    <span class="k">print</span> <span class="n">font</span>
 
-<dl class="method">
-<dt id="hTools2.dialogs.misc.SelectFonts.selection_callback">
-<tt class="descname">selection_callback</tt><big>(</big><em>sender</em><big>)</big><a class="headerlink" href="#hTools2.dialogs.misc.SelectFonts.selection_callback" title="Permalink to this definition">¶</a></dt>
-<dd><p>triggered every time that items in the list are selected/deselected</p>
-</dd></dl>
-
+<span class="o">&gt;&gt;&gt;</span> <span class="o">&lt;</span><span class="n">Font</span> <span class="n">Grow</span> <span class="n">D</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="o">&lt;</span><span class="n">Font</span> <span class="n">Grow</span> <span class="n">E</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="o">&lt;</span><span class="n">Font</span> <span class="n">Grow</span> <span class="n">F</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="o">&lt;</span><span class="n">Font</span> <span class="n">Publica</span> <span class="mi">55</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="o">&lt;</span><span class="n">Font</span> <span class="n">Publica</span> <span class="mi">95</span><span class="o">&gt;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="class">
 <dt id="hTools2.dialogs.misc.checkBoxBuilder">
 <em class="property">class </em><tt class="descclassname">hTools2.dialogs.misc.</tt><tt class="descname">checkBoxBuilder</tt><big>(</big><em>items_list</em>, <em>title='select options'</em>, <em>width=320</em>, <em>sort=False</em><big>)</big><a class="headerlink" href="#hTools2.dialogs.misc.checkBoxBuilder" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="hTools2.dialogs.misc.checkBoxBuilder.cancel_callback">
-<tt class="descname">cancel_callback</tt><big>(</big><em>sender</em><big>)</big><a class="headerlink" href="#hTools2.dialogs.misc.checkBoxBuilder.cancel_callback" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>An object to create a modal dialog for items in a list.</p>
+<img alt="../_images/checkbox-builder.png" src="../_images/checkbox-builder.png" />
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">hTools2.dialogs.misc</span> <span class="kn">import</span> <span class="n">checkBoxBuilder</span>
 
-<dl class="attribute">
-<dt id="hTools2.dialogs.misc.checkBoxBuilder.cancelled">
-<tt class="descname">cancelled</tt><em class="property"> = False</em><a class="headerlink" href="#hTools2.dialogs.misc.checkBoxBuilder.cancelled" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="n">L</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s">&#39;avocado&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;banana&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;chocolate&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">),</span>
+<span class="p">]</span>
 
-<dl class="method">
-<dt id="hTools2.dialogs.misc.checkBoxBuilder.checkbox_callback">
-<tt class="descname">checkbox_callback</tt><big>(</big><em>sender</em><big>)</big><a class="headerlink" href="#hTools2.dialogs.misc.checkBoxBuilder.checkbox_callback" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="n">B</span> <span class="o">=</span> <span class="n">checkBoxBuilder</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
 
-<dl class="method">
-<dt id="hTools2.dialogs.misc.checkBoxBuilder.ok_callback">
-<tt class="descname">ok_callback</tt><big>(</big><em>sender</em><big>)</big><a class="headerlink" href="#hTools2.dialogs.misc.checkBoxBuilder.ok_callback" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="k">print</span> <span class="n">B</span><span class="o">.</span><span class="n">selected</span>
 
-<dl class="attribute">
-<dt id="hTools2.dialogs.misc.checkBoxBuilder.selected">
-<tt class="descname">selected</tt><em class="property"> = []</em><a class="headerlink" href="#hTools2.dialogs.misc.checkBoxBuilder.selected" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="s">&#39;avocado&#39;</span><span class="p">,</span> <span class="s">&#39;banana&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
 
+<dl class="class">
+<dt id="hTools2.dialogs.misc.Spinner">
+<em class="property">class </em><tt class="descclassname">hTools2.dialogs.misc.</tt><tt class="descname">Spinner</tt><big>(</big><em>(l</em>, <em>t)</em>, <em>default='0'</em>, <em>scale=1</em>, <em>integer=True</em>, <em>nudge_button=18</em>, <em>padding=10</em>, <em>label=None</em>, <em>digits=2</em><big>)</big><a class="headerlink" href="#hTools2.dialogs.misc.Spinner" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object to add number spinners to vanilla dialogs.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="hTools2.dialogs.misc.Arrows">
+<em class="property">class </em><tt class="descclassname">hTools2.dialogs.misc.</tt><tt class="descname">Arrows</tt><big>(</big><em>(l</em>, <em>t)</em>, <em>s=35</em>, <em>p=10</em>, <em>callbacks={}</em>, <em>arrows=None</em><big>)</big><a class="headerlink" href="#hTools2.dialogs.misc.Arrows" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object to add directional arrow buttons to vanilla dialogs.</p>
 </dd></dl>
 
 </div>
@@ -118,8 +118,8 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="allfonts.html"
-                        title="previous chapter">allfonts</a></p>
+  <p class="topless"><a href="all_fonts.html"
+                        title="previous chapter">all_fonts</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="../objects/objects.html"
                         title="next chapter">Objects</a></p>
@@ -158,7 +158,7 @@
           <a href="../objects/objects.html" title="Objects"
              >next</a> |</li>
         <li class="right" >
-          <a href="allfonts.html" title="allfonts"
+          <a href="all_fonts.html" title="all_fonts"
              >previous</a> |</li>
         <li><a href="../index.html">hTools2</a> &raquo;</li>
           <li><a href="dialogs.html" >Dialogs</a> &raquo;</li> 
@@ -166,7 +166,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Mar 06, 2014.
+      Last updated on Mar 08, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

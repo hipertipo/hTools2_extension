@@ -55,22 +55,28 @@
 <span class="c"># import</span>
 
 <span class="kn">from</span> <span class="nn">adjust_vmetrics</span> <span class="kn">import</span> <span class="n">adjustVerticalMetrics</span>
+<span class="kn">from</span> <span class="nn">copy_info</span> <span class="kn">import</span> <span class="n">copyFontInfoDialog</span>
 <span class="kn">from</span> <span class="nn">create_spaces</span> <span class="kn">import</span> <span class="n">createSpaceGlyphsDialog</span>
 <span class="kn">from</span> <span class="nn">delete_layer</span> <span class="kn">import</span> <span class="n">deleteLayerDialog</span>
 <span class="kn">from</span> <span class="nn">import_layer</span> <span class="kn">import</span> <span class="n">importUFOIntoLayerDialog</span>
 <span class="kn">from</span> <span class="nn">print_groups</span> <span class="kn">import</span> <span class="n">printGroupsDialog</span>
+<span class="kn">from</span> <span class="nn">print_info</span> <span class="kn">import</span> <span class="n">clearFontInfoDialog</span>
 <span class="kn">from</span> <span class="nn">rename_glyphs</span> <span class="kn">import</span> <span class="n">batchRenameGlyphs</span>
+<span class="kn">from</span> <span class="nn">set_element</span> <span class="kn">import</span> <span class="n">setElementDialog</span>
 <span class="kn">from</span> <span class="nn">transfer_vmetrics</span> <span class="kn">import</span> <span class="n">transferVMetricsDialog</span>
 
 <span class="c"># export</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s">&#39;batchRenameGlyphs&#39;</span><span class="p">,</span>
+    <span class="s">&#39;adjustVerticalMetrics&#39;</span><span class="p">,</span>
+    <span class="s">&#39;copyFontInfoDialog&#39;</span><span class="p">,</span>
     <span class="s">&#39;createSpaceGlyphsDialog&#39;</span><span class="p">,</span>
-    <span class="s">&#39;printGroupsDialog&#39;</span><span class="p">,</span>
     <span class="s">&#39;deleteLayerDialog&#39;</span><span class="p">,</span>
     <span class="s">&#39;importUFOIntoLayerDialog&#39;</span><span class="p">,</span>
-    <span class="s">&#39;adjustVerticalMetrics&#39;</span><span class="p">,</span>
+    <span class="s">&#39;printGroupsDialog&#39;</span><span class="p">,</span>
+	<span class="s">&#39;clearFontInfoDialog&#39;</span><span class="p">,</span>
+    <span class="s">&#39;batchRenameGlyphs&#39;</span><span class="p">,</span>
+    <span class="s">&#39;setElementDialog&#39;</span><span class="p">,</span>
     <span class="s">&#39;transferVMetricsDialog&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
@@ -113,7 +119,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Mar 06, 2014.
+      Last updated on Mar 08, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

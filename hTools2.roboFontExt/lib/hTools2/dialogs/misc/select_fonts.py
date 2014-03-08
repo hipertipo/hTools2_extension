@@ -11,6 +11,7 @@
 
 try:
     from mojo.roboFont import CurrentFont, AllFonts, RFont
+
 except:
     from robofab.world import CurrentFont, AllFonts, RFont
 
@@ -25,9 +26,26 @@ from hTools2.modules.fileutils import walk
 
 class SelectFonts(object):
 
-    #------------
+    '''A dialog to select fonts in different ways.
+
+    .. image:: imgs/misc/select-fonts.png
+
+    .. code-block:: python
+
+        from hTools2.dialogs.misc import SelectFonts
+
+        for font in SelectFonts():
+            print font
+
+        >>> <Font Grow D>
+        >>> <Font Grow E>
+        >>> <Font Grow F>
+        >>> <Font Publica 55>
+        >>> <Font Publica 95>
+
+    '''
+
     # attributes
-    #------------
 
     _padding = 15
     _box_height = 25
@@ -58,9 +76,7 @@ class SelectFonts(object):
 
     _list_titles =   [ 'family', 'style', 'glyphs' ]
 
-    #---------
     # methods
-    #---------
 
     def __init__(self, verbose=False):
         self._verbose = verbose
@@ -313,15 +329,12 @@ class SelectFonts(object):
         self.w._fonts_list.set(_list)
 
     def selection_callback(self, sender):
-        '''triggered every time that items in the list are selected/deselected'''
         self._selection = sender.getSelection()
 
     def apply_callback(self, sender):
-        '''triggered when the `OK` button is clicked'''
         return self.__iter__()
 
     def cancel_callback(self, sender):
-        '''triggered when the `cancel` button is clicked'''
         if self._verbose:
             print 'dialog cancelled.'
         yield None
