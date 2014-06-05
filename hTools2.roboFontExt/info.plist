@@ -26,5 +26,9 @@
 	<real>1395377116.056946</real>
 	<key>version</key>
 	<string>1.6</string>
+	<key>repository</key>
+	<string>gferreira/hTools2_extension</string>
+	<key>extensionPath</key>
+	<string>hTools2.roboFontExt</string>
 </dict>
 </plist>
