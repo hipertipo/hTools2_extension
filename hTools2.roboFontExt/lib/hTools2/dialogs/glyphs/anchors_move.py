@@ -1,8 +1,5 @@
 # [h] move anchors in selected glyphs
 
-import hTools2.dialogs.misc
-reload(hTools2.dialogs.misc)
-
 # imports
 
 try:

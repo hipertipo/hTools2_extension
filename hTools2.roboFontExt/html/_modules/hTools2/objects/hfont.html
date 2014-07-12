@@ -54,14 +54,15 @@
 
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">hproject</span> <span class="kn">import</span> <span class="n">hProject</span>
+<span class="kn">from</span> <span class="nn">hTools2.objects.hproject</span> <span class="kn">import</span> <span class="n">hProject</span>
 
 <span class="kn">from</span> <span class="nn">hTools2.modules.anchors</span> <span class="kn">import</span> <span class="n">clear_anchors</span><span class="p">,</span> <span class="n">get_anchors_dict</span>
-<span class="kn">from</span> <span class="nn">hTools2.modules.color</span> <span class="kn">import</span> <span class="n">clear_colors</span><span class="p">,</span> <span class="n">hls_to_rgb</span><span class="p">,</span> <span class="n">x11_colors</span><span class="p">,</span> <span class="n">convert_to_1</span>
+<span class="kn">from</span> <span class="nn">hTools2.modules.color</span> <span class="kn">import</span> <span class="n">clear_colors</span><span class="p">,</span> <span class="n">hls_to_rgb</span><span class="p">,</span> <span class="n">x11_colors</span><span class="p">,</span> <span class="n">convert_to_1</span><span class="p">,</span> <span class="n">random_color</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.encoding</span> <span class="kn">import</span> <span class="n">paint_groups</span><span class="p">,</span> <span class="n">auto_unicodes</span><span class="p">,</span> <span class="n">crop_glyphset</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.fontinfo</span> <span class="kn">import</span> <span class="n">set_names_from_path</span><span class="p">,</span> <span class="n">set_vmetrics</span><span class="p">,</span> <span class="n">get_stems</span><span class="p">,</span> <span class="n">set_stems</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.fontutils</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.ftp</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">hTools2.modules.languages</span> <span class="kn">import</span> <span class="n">diacritics_glyphnames</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.opentype</span> <span class="kn">import</span> <span class="n">import_features</span><span class="p">,</span> <span class="n">export_features</span><span class="p">,</span> <span class="n">clear_features</span><span class="p">,</span> <span class="n">import_kern_feature</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.messages</span> <span class="kn">import</span> <span class="n">no_glyph_selected</span>
 <span class="kn">from</span> <span class="nn">hTools2.modules.ttx</span> <span class="kn">import</span> <span class="o">*</span>
@@ -103,7 +104,7 @@
         <span class="sd">&#39;&#39;&#39;Return textual representation of ``hFont``.&#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="s">&#39;&lt;hFont </span><span class="si">%s</span><span class="s">&gt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_name</span><span class="p">()</span>
 </div>
-<div class="viewcode-block" id="hFont.init_from_filename"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.init_from_filename">[docs]</a>    <span class="k">def</span> <span class="nf">init_from_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_names</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="hFont.init_from_filename"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.init_from_filename">[docs]</a>    <span class="k">def</span> <span class="nf">init_from_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_names</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Initiate ``hFont`` object from ``RFont``, get parent project, parse name parts.&#39;&#39;&#39;</span>
         <span class="n">ufo_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">ufo_file</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -122,8 +123,8 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">parameters_order</span><span class="p">,</span> <span class="n">name_parameters</span><span class="p">))</span>
             <span class="c"># keep parameters dict empty</span>
             <span class="k">except</span><span class="p">:</span>
-                <span class="c"># print &#39;Error: no parameters lib for this font.\n&#39;</span>
-                <span class="k">pass</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="s">&#39;Error: no parameters lib for this font.</span><span class="se">\n</span><span class="s">&#39;</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">&#39;Error: font name is not in the format family_style&#39;</span>
 
@@ -167,25 +168,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 </div>
 <div class="viewcode-block" id="hFont.paint_groups"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.paint_groups">[docs]</a>    <span class="k">def</span> <span class="nf">paint_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crop</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Paints and orders the glyphs in the font based on the project&#39;s ``groups`` lib.&#39;&#39;&#39;</span>
+        <span class="sd">&#39;&#39;&#39;Paints and orders the glyphs in the font based on the project&#39;s ``groups`` lib.</span>
+
+<span class="sd">        :param bool crop: If ``True``, remove from the font all glyphs which don&#39;t belong to any group.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">paint_groups</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">,</span> <span class="n">crop</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="hFont.import_spacing_groups"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.import_spacing_groups">[docs]</a>    <span class="k">def</span> <span class="nf">import_spacing_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Import left/right spacing classes from lib into groups.&#39;&#39;&#39;</span>
         <span class="n">_spacing_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;spacing&#39;</span><span class="p">]</span>
-        <span class="c"># old hTools1 format</span>
-        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="n">_spacing_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">_spacing_dict</span><span class="p">[</span><span class="n">side</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                    <span class="n">_class_name</span> <span class="o">=</span> <span class="s">&#39;_</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">side</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
-                    <span class="n">_glyphs</span> <span class="o">=</span> <span class="p">[</span> <span class="n">group</span> <span class="p">]</span> <span class="o">+</span> <span class="n">_spacing_dict</span><span class="p">[</span><span class="n">side</span><span class="p">][</span><span class="n">group</span><span class="p">]</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_class_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">_glyphs</span>
-        <span class="c"># new hTools2 format</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="n">_spacing_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">_spacing_dict</span><span class="p">[</span><span class="n">side</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group</span><span class="p">]</span> <span class="o">=</span> <span class="n">_spacing_dict</span><span class="p">[</span><span class="n">side</span><span class="p">][</span><span class="n">group</span><span class="p">]</span>
-        <span class="c"># update font</span>
+        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="n">_spacing_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">_spacing_dict</span><span class="p">[</span><span class="n">side</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group</span><span class="p">]</span> <span class="o">=</span> <span class="n">_spacing_dict</span><span class="p">[</span><span class="n">side</span><span class="p">][</span><span class="n">group</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 </div>
 <div class="viewcode-block" id="hFont.paint_spacing_groups"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.paint_spacing_groups">[docs]</a>    <span class="k">def</span> <span class="nf">paint_spacing_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">side</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
@@ -238,6 +233,9 @@
         <span class="sd">&#39;&#39;&#39;Delete all glyphs which are not in the font&#39;s glyphset.&#39;&#39;&#39;</span>
         <span class="n">glyph_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">glyphset</span><span class="p">()</span>
         <span class="n">crop_glyphset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">,</span> <span class="n">glyph_set</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="hFont.get_glyphs"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.get_glyphs">[docs]</a>    <span class="k">def</span> <span class="nf">get_glyphs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">get_glyphs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">)</span>
 
     <span class="c"># actions</span>
 </div>
@@ -277,7 +275,7 @@
         <span class="n">auto_order_direction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="hFont.add_extremes"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.add_extremes">[docs]</a>    <span class="k">def</span> <span class="nf">add_extremes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Auto add extreme points in all glyphs in font.&#39;&#39;&#39;</span>
+        <span class="sd">&#39;&#39;&#39;Auto add extreme points to all glyphs in font.&#39;&#39;&#39;</span>
         <span class="n">add_extremes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="hFont.align_to_grid"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.align_to_grid">[docs]</a>    <span class="k">def</span> <span class="nf">align_to_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span> <span class="n">sizeY</span><span class="p">)):</span>
@@ -310,7 +308,7 @@
         <span class="n">glyph_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_glyph_names</span><span class="p">(</span><span class="n">gstring</span><span class="p">)</span>
         <span class="n">clear_anchors</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">,</span> <span class="n">glyph_names</span><span class="o">=</span><span class="n">glyph_names</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="hFont.build_glyph"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.build_glyph">[docs]</a>    <span class="k">def</span> <span class="nf">build_glyph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">glyph_name</span><span class="p">,</span> <span class="n">composed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="hFont.build_glyph"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.build_glyph">[docs]</a>    <span class="k">def</span> <span class="nf">build_glyph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">glyph_name</span><span class="p">,</span> <span class="n">composed</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Build glyph with the given ``glyph_name`` from components based on the project&#39;s ``accents`` or ``composed`` libs.&#39;&#39;&#39;</span>
         <span class="c"># accents</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;accents&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">):</span>
@@ -334,22 +332,37 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="k">print</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> is not composed.&#39;</span> <span class="o">%</span> <span class="n">glyph_name</span>
             <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="c"># def build_accents_old(self, gstring=None, ignore=[]):</span>
+    <span class="c">#     &#39;&#39;&#39;Build all accented glyphs in the font based on the project&#39;s ``accents`` libs.&#39;&#39;&#39;</span>
+    <span class="c">#     glyph_names = self.get_glyph_names(gstring)</span>
+    <span class="c">#     # build glyphs</span>
+    <span class="c">#     for glyph_name in glyph_names:</span>
+    <span class="c">#         if self.ufo.has_key(glyph_name):</span>
+    <span class="c">#             # skip glyphs in ignore list</span>
+    <span class="c">#             if glyph_name not in ignore:</span>
+    <span class="c">#                 self.build_glyph(glyph_name, composed=False, verbose=False)</span>
 </div>
-<div class="viewcode-block" id="hFont.build_accents"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.build_accents">[docs]</a>    <span class="k">def</span> <span class="nf">build_accents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gstring</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="p">[],</span> <span class="n">composed</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Build all accented glyphs in the font based on the project&#39;s ``accents`` libs.&#39;&#39;&#39;</span>
-        <span class="n">glyph_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_glyph_names</span><span class="p">(</span><span class="n">gstring</span><span class="p">)</span>
-        <span class="c"># build glyphs</span>
-        <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">glyph_names</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">):</span>
-                <span class="c"># skip glyphs in ignore list</span>
-                <span class="k">if</span> <span class="n">glyph_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ignore</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">build_glyph</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">,</span> <span class="n">composed</span><span class="o">=</span><span class="n">composed</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-</div>
-<div class="viewcode-block" id="hFont.build_composed"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.build_composed">[docs]</a>    <span class="k">def</span> <span class="nf">build_composed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Build all composed glyphs in the font based on the project&#39;s ``composed`` libs.&#39;&#39;&#39;</span>
-        <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;composed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">build_glyph</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span>
+<div class="viewcode-block" id="hFont.build_accents"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.build_accents">[docs]</a>    <span class="k">def</span> <span class="nf">build_accents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Build accented glyphs for all supported languages.&#39;&#39;&#39;</span>
+        <span class="n">lang_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="s">&#39;languages&#39;</span><span class="p">]</span>
+        <span class="n">languages</span> <span class="o">=</span> <span class="p">[</span> <span class="n">lang</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">lang</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">lang_file</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span> <span class="p">]</span>
+        <span class="k">for</span> <span class="n">lang</span> <span class="ow">in</span> <span class="n">languages</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">diacritics_glyphnames</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">lang</span><span class="p">):</span>
+                <span class="n">lc</span><span class="p">,</span> <span class="n">uc</span> <span class="o">=</span> <span class="n">diacritics_glyphnames</span><span class="p">[</span><span class="n">lang</span><span class="p">]</span>
+                <span class="n">lang_glyphs</span> <span class="o">=</span> <span class="n">lc</span> <span class="o">+</span> <span class="n">uc</span>
+                <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">lang_glyphs</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;accents&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">):</span>
+                        <span class="n">base_glyph</span><span class="p">,</span> <span class="n">accents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;accents&#39;</span><span class="p">][</span><span class="n">glyph_name</span><span class="p">]</span>
+                        <span class="c"># self.ufo.removeGlyph(glyph_name)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">compileGlyph</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">,</span> <span class="n">base_glyph</span><span class="p">,</span> <span class="n">accents</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+    <span class="c"># def build_composed(self):</span>
+    <span class="c">#     &#39;&#39;&#39;Build all composed glyphs in the font based on the project&#39;s ``composed`` libs.&#39;&#39;&#39;</span>
+    <span class="c">#     for glyph_name in self.project.libs[&#39;composed&#39;].keys():</span>
+    <span class="c">#         if self.ufo.has_key(glyph_name):</span>
+    <span class="c">#             self.build_glyph(glyph_name)</span>
 </div>
 <div class="viewcode-block" id="hFont.build_anchors"><a class="viewcode-back" href="../../../objects/hfont.html#hTools2.objects.hfont.hFont.build_anchors">[docs]</a>    <span class="k">def</span> <span class="nf">build_anchors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="c"># get anchors</span>
@@ -398,9 +411,7 @@
         <span class="c"># get glyphs</span>
         <span class="n">glyph_names</span> <span class="o">=</span> <span class="n">get_glyphs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="p">)</span>
         <span class="c"># get color</span>
-        <span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">x11_colors</span><span class="p">[</span><span class="s">&#39;Orange&#39;</span><span class="p">]</span>
-        <span class="n">mark_color</span> <span class="o">=</span> <span class="n">convert_to_1</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
-        <span class="n">mark_color</span> <span class="o">+=</span> <span class="p">(</span><span class="o">.</span><span class="mi">35</span><span class="p">,)</span>
+        <span class="n">mark_color</span> <span class="o">=</span> <span class="n">random_color</span><span class="p">(</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
         <span class="c"># build glyphs</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">glyph_names</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">glyph_names</span><span class="p">:</span>
@@ -567,8 +578,9 @@
         <span class="n">guides_names</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s">&#39;anchors&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">guides</span> <span class="k">if</span> <span class="s">&#39;anchors&#39;</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)</span> <span class="p">],</span>
             <span class="s">&#39;overshoots&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">guides</span> <span class="k">if</span> <span class="s">&#39;overshoot&#39;</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)</span> <span class="p">],</span>
-            <span class="s">&#39;lc&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">guides</span> <span class="k">if</span> <span class="s">&#39;lc&#39;</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)</span> <span class="p">],</span>
-            <span class="s">&#39;uc&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">guides</span> <span class="k">if</span> <span class="s">&#39;uc&#39;</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)</span> <span class="p">]</span> <span class="o">+</span> <span class="p">[</span> <span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">guides</span> <span class="k">if</span> <span class="s">&#39;capheight&#39;</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)</span> <span class="p">],</span>
+            <span class="s">&#39;lowercase&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">guides</span> <span class="k">if</span> <span class="s">&#39;lc&#39;</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)</span> <span class="p">],</span>
+            <span class="s">&#39;numbers&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">guides</span> <span class="k">if</span> <span class="n">g</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;number&#39;</span> <span class="p">],</span>
+            <span class="s">&#39;uppercase&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">guides</span> <span class="k">if</span> <span class="s">&#39;uc&#39;</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)</span> <span class="p">]</span> <span class="o">+</span> <span class="p">[</span> <span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">guides</span> <span class="k">if</span> <span class="s">&#39;capheight&#39;</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)</span> <span class="p">],</span>
         <span class="p">}</span>
         <span class="c"># compile guides dict from offsets</span>
         <span class="n">guides_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -594,11 +606,19 @@
         <span class="c"># create the guides</span>
         <span class="k">for</span> <span class="n">guide_name</span><span class="p">,</span> <span class="n">guide_pos</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">guides_dict</span><span class="p">[</span><span class="n">guides_group</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="s">&#39;lowercase&#39;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">guide_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">guides_dict</span><span class="p">[</span><span class="s">&#39;uc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">guide_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">guides_dict</span><span class="p">[</span><span class="s">&#39;uppercase&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="n">guide_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">guides_dict</span><span class="p">[</span><span class="s">&#39;numbers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">guide_pos</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">guide_name</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="s">&#39;numbers&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">guide_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">guides_dict</span><span class="p">[</span><span class="s">&#39;numbers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">guide_pos</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">guide_name</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">guide_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">guides_dict</span><span class="p">[</span><span class="s">&#39;uc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">guide_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">guides_dict</span><span class="p">[</span><span class="s">&#39;uppercase&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">guide_pos</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">guide_name</span><span class="p">)</span>
+        <span class="c"># special guides</span>
+        <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="s">&#39;numbers&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">guides_dict</span><span class="p">[</span><span class="s">&#39;numbers&#39;</span><span class="p">][</span><span class="s">&#39;numberdesc&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;numbers_descenders&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">guides_dict</span><span class="p">[</span><span class="s">&#39;overshoots&#39;</span><span class="p">][</span><span class="s">&#39;xheight_overshoot&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;xheight_overshoot&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">guides_dict</span><span class="p">[</span><span class="s">&#39;overshoots&#39;</span><span class="p">][</span><span class="s">&#39;baseline_lc_overshoot&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;baseline_overshoot&#39;</span><span class="p">)</span>
         <span class="c"># done</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ufo</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
@@ -783,7 +803,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Mar 21, 2014.
+      Last updated on May 23, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

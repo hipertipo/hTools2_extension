@@ -96,6 +96,7 @@
     <span class="c">#: An object to control the project&#39;s git repository.</span>
     <span class="n">git</span> <span class="o">=</span> <span class="bp">None</span>
 
+    <span class="c">#: A list of path items in the hProject file structure.</span>
     <span class="n">_path_names</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s">&#39;root&#39;</span><span class="p">,</span>
         <span class="s">&#39;libs&#39;</span><span class="p">,</span>
@@ -116,17 +117,19 @@
         <span class="s">&#39;otfs_test&#39;</span><span class="p">,</span>
     <span class="p">]</span>
 
+    <span class="c">#: A list with names of data libs.</span>
     <span class="n">_lib_names</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s">&#39;project&#39;</span><span class="p">,</span>
-        <span class="s">&#39;info&#39;</span><span class="p">,</span>
-        <span class="s">&#39;vmetrics&#39;</span><span class="p">,</span>
         <span class="s">&#39;accents&#39;</span><span class="p">,</span>
         <span class="s">&#39;composed&#39;</span><span class="p">,</span>
-        <span class="s">&#39;spacing&#39;</span><span class="p">,</span>
+        <span class="s">&#39;groups&#39;</span><span class="p">,</span>
+        <span class="s">&#39;info&#39;</span><span class="p">,</span>
         <span class="s">&#39;interpol&#39;</span><span class="p">,</span>
-        <span class="s">&#39;groups&#39;</span>
+        <span class="s">&#39;project&#39;</span><span class="p">,</span>
+        <span class="s">&#39;spacing&#39;</span><span class="p">,</span>
+        <span class="s">&#39;vmetrics&#39;</span><span class="p">,</span>
     <span class="p">]</span>
 
+    <span class="c">#: Extension for data lib files.</span>
     <span class="n">_lib_extension</span> <span class="o">=</span> <span class="s">&#39;plist&#39;</span>
 
     <span class="c"># methods</span>
@@ -145,6 +148,18 @@
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s">&#39;&lt;hProject </span><span class="si">%s</span><span class="s">&gt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
 
+    <span class="c"># dynamic attributes</span>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="hProject.groups_order"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.groups_order">[docs]</a>    <span class="k">def</span> <span class="nf">groups_order</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;groups&#39;</span><span class="p">][</span><span class="s">&#39;order&#39;</span><span class="p">]</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="hProject.groups"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.groups">[docs]</a>    <span class="k">def</span> <span class="nf">groups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;groups&#39;</span><span class="p">][</span><span class="s">&#39;glyphs&#39;</span><span class="p">]</span>
+
+    <span class="c"># functions</span>
+</div>
 <div class="viewcode-block" id="hProject.get_ufo"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.get_ufo">[docs]</a>    <span class="k">def</span> <span class="nf">get_ufo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Get the ufo path for the given parameters dict.&#39;&#39;&#39;</span>
         <span class="n">font_name</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
@@ -194,11 +209,19 @@
         <span class="k">print</span>
 </div>
 <div class="viewcode-block" id="hProject.print_woffs"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.print_woffs">[docs]</a>    <span class="k">def</span> <span class="nf">print_woffs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Print all ``.woffs`` in project.&#39;&#39;&#39;</span>
+        <span class="sd">&#39;&#39;&#39;Print all ``.woff`` files in project.&#39;&#39;&#39;</span>
         <span class="n">_woffs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">woffs</span><span class="p">()</span>
         <span class="k">print</span> <span class="s">&#39;woffs (</span><span class="si">%s</span><span class="s">):</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">_woffs</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">woff</span> <span class="ow">in</span> <span class="n">_woffs</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">woff</span>
+        <span class="k">print</span>
+</div>
+<div class="viewcode-block" id="hProject.print_ttxs"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.print_ttxs">[docs]</a>    <span class="k">def</span> <span class="nf">print_ttxs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Print all ``.ttx`` files in project.&#39;&#39;&#39;</span>
+        <span class="n">_ttxs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ttxs</span><span class="p">()</span>
+        <span class="k">print</span> <span class="s">&#39;ttxs (</span><span class="si">%s</span><span class="s">):</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">_ttxs</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ttx</span> <span class="ow">in</span> <span class="n">_ttxs</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">ttx</span>
         <span class="k">print</span>
 </div>
 <div class="viewcode-block" id="hProject.print_scripts"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.print_scripts">[docs]</a>    <span class="k">def</span> <span class="nf">print_scripts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -213,7 +236,7 @@
             <span class="k">print</span> <span class="s">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">script</span>
         <span class="k">print</span>
 </div>
-<div class="viewcode-block" id="hProject.print_info"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.print_info">[docs]</a>    <span class="k">def</span> <span class="nf">print_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">masters</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">instances</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">otfs</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">woffs</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">libs</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scripts</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="hProject.print_info"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.print_info">[docs]</a>    <span class="k">def</span> <span class="nf">print_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">masters</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">instances</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">otfs</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">woffs</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">libs</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scripts</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">ttxs</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Print different kinds of information about the project.&#39;&#39;&#39;</span>
         <span class="n">line_length</span> <span class="o">=</span> <span class="mi">40</span>
         <span class="k">print</span> <span class="s">&#39;project info for </span><span class="si">%s</span><span class="s">...&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
@@ -229,6 +252,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">print_otfs</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">woffs</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">print_woffs</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">ttxs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">print_ttxs</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">scripts</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">print_scripts</span><span class="p">()</span>
         <span class="c"># done</span>
@@ -259,9 +284,9 @@
 <span class="sd">        Group and glyph names are stored in a dictionary in ``hProject.libs[&#39;groups&#39;][&#39;glyphs&#39;]``, while the glyph order is stored in ``hProject.libs[&#39;groups&#39;][&#39;order&#39;]``.</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="n">_groups</span><span class="p">,</span> <span class="n">_order</span> <span class="o">=</span> <span class="n">import_encoding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="s">&#39;encoding&#39;</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;groups&#39;</span><span class="p">][</span><span class="s">&#39;glyphs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_groups</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;groups&#39;</span><span class="p">][</span><span class="s">&#39;order&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_order</span>
+        <span class="n">groups</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="n">import_encoding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="s">&#39;encoding&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;groups&#39;</span><span class="p">][</span><span class="s">&#39;glyphs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;groups&#39;</span><span class="p">][</span><span class="s">&#39;order&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">order</span>
 </div>
 <div class="viewcode-block" id="hProject.write_lib"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.write_lib">[docs]</a>    <span class="k">def</span> <span class="nf">write_lib</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Write the lib with the given ``lib_name`` to its ``.plist`` file.</span>
@@ -293,8 +318,8 @@
 </div>
 <div class="viewcode-block" id="hProject.make_paths"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.make_paths">[docs]</a>    <span class="k">def</span> <span class="nf">make_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Make all project paths and collect them into a dictionary.&#39;&#39;&#39;</span>
-        <span class="n">_paths</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">_project_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">world</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s">&#39;_</span><span class="si">%s</span><span class="s">&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">_paths</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">_paths</span><span class="p">[</span><span class="s">&#39;root&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_project_root</span>
         <span class="n">_paths</span><span class="p">[</span><span class="s">&#39;ufos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_project_root</span><span class="p">,</span> <span class="s">&#39;_ufos&#39;</span><span class="p">)</span>
         <span class="n">_paths</span><span class="p">[</span><span class="s">&#39;otfs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_project_root</span><span class="p">,</span> <span class="s">&#39;_otfs&#39;</span><span class="p">)</span>
@@ -323,6 +348,10 @@
         <span class="n">_fea_filename</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.fea&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
         <span class="n">_fea_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_paths</span><span class="p">[</span><span class="s">&#39;libs&#39;</span><span class="p">],</span> <span class="n">_fea_filename</span><span class="p">)</span>
         <span class="n">_paths</span><span class="p">[</span><span class="s">&#39;features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_fea_path</span>
+        <span class="c"># languages path</span>
+        <span class="n">_langs_filename</span> <span class="o">=</span> <span class="s">&#39;languages.txt&#39;</span>
+        <span class="n">_langs_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_paths</span><span class="p">[</span><span class="s">&#39;libs&#39;</span><span class="p">],</span> <span class="n">_langs_filename</span><span class="p">)</span>
+        <span class="n">_paths</span><span class="p">[</span><span class="s">&#39;languages&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_langs_path</span>
         <span class="c"># save to project</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">paths</span> <span class="o">=</span> <span class="n">_paths</span>
 </div>
@@ -628,14 +657,86 @@
             <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
                 <span class="k">print</span> <span class="s">&#39;done.</span><span class="se">\n</span><span class="s">&#39;</span>
 
-    <span class="c"># basic git management</span>
+    <span class="c"># git</span>
 </div>
 <div class="viewcode-block" id="hProject.get_repository"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.get_repository">[docs]</a>    <span class="k">def</span> <span class="nf">get_repository</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">git</span> <span class="o">=</span> <span class="n">GitHandler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="s">&#39;root&#39;</span><span class="p">])</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">&#39;project has no git repository.&#39;</span>
-</pre></div></div></div>
+
+    <span class="c"># datavis</span>
+</div>
+<div class="viewcode-block" id="hProject.collect_font_data"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.collect_font_data">[docs]</a>    <span class="k">def</span> <span class="nf">collect_font_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">font_attributes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s">&#39;xHeight&#39;</span><span class="p">,</span>
+            <span class="s">&#39;descender&#39;</span><span class="p">,</span>
+            <span class="s">&#39;ascender&#39;</span><span class="p">,</span>
+            <span class="s">&#39;capHeight&#39;</span><span class="p">,</span>
+            <span class="s">&#39;postscriptStemSnapH&#39;</span>
+        <span class="p">]</span>
+        <span class="n">font_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c"># collect data</span>
+        <span class="k">for</span> <span class="n">font_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fonts</span><span class="p">:</span>
+            <span class="n">ufo</span> <span class="o">=</span> <span class="n">RFont</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fonts</span><span class="p">[</span><span class="n">font_name</span><span class="p">],</span> <span class="n">showUI</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="n">font_data</span><span class="p">[</span><span class="n">font_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">font_attributes</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ufo</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                         <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="n">font_data</span><span class="p">[</span><span class="n">font_name</span><span class="p">][</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="c"># save data to plist</span>
+        <span class="n">plist_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">],</span> <span class="s">&#39;fonts.plist&#39;</span><span class="p">)</span>
+        <span class="n">plistlib</span><span class="o">.</span><span class="n">writePlist</span><span class="p">(</span><span class="n">font_data</span><span class="p">,</span> <span class="n">plist_path</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="hProject.collect_glyph_data"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.collect_glyph_data">[docs]</a>    <span class="k">def</span> <span class="nf">collect_glyph_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">glyph_names</span><span class="p">):</span>
+        <span class="n">glyph_attributes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s">&#39;width&#39;</span><span class="p">,</span>
+            <span class="s">&#39;leftMargin&#39;</span><span class="p">,</span>
+            <span class="s">&#39;rightMargin&#39;</span>
+        <span class="p">]</span>
+        <span class="c"># make glyphs folder</span>
+        <span class="n">data_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">],</span> <span class="s">&#39;glyphs&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">data_folder</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">data_folder</span><span class="p">)</span>
+        <span class="c"># collect data</span>
+        <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">glyph_names</span><span class="p">:</span>
+            <span class="n">glyph_data</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">font_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fonts</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">ufo</span> <span class="o">=</span> <span class="n">RFont</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fonts</span><span class="p">[</span><span class="n">font_name</span><span class="p">],</span> <span class="n">showUI</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="n">ufo</span> <span class="o">=</span> <span class="n">RFont</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fonts</span><span class="p">[</span><span class="n">font_name</span><span class="p">])</span>
+                <span class="n">glyph_data</span><span class="p">[</span><span class="n">font_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">glyph_attributes</span><span class="p">:</span>
+                    <span class="n">glyph_data</span><span class="p">[</span><span class="n">font_name</span><span class="p">][</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">ufo</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">],</span> <span class="n">attr</span><span class="p">))</span>
+            <span class="n">plist_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.plist&#39;</span> <span class="o">%</span> <span class="n">glyph_name</span><span class="p">)</span>
+            <span class="n">plistlib</span><span class="o">.</span><span class="n">writePlist</span><span class="p">(</span><span class="n">glyph_data</span><span class="p">,</span> <span class="n">plist_path</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="hProject.get_glyph_data"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.get_glyph_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_glyph_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">glyph_name</span><span class="p">):</span>
+        <span class="n">data_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">],</span> <span class="s">&#39;glyphs&#39;</span><span class="p">)</span>
+        <span class="n">plist_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.plist&#39;</span> <span class="o">%</span> <span class="n">glyph_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">plistlib</span><span class="o">.</span><span class="n">readPlist</span><span class="p">(</span><span class="n">plist_path</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="hProject.clear_glyph_data"><a class="viewcode-back" href="../../../objects/hproject.html#hTools2.objects.hproject.hProject.clear_glyph_data">[docs]</a>    <span class="k">def</span> <span class="nf">clear_glyph_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">],</span> <span class="s">&#39;glyphs&#39;</span><span class="p">)</span>
+        <span class="n">plist_paths</span> <span class="o">=</span> <span class="n">walk</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s">&#39;plist&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">plist_paths</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">delete_files</span><span class="p">(</span><span class="n">plist_paths</span><span class="p">)</span>
+
+<span class="c"># tests</span>
+</div></div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c"># import doctest</span>
+    <span class="c"># doctest.testmod(verbose=True)</span>
+    <span class="k">pass</span>
+</pre></div>
 
           </div>
         </div>
@@ -675,7 +776,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Mar 21, 2014.
+      Last updated on May 23, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

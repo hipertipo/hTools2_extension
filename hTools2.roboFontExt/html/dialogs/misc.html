@@ -78,21 +78,21 @@
 <dl class="class">
 <dt id="hTools2.dialogs.misc.checkBoxBuilder">
 <em class="property">class </em><tt class="descclassname">hTools2.dialogs.misc.</tt><tt class="descname">checkBoxBuilder</tt><big>(</big><em>items_list</em>, <em>title='select options'</em>, <em>width=320</em>, <em>sort=False</em><big>)</big><a class="headerlink" href="#hTools2.dialogs.misc.checkBoxBuilder" title="Permalink to this definition">¶</a></dt>
-<dd><p>An object to create a modal dialog for items in a list.</p>
+<dd><p>An object to create a modal dialog for selecting items in a list.</p>
 <img alt="../_images/checkbox-builder.png" src="../_images/checkbox-builder.png" />
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">hTools2.dialogs.misc</span> <span class="kn">import</span> <span class="n">checkBoxBuilder</span>
 
 <span class="n">L</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s">&#39;avocado&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;banana&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;chocolate&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;apples&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;bananas&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;tomatos&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">),</span>
 <span class="p">]</span>
 
 <span class="n">B</span> <span class="o">=</span> <span class="n">checkBoxBuilder</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
 
 <span class="k">print</span> <span class="n">B</span><span class="o">.</span><span class="n">selected</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="s">&#39;avocado&#39;</span><span class="p">,</span> <span class="s">&#39;banana&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="s">&#39;apples&#39;</span><span class="p">,</span> <span class="s">&#39;bananas&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -166,7 +166,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Mar 08, 2014.
+      Last updated on May 23, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

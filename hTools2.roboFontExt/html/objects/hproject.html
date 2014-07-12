@@ -72,11 +72,26 @@
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="hTools2.objects.hproject.hProject.clear_glyph_data">
+<tt class="descname">clear_glyph_data</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hproject.html#hProject.clear_glyph_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hproject.hProject.clear_glyph_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="hTools2.objects.hproject.hProject.collect_font_data">
+<tt class="descname">collect_font_data</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hproject.html#hProject.collect_font_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hproject.hProject.collect_font_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="hTools2.objects.hproject.hProject.collect_fonts">
 <tt class="descname">collect_fonts</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hproject.html#hProject.collect_fonts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hproject.hProject.collect_fonts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update the font names and file paths at <a class="reference internal" href="#hTools2.objects.hproject.hProject.fonts" title="hTools2.objects.hproject.hProject.fonts"><tt class="xref py py-attr docutils literal"><span class="pre">hProject.fonts</span></tt></a>.</p>
 <p>This method is called automatically when the <a class="reference internal" href="#hTools2.objects.hproject.hProject" title="hTools2.objects.hproject.hProject"><tt class="xref py py-class docutils literal"><span class="pre">hProject</span></tt></a> object is initialized.</p>
 </dd></dl>
+
+<dl class="method">
+<dt id="hTools2.objects.hproject.hProject.collect_glyph_data">
+<tt class="descname">collect_glyph_data</tt><big>(</big><em>glyph_names</em><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hproject.html#hProject.collect_glyph_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hproject.hProject.collect_glyph_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="hTools2.objects.hproject.hProject.delete_instances">
@@ -138,6 +153,11 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="hTools2.objects.hproject.hProject.get_glyph_data">
+<tt class="descname">get_glyph_data</tt><big>(</big><em>glyph_name</em><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hproject.html#hProject.get_glyph_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hproject.hProject.get_glyph_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="hTools2.objects.hproject.hProject.get_repository">
 <tt class="descname">get_repository</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hproject.html#hProject.get_repository"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hproject.hProject.get_repository" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -153,6 +173,16 @@
 <tt class="descname">git</tt><em class="property"> = None</em><a class="headerlink" href="#hTools2.objects.hproject.hProject.git" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object to control the project&#8217;s git repository.</p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="hTools2.objects.hproject.hProject.groups">
+<tt class="descname">groups</tt><a class="reference internal" href="../_modules/hTools2/objects/hproject.html#hProject.groups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hproject.hProject.groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hTools2.objects.hproject.hProject.groups_order">
+<tt class="descname">groups_order</tt><a class="reference internal" href="../_modules/hTools2/objects/hproject.html#hProject.groups_order"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hproject.hProject.groups_order" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="hTools2.objects.hproject.hProject.import_encoding">
@@ -251,7 +281,7 @@
 
 <dl class="method">
 <dt id="hTools2.objects.hproject.hProject.print_info">
-<tt class="descname">print_info</tt><big>(</big><em>masters=True</em>, <em>instances=True</em>, <em>otfs=True</em>, <em>woffs=True</em>, <em>libs=True</em>, <em>scripts=True</em><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hproject.html#hProject.print_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hproject.hProject.print_info" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">print_info</tt><big>(</big><em>masters=True</em>, <em>instances=True</em>, <em>otfs=True</em>, <em>woffs=True</em>, <em>libs=True</em>, <em>scripts=True</em>, <em>ttxs=True</em><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hproject.html#hProject.print_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hproject.hProject.print_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print different kinds of information about the project.</p>
 </dd></dl>
 
@@ -292,9 +322,15 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="hTools2.objects.hproject.hProject.print_ttxs">
+<tt class="descname">print_ttxs</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hproject.html#hProject.print_ttxs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hproject.hProject.print_ttxs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print all <tt class="docutils literal"><span class="pre">.ttx</span></tt> files in project.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="hTools2.objects.hproject.hProject.print_woffs">
 <tt class="descname">print_woffs</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hproject.html#hProject.print_woffs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hproject.hProject.print_woffs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print all <tt class="docutils literal"><span class="pre">.woffs</span></tt> in project.</p>
+<dd><p>Print all <tt class="docutils literal"><span class="pre">.woff</span></tt> files in project.</p>
 </dd></dl>
 
 <dl class="method">
@@ -422,7 +458,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Mar 08, 2014.
+      Last updated on May 23, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

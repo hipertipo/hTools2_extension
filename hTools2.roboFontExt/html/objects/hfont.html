@@ -120,8 +120,8 @@
 
 <dl class="method">
 <dt id="hTools2.objects.hfont.hFont.build_accents">
-<tt class="descname">build_accents</tt><big>(</big><em>gstring=None</em>, <em>ignore=</em><span class="optional">[</span><span class="optional">]</span>, <em>composed=False</em><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hfont.html#hFont.build_accents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hfont.hFont.build_accents" title="Permalink to this definition">¶</a></dt>
-<dd><p>Build all accented glyphs in the font based on the project&#8217;s <tt class="docutils literal"><span class="pre">accents</span></tt> libs.</p>
+<tt class="descname">build_accents</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hfont.html#hFont.build_accents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hfont.hFont.build_accents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build accented glyphs for all supported languages.</p>
 </dd></dl>
 
 <dl class="method">
@@ -130,14 +130,8 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="hTools2.objects.hfont.hFont.build_composed">
-<tt class="descname">build_composed</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hfont.html#hFont.build_composed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hfont.hFont.build_composed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Build all composed glyphs in the font based on the project&#8217;s <tt class="docutils literal"><span class="pre">composed</span></tt> libs.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="hTools2.objects.hfont.hFont.build_glyph">
-<tt class="descname">build_glyph</tt><big>(</big><em>glyph_name</em>, <em>composed=True</em>, <em>verbose=True</em><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hfont.html#hFont.build_glyph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hfont.hFont.build_glyph" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">build_glyph</tt><big>(</big><em>glyph_name</em>, <em>composed=False</em>, <em>verbose=True</em><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hfont.html#hFont.build_glyph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hfont.hFont.build_glyph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build glyph with the given <tt class="docutils literal"><span class="pre">glyph_name</span></tt> from components based on the project&#8217;s <tt class="docutils literal"><span class="pre">accents</span></tt> or <tt class="docutils literal"><span class="pre">composed</span></tt> libs.</p>
 </dd></dl>
 
@@ -253,6 +247,11 @@
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="hTools2.objects.hfont.hFont.get_glyphs">
+<tt class="descname">get_glyphs</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hfont.html#hFont.get_glyphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hfont.hFont.get_glyphs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="hTools2.objects.hfont.hFont.get_vmetrics">
 <tt class="descname">get_vmetrics</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hfont.html#hFont.get_vmetrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hfont.hFont.get_vmetrics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build a <tt class="docutils literal"><span class="pre">vmetrics</span></tt> dict using data from the <tt class="docutils literal"><span class="pre">vmetrics</span></tt> lib.</p>
@@ -296,7 +295,7 @@
 
 <dl class="method">
 <dt id="hTools2.objects.hfont.hFont.init_from_filename">
-<tt class="descname">init_from_filename</tt><big>(</big><em>set_names=True</em><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hfont.html#hFont.init_from_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hfont.hFont.init_from_filename" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">init_from_filename</tt><big>(</big><em>set_names=True</em>, <em>verbose=False</em><big>)</big><a class="reference internal" href="../_modules/hTools2/objects/hfont.html#hFont.init_from_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.objects.hfont.hFont.init_from_filename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initiate <tt class="docutils literal"><span class="pre">hFont</span></tt> object from <tt class="docutils literal"><span class="pre">RFont</span></tt>, get parent project, parse name parts.</p>
 </dd></dl>
 
@@ -511,7 +510,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Mar 21, 2014.
+      Last updated on May 23, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

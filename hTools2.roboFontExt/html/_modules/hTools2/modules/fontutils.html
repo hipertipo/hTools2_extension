@@ -60,6 +60,8 @@
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">mojo.roboFont</span> <span class="kn">import</span> <span class="n">CurrentGlyph</span><span class="p">,</span> <span class="n">CurrentFont</span><span class="p">,</span> <span class="n">NewFont</span>
+    <span class="kn">from</span> <span class="nn">lib.tools.defaults</span> <span class="kn">import</span> <span class="n">getDefault</span>
+
 <span class="k">except</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">robofab.world</span> <span class="kn">import</span> <span class="n">CurrentGlyph</span><span class="p">,</span> <span class="n">CurrentFont</span><span class="p">,</span> <span class="n">NewFont</span>
 
@@ -70,25 +72,29 @@
 <span class="c"># glyphs</span>
 <span class="c">#--------</span>
 
-<div class="viewcode-block" id="get_glyphs"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.get_glyphs">[docs]</a><span class="k">def</span> <span class="nf">get_glyphs</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">current_glyph</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">font_selection</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;names&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="get_glyphs"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.get_glyphs">[docs]</a><span class="k">def</span> <span class="nf">get_glyphs</span><span class="p">(</span><span class="n">font</span><span class="p">):</span> <span class="c"># current_glyph=True, font_selection=True, </span>
     <span class="sd">&#39;&#39;&#39;Return current glyph selection in the font as glyph names or ``RGlyph`` objects.&#39;&#39;&#39;</span>
-    <span class="n">glyphs</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="c"># get current glyph</span>
-    <span class="k">if</span> <span class="n">current_glyph</span><span class="p">:</span>
-        <span class="n">glyph</span> <span class="o">=</span> <span class="n">CurrentGlyph</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">glyph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">glyphs</span><span class="p">[</span><span class="n">glyph</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">glyph</span>
-    <span class="c"># get font selection</span>
-    <span class="k">if</span> <span class="n">font_selection</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">font</span><span class="o">.</span><span class="n">selection</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">glyphs</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">True</span><span class="p">:</span>
-                <span class="n">glyphs</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span>
-    <span class="c"># mode 0: glyph names</span>
-    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;names&#39;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">glyphs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-    <span class="c"># mode 1: RGlyphs</span>
+    <span class="c"># get glyphs</span>
+    <span class="n">current_glyph</span> <span class="o">=</span> <span class="n">CurrentGlyph</span><span class="p">()</span>
+    <span class="n">font_selection</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">selection</span>
+    <span class="c"># get RoboFont&#39;s window mode</span>
+    <span class="n">single_window</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span> <span class="p">][</span><span class="n">getDefault</span><span class="p">(</span><span class="s">&quot;singleWindowMode&quot;</span><span class="p">)]</span>
+    <span class="c"># handle multi-window mode</span>
+    <span class="n">glyphs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">single_window</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current_glyph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">glyphs</span> <span class="o">+=</span> <span class="p">[</span><span class="n">current_glyph</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">glyphs</span> <span class="o">+=</span> <span class="n">font_selection</span>
+    <span class="c"># multi-window: return</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">glyphs</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">current_glyph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">glyphs</span> <span class="o">+=</span> <span class="p">[</span><span class="n">current_glyph</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="n">glyphs</span> <span class="o">+=</span> <span class="n">font_selection</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">glyphs</span> <span class="o">+=</span> <span class="n">font_selection</span>
+    <span class="c"># done</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">glyphs</span><span class="p">))</span>
 </div>
 <div class="viewcode-block" id="print_selected_glyphs"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.print_selected_glyphs">[docs]</a><span class="k">def</span> <span class="nf">print_selected_glyphs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Print the selected glyphs to the output window.&#39;&#39;&#39;</span>
@@ -490,7 +496,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Mar 21, 2014.
+      Last updated on May 23, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

@@ -303,9 +303,26 @@
 <span class="c"># unicode-to-psnames conversion</span>
 <span class="c">#-------------------------------</span>
 
-<span class="c"># a dictionary mapping unicode values to psNames</span>
 <span class="c"># thanks to Frederik Berlaen (2007)</span>
 
+<div class="viewcode-block" id="char2glyphname"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.char2glyphname">[docs]</a><span class="k">def</span> <span class="nf">char2glyphname</span><span class="p">(</span><span class="n">char</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Get the PostScript glyph name for a given unicode character.&#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">unicode2psnames</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)):</span>
+        <span class="n">glyphname</span> <span class="o">=</span> <span class="n">unicode2psnames</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">glyphname</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="n">glyphname</span>
+</div>
+<div class="viewcode-block" id="chars2glyphnames"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.chars2glyphnames">[docs]</a><span class="k">def</span> <span class="nf">chars2glyphnames</span><span class="p">(</span><span class="n">char_list</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Get a list of PostScript glyph names for a list of unicode characters.&#39;&#39;&#39;</span>
+    <span class="n">glyph_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">char_list</span><span class="p">:</span>
+        <span class="n">glyph_name</span> <span class="o">=</span> <span class="n">char2glyphname</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">glyph_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">glyph_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">glyph_names</span>
+
+<span class="c">#: A dictionary mapping unicode values to psNames.</span></div>
 <span class="n">unicode2psnames</span> <span class="o">=</span> <span class="p">{</span>
     <span class="bp">None</span> <span class="p">:</span> <span class="s">&#39;.notdef&#39;</span><span class="p">,</span>
     <span class="mi">32</span> <span class="p">:</span> <span class="s">&#39;space&#39;</span><span class="p">,</span>
@@ -1043,7 +1060,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Mar 21, 2014.
+      Last updated on May 23, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>
