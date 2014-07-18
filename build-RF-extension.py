@@ -1,6 +1,8 @@
 # [h] build hTools2 as a RoboFont Extension
 
 import hTools2
+reload(hTools2)
+
 import os
 from mojo.extensions import ExtensionBundle
 
