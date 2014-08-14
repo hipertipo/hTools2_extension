@@ -23,6 +23,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="top" title="hTools2" href="../index.html" />
     <link rel="up" title="Modules" href="modules.html" />
     <link rel="next" title="glyphutils" href="glyphutils.html" />
@@ -59,7 +60,7 @@
 <p>Tools to connect to a FTP server, upload files etc.</p>
 <dl class="function">
 <dt id="hTools2.modules.ftp.connect_to_server">
-<tt class="descclassname">hTools2.modules.ftp.</tt><tt class="descname">connect_to_server</tt><big>(</big><em>url</em>, <em>login</em>, <em>password</em>, <em>folder</em>, <em>verbose=False</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/ftp.html#connect_to_server"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.ftp.connect_to_server" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">connect_to_server</tt><big>(</big><em>url</em>, <em>login</em>, <em>password</em>, <em>folder</em>, <em>verbose=False</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/ftp.html#connect_to_server"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.ftp.connect_to_server" title="Permalink to this definition">¶</a></dt>
 <dd><p>Connects to the FTP server using the given connection settings.</p>
 <p>Use the given <tt class="docutils literal"><span class="pre">url</span></tt>, <tt class="docutils literal"><span class="pre">login</span></tt> and <tt class="docutils literal"><span class="pre">password</span></tt> information to make a connection. Move to the given <tt class="docutils literal"><span class="pre">folder</span></tt> (if it exists), and return a <tt class="docutils literal"><span class="pre">FTP</span></tt> object.</p>
 <p>To get to the lower level details about the FTP connection, use the optional parameter <tt class="docutils literal"><span class="pre">verbose=True</span></tt>.</p>
@@ -67,7 +68,7 @@
 
 <dl class="function">
 <dt id="hTools2.modules.ftp.upload_file">
-<tt class="descclassname">hTools2.modules.ftp.</tt><tt class="descname">upload_file</tt><big>(</big><em>filePath</em>, <em>FTPconnection</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/ftp.html#upload_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.ftp.upload_file" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">upload_file</tt><big>(</big><em>filePath</em>, <em>FTPconnection</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/ftp.html#upload_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.ftp.upload_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Upload the file at <tt class="docutils literal"><span class="pre">file_path</span></tt> to a FTP server, using the given <tt class="docutils literal"><span class="pre">ftp_connection</span></tt>.</p>
 </dd></dl>
 
@@ -128,7 +129,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Jul 17, 2014.
+      Last updated on Jul 29, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>
