@@ -62,7 +62,7 @@
 
 <div class="viewcode-block" id="hWorld"><a class="viewcode-back" href="../../../objects/hworld.html#hTools2.objects.hworld.hWorld">[docs]</a><span class="k">class</span> <span class="nc">hWorld</span><span class="p">:</span>
 
-    <span class="sd">&#39;&#39;&#39;An object representing the local fonts folder where all project folders live.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;An object representing the local fonts folder where all project folders live.&quot;&quot;&quot;</span>
 
     <span class="c"># attributes</span>
 
@@ -75,7 +75,7 @@
     <span class="c"># methods</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Initiate the ``hWorld`` object.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Initiate the ``hWorld`` object.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">hSettings</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">context</span> <span class="o">=</span> <span class="n">_ctx</span>
 
@@ -83,7 +83,7 @@
         <span class="k">return</span> <span class="s">&#39;&lt;hWorld&gt;&#39;</span>
 
 <div class="viewcode-block" id="hWorld.projects"><a class="viewcode-back" href="../../../objects/hworld.html#hTools2.objects.hworld.hWorld.projects">[docs]</a>    <span class="k">def</span> <span class="nf">projects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Returns a list of all projects contained in the root fonts folder.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of all projects contained in the root fonts folder.&quot;&quot;&quot;</span>
         <span class="n">allFiles</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
         <span class="n">projects</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">allFiles</span><span class="p">:</span>
@@ -131,7 +131,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Jul 29, 2014.
+      Last updated on Aug 22, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

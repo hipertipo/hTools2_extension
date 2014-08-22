@@ -51,12 +51,12 @@
   <h1>Source code for hTools2.modules.fontinfo</h1><div class="highlight"><pre>
 <span class="c"># [h] hTools2.modules.fontinfo</span>
 
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Tools to get and set different kinds of font information.</span>
 
 <span class="sd">See the `UFO documentation &lt;http://unifiedfontobject.org/versions/ufo2/fontinfo.html&gt;`_.</span>
 
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c"># imports</span>
 
@@ -67,7 +67,7 @@
 <span class="c"># set info</span>
 
 <div class="viewcode-block" id="set_font_names"><a class="viewcode-back" href="../../../modules/fontinfo.html#hTools2.modules.fontinfo.set_font_names">[docs]</a><span class="k">def</span> <span class="nf">set_font_names</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">family_name</span><span class="p">,</span> <span class="n">style_name</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Set several font naming fields from ``family`` and ``style`` names.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Set several font naming fields from ``family`` and ``style`` names.&quot;&quot;&quot;</span>
     <span class="n">full_name</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">family_name</span><span class="p">,</span> <span class="n">style_name</span><span class="p">)</span>
     <span class="c"># main family/style names</span>
     <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">familyName</span> <span class="o">=</span> <span class="n">family_name</span>
@@ -90,7 +90,7 @@
     <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">macintoshFONDName</span> <span class="o">=</span> <span class="bp">None</span>
 </div>
 <div class="viewcode-block" id="set_names_from_path"><a class="viewcode-back" href="../../../modules/fontinfo.html#hTools2.modules.fontinfo.set_names_from_path">[docs]</a><span class="k">def</span> <span class="nf">set_names_from_path</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Set the font naming fields using parts of the name of the font file.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Set the font naming fields using parts of the name of the font file.&quot;&quot;&quot;</span>
     <span class="n">family_name</span><span class="p">,</span> <span class="n">style_name</span> <span class="o">=</span> <span class="n">get_names_from_path</span><span class="p">(</span><span class="n">font</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">prefix</span><span class="p">:</span>
         <span class="n">family_name</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s">&#39; &#39;</span> <span class="o">+</span> <span class="n">family_name</span>
@@ -125,11 +125,11 @@
 <span class="c"># print info</span>
 </div>
 <div class="viewcode-block" id="print_font_info"><a class="viewcode-back" href="../../../modules/fontinfo.html#hTools2.modules.fontinfo.print_font_info">[docs]</a><span class="k">def</span> <span class="nf">print_font_info</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Print several kinds of font information, using a special method for each section.</span>
+    <span class="sd">&quot;&quot;&quot;Print several kinds of font information, using a special method for each section.</span>
 
 <span class="sd">    The data and related functions are organized according to the UFO 2 spec.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">print</span> <span class="s">&#39;printing font info...&#39;</span>
     <span class="n">print_generic_identification</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
     <span class="n">print_generic_legal</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
@@ -297,7 +297,7 @@
 <span class="c"># clear info</span>
 </div>
 <div class="viewcode-block" id="clear_font_info"><a class="viewcode-back" href="../../../modules/fontinfo.html#hTools2.modules.fontinfo.clear_font_info">[docs]</a><span class="k">def</span> <span class="nf">clear_font_info</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Clears all font information fields in the font.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Clears all font information fields in the font.&quot;&quot;&quot;</span>
     <span class="c"># print &#39;deleting font info&#39;</span>
     <span class="n">clear_generic_identification</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
     <span class="n">clear_generic_legal</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
@@ -471,7 +471,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Jul 29, 2014.
+      Last updated on Aug 22, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

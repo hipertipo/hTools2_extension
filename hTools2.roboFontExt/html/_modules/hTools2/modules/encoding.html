@@ -51,7 +51,7 @@
   <h1>Source code for hTools2.modules.encoding</h1><div class="highlight"><pre>
 <span class="c"># [h] hTools2.modules.encoding</span>
 
-<span class="sd">&#39;&#39;&#39;Unicode tools, glyph name to hex/uni conversion etc.&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;Unicode tools, glyph name to hex/uni conversion etc.&quot;&quot;&quot;</span>
 
 <span class="c"># imports</span>
 
@@ -67,39 +67,53 @@
 <span class="c"># functions</span>
 
 <div class="viewcode-block" id="import_encoding"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.import_encoding">[docs]</a><span class="k">def</span> <span class="nf">import_encoding</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Import group and glyphs names from an ``.enc`` file.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Import glyph names from an encoding file.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">glyph_names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;%&#39;</span><span class="p">:</span>
+                <span class="n">glyph_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">glyph_names</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;Error, this file does not exist.&#39;</span>
+</div>
+<div class="viewcode-block" id="import_groups_from_encoding"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.import_groups_from_encoding">[docs]</a><span class="k">def</span> <span class="nf">import_groups_from_encoding</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Import group and glyphs names from an encoding file.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
         <span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
         <span class="n">groups</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">order</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">pass</span>
-        <span class="k">elif</span> <span class="n">line</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;%&#39;</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;_&#39;</span><span class="p">:</span>
-                <span class="n">group_name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">18</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_name</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-                    <span class="n">order</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group_name</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">glyph_name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span>
-        <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">groups</span><span class="p">,</span> <span class="n">order</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">elif</span> <span class="n">line</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;%&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;_&#39;</span><span class="p">:</span>
+                    <span class="n">group_name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">18</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_name</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="n">order</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group_name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">glyph_name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">groups</span><span class="p">,</span> <span class="n">order</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;Error, the file </span><span class="si">%s</span><span class="s"> does not exist.&#39;</span> <span class="o">%</span> <span class="n">file_path</span>
 
 <span class="c">#------------------</span>
 <span class="c"># font-level tools</span>
 <span class="c">#------------------</span>
 </div>
 <div class="viewcode-block" id="clear_unicodes"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.clear_unicodes">[docs]</a><span class="k">def</span> <span class="nf">clear_unicodes</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Remove unicodes from all glyphs in the font.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Remove unicodes from all glyphs in the font.&quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">g</span><span class="o">.</span><span class="n">unicodes</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">f</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 </div>
 <div class="viewcode-block" id="auto_unicodes"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.auto_unicodes">[docs]</a><span class="k">def</span> <span class="nf">auto_unicodes</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Automatically set unicode values for all glyphs in the font.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Automatically set unicode values for all glyphs in the font.&quot;&quot;&quot;</span>
     <span class="n">clear_unicodes</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">g</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
@@ -107,11 +121,11 @@
     <span class="n">f</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 </div>
 <div class="viewcode-block" id="paint_groups"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.paint_groups">[docs]</a><span class="k">def</span> <span class="nf">paint_groups</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">crop</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Paint the glyphs in the font according to their groups.</span>
+    <span class="sd">&quot;&quot;&quot;Paint the glyphs in the font according to their groups.</span>
 
 <span class="sd">    If a ``groups_order`` lib is available, it is used to set the order of the glyphs in the font.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">font</span> <span class="o">=</span> <span class="n">CurrentFont</span><span class="p">()</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">clear_colors</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
@@ -129,7 +143,7 @@
                 <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">True</span><span class="p">:</span>
                     <span class="n">f</span><span class="o">.</span><span class="n">newGlyph</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span>
                 <span class="n">_order</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span>
-                <span class="n">f</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+                <span class="n">f</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
                 <span class="n">f</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
             <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">f</span><span class="o">.</span><span class="n">glyphOrder</span> <span class="o">=</span> <span class="n">_order</span>
@@ -157,9 +171,9 @@
 <span class="c">#-------------------</span>
 </div>
 <div class="viewcode-block" id="auto_unicode"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.auto_unicode">[docs]</a><span class="k">def</span> <span class="nf">auto_unicode</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Automatically set unicode value(s) for the specified glyph.</span>
+    <span class="sd">&quot;&quot;&quot;Automatically set unicode value(s) for the specified glyph.</span>
 
-<span class="sd">    The method uses RoboFab&#39;s ``glyph.autoUnicodes()`` function for common glyphs, and complements it with additional values from ``unicodes_extra``.&#39;&#39;&#39;</span>
+<span class="sd">    The method uses RoboFab&#39;s ``glyph.autoUnicodes()`` function for common glyphs, and complements it with additional values from ``unicodes_extra``.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
         <span class="c"># handle &#39;uni&#39; names</span>
         <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">name</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;uni&quot;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
@@ -180,7 +194,7 @@
 <span class="c"># thanks Karsten Luecke, 2010</span>
 </div>
 <div class="viewcode-block" id="unicode_int_to_hexstr"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.unicode_int_to_hexstr">[docs]</a><span class="k">def</span> <span class="nf">unicode_int_to_hexstr</span><span class="p">(</span><span class="n">intUnicode</span><span class="p">,</span> <span class="n">_0x</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">uni</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Converts unicode integers to hexadecimal.</span>
+    <span class="sd">&quot;&quot;&quot;Converts unicode integers to hexadecimal.</span>
 
 <span class="sd">    See also the reverse function ``unicode_hexstr_to_int``.</span>
 
@@ -188,7 +202,7 @@
 
 <span class="sd">    The optional parameters ``uni`` and ``_0x`` add the respective prefixes.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">hexUnicode</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%X</span><span class="s">&quot;</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s">&quot;0x&quot;</span><span class="p">)</span> <span class="o">%</span> <span class="n">intUnicode</span>
     <span class="n">hexUnicode</span> <span class="o">=</span> <span class="s">&quot;0&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">hexUnicode</span><span class="p">))</span> <span class="o">+</span> <span class="n">hexUnicode</span>
     <span class="k">if</span> <span class="n">_0x</span><span class="p">:</span>
@@ -198,10 +212,10 @@
     <span class="k">return</span> <span class="n">hexUnicode</span>
 </div>
 <div class="viewcode-block" id="unicode_hexstr_to_int"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.unicode_hexstr_to_int">[docs]</a><span class="k">def</span> <span class="nf">unicode_hexstr_to_int</span><span class="p">(</span><span class="n">hexUnicode</span><span class="p">,</span> <span class="n">replaceUni</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Converts a unicode hexadecimal value into an integer.</span>
+    <span class="sd">&quot;&quot;&quot;Converts a unicode hexadecimal value into an integer.</span>
 
 <span class="sd">    It does exactly the reverse of ``unicode_int_to_hexstr``.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">replaceUni</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">hexUnicode</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;uni&quot;</span><span class="p">,</span><span class="s">&quot;&quot;</span><span class="p">),</span> <span class="mi">16</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">hexUnicode</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">),</span> <span class="mi">16</span><span class="p">)</span>
@@ -307,7 +321,7 @@
 <span class="c"># thanks to Frederik Berlaen (2007)</span>
 
 <div class="viewcode-block" id="char2glyphname"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.char2glyphname">[docs]</a><span class="k">def</span> <span class="nf">char2glyphname</span><span class="p">(</span><span class="n">char</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Get the PostScript glyph name for a given unicode character.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Get the PostScript glyph name for a given unicode character.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">unicode2psnames</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)):</span>
         <span class="n">glyphname</span> <span class="o">=</span> <span class="n">unicode2psnames</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)]</span>
     <span class="k">else</span><span class="p">:</span>
@@ -315,13 +329,23 @@
     <span class="k">return</span> <span class="n">glyphname</span>
 </div>
 <div class="viewcode-block" id="chars2glyphnames"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.chars2glyphnames">[docs]</a><span class="k">def</span> <span class="nf">chars2glyphnames</span><span class="p">(</span><span class="n">char_list</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Get a list of PostScript glyph names for a list of unicode characters.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Get a list of PostScript glyph names for a list of unicode characters.&quot;&quot;&quot;</span>
     <span class="n">glyph_names</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">char_list</span><span class="p">:</span>
         <span class="n">glyph_name</span> <span class="o">=</span> <span class="n">char2glyphname</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">glyph_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">glyph_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">glyph_names</span>
+</div>
+<div class="viewcode-block" id="glyphname2char"><a class="viewcode-back" href="../../../modules/encoding.html#hTools2.modules.encoding.glyphname2char">[docs]</a><span class="k">def</span> <span class="nf">glyphname2char</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the unicode character for a given glyph name.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">psnames2unicodes</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">):</span>
+        <span class="n">uni</span> <span class="o">=</span> <span class="n">psnames2unicodes</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">unicodes_extra</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">):</span>
+        <span class="n">uni</span> <span class="o">=</span> <span class="s">&#39;###</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">unicodes_extra</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">uni</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="n">glyph_name</span><span class="p">,</span> <span class="n">uni</span>
 
 <span class="c">#: A dictionary mapping unicode values to psNames.</span></div>
 <span class="n">unicode2psnames</span> <span class="o">=</span> <span class="p">{</span>
@@ -1021,6 +1045,9 @@
     <span class="mi">64259</span> <span class="p">:</span> <span class="s">&#39;ffi&#39;</span><span class="p">,</span>
     <span class="mi">64260</span> <span class="p">:</span> <span class="s">&#39;ffl&#39;</span><span class="p">,</span>
 <span class="p">}</span>
+
+<span class="c">#: A dictionary mapping psNames to unicode values.</span>
+<span class="n">psnames2unicodes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([[</span><span class="n">v</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">unicode2psnames</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
 </pre></div>
 
           </div>
@@ -1061,7 +1088,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Jul 29, 2014.
+      Last updated on Aug 22, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

@@ -1,5 +1,8 @@
 # [h] hTools2.modules.rasterizer
 
+import hTools2.modules.primitives
+reload(hTools2.modules.primitives)
+
 # imports
 
 import random
@@ -15,7 +18,7 @@ from hTools2.modules.primitives import *
 
 class RasterGlyph:
 
-    '''An object to scan glyphs and rasterize them into elements/components.'''
+    """An object to scan glyphs and rasterize them into elements/components."""
 
     def __init__(self, sourceGlyph):
         self.g = sourceGlyph
@@ -90,7 +93,7 @@ class RasterGlyph:
         print "-" * _line_length
         print
         for line in aboveBase:
-            print line, "\t",
+            print '%+03d' % line, "\t",
             print marginLeft * int(self.leftMargin),
             for bit in self.coordenates[str(line)]:
                 if bit == 1:
@@ -99,7 +102,7 @@ class RasterGlyph:
                     print white,
             print marginRight * int(self.rightMargin)
         for line in belowBase:
-            print line, "\t",
+            print '%+03d' % line, "\t",
             print marginLeft * int(self.leftMargin),
             for bit in self.coordenates[str(line)]:
                 if bit == 1:
@@ -147,19 +150,18 @@ class RasterGlyph:
             pass
 
 def set_element(f, size, type='rect', magic=None, element_='_element'):
-    '''Set the shape of the element glyph in the font.'''
+    """Set the shape of the element glyph in the font."""
     if f.has_key(element_) != True:
         f.newGlyph(element_)
     g = f[element_]
     g.clear()
     p = g.getPen()
     if type == 'oval':
-        oval(p, 0, 0, size)
+        oval(p, 0, 0, size, size)
     elif type == 'super':
-        element(p, 0, 0, size, magic)
+        element(p, 0, 0, size, size, magic)
     else:
-        rect(p, 0, 0, size)
+        rect(p, 0, 0, size, size)
     g.width = size
     g.update()
     f.update()
-

@@ -56,7 +56,7 @@
 <span class="c"># functions</span>
 
 <div class="viewcode-block" id="clean_pyc"><a class="viewcode-back" href="../../../modules/sysutils.html#hTools2.modules.sysutils.clean_pyc">[docs]</a><span class="k">def</span> <span class="nf">clean_pyc</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Remove all .pyc files recursively in path.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Remove all .pyc files recursively in path.&quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">directory</span><span class="p">:</span>
         <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">file_name</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">==</span> <span class="s">&#39;pyc&#39;</span><span class="p">:</span>
@@ -98,7 +98,7 @@
     <span class="k">return</span> <span class="n">in_NB</span>
 </div>
 <div class="viewcode-block" id="get_context"><a class="viewcode-back" href="../../../modules/sysutils.html#hTools2.modules.sysutils.get_context">[docs]</a><span class="k">def</span> <span class="nf">get_context</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;Get the current environment in which hTools2 is running.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Get the current environment in which hTools2 is running.&quot;&quot;&quot;</span>
     <span class="n">_FL</span> <span class="o">=</span> <span class="n">in_FontLab</span><span class="p">()</span>
     <span class="n">_RF</span> <span class="o">=</span> <span class="n">in_RoboFont</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">_FL</span><span class="p">:</span>
@@ -130,15 +130,15 @@
     <span class="kn">from</span> <span class="nn">mojo.UI</span> <span class="kn">import</span> <span class="n">getScriptingMenuNamingShortKey</span><span class="p">,</span> <span class="n">setScriptingMenuNamingShortKey</span><span class="p">,</span> <span class="n">createModifier</span><span class="p">,</span> <span class="n">setScriptingMenuNamingShortKeyForPath</span>
 
     <span class="k">def</span> <span class="nf">clear_shortcuts</span><span class="p">():</span>
-        <span class="sd">&#39;&#39;&#39;Remove all current shorcuts.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Remove all current shorcuts.&quot;&quot;&quot;</span>
         <span class="n">setScriptingMenuNamingShortKey</span><span class="p">({})</span>
 
     <span class="k">def</span> <span class="nf">get_shortcuts</span><span class="p">():</span>
-        <span class="sd">&#39;&#39;&#39;Get RoboFont shortcuts as a dictionary.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Get RoboFont shortcuts as a dictionary.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">getScriptingMenuNamingShortKey</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">print_shortcuts</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Print all current shorcuts.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Print all current shorcuts.&quot;&quot;&quot;</span>
         <span class="n">_dict</span> <span class="o">=</span> <span class="n">getScriptingMenuNamingShortKey</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_dict</span><span class="p">:</span>
             <span class="n">name</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="n">_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
@@ -148,7 +148,7 @@
         <span class="k">print</span>
 
     <span class="k">def</span> <span class="nf">set_shortcuts</span><span class="p">(</span><span class="n">shortcuts_dict</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Set RoboFont shortcuts from a dictionary.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Set RoboFont shortcuts from a dictionary.&quot;&quot;&quot;</span>
         <span class="c"># setScriptingMenuNamingShortKey(shortcuts_dict)</span>
         <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">shortcuts_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">preferredName</span> <span class="o">=</span> <span class="n">shortcuts_dict</span><span class="p">[</span><span class="n">path</span><span class="p">][</span><span class="s">&#39;preferredName&#39;</span><span class="p">]</span>
@@ -157,7 +157,7 @@
             <span class="n">setScriptingMenuNamingShortKeyForPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">preferredName</span><span class="p">,</span> <span class="n">shortKey</span><span class="p">,</span> <span class="n">modifier</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">toggle_panels</span><span class="p">():</span>
-        <span class="sd">&#39;&#39;&#39;Show/hide all floating windows in the current workspace.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Show/hide all floating windows in the current workspace.&quot;&quot;&quot;</span>
         <span class="c"># get panels</span>
         <span class="n">windows</span> <span class="o">=</span> <span class="n">NSApp</span><span class="o">.</span><span class="n">windows</span><span class="p">()</span>
         <span class="n">panels</span> <span class="o">=</span> <span class="p">[</span> <span class="n">window</span> <span class="k">for</span> <span class="n">window</span> <span class="ow">in</span> <span class="n">windows</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">NSPanel</span><span class="p">)</span> <span class="p">]</span>
@@ -176,7 +176,7 @@
             <span class="n">setExtensionDefault</span><span class="p">(</span><span class="s">&#39;com.hipertipo.showHidePanels&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 
 <div class="viewcode-block" id="build_shortcuts_dict"><a class="viewcode-back" href="../../../modules/sysutils.html#hTools2.modules.sysutils.build_shortcuts_dict">[docs]</a><span class="k">def</span> <span class="nf">build_shortcuts_dict</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">shortcuts</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Build a shortcuts dictionary with script paths, names and shortcut keys.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Build a shortcuts dictionary with script paths, names and shortcut keys.&quot;&quot;&quot;</span>
     <span class="c">#   shortcuts_dict = {</span>
     <span class="c">#       u&#39;/path/to/script.py&#39;: {</span>
     <span class="c">#           &#39;preferredName&#39; : &#39;my script&#39;,</span>
@@ -198,7 +198,7 @@
     <span class="k">return</span> <span class="n">_shortcuts_dict</span>
 </div>
 <div class="viewcode-block" id="merge_shortcuts_dicts"><a class="viewcode-back" href="../../../modules/sysutils.html#hTools2.modules.sysutils.merge_shortcuts_dicts">[docs]</a><span class="k">def</span> <span class="nf">merge_shortcuts_dicts</span><span class="p">(</span><span class="n">dicts_list</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Merge all shortcut dictionaries in a given list.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Merge all shortcut dictionaries in a given list.&quot;&quot;&quot;</span>
     <span class="n">_super_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">_dict</span> <span class="ow">in</span> <span class="n">dicts_list</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -244,7 +244,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Jul 29, 2014.
+      Last updated on Aug 22, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

@@ -62,7 +62,7 @@
 
 <div class="viewcode-block" id="hSettings"><a class="viewcode-back" href="../../../objects/hsettings.html#hTools2.objects.hsettings.hSettings">[docs]</a><span class="k">class</span> <span class="nc">hSettings</span><span class="p">:</span>
 
-    <span class="sd">&#39;&#39;&#39;An object to store information about local settings and preferences.</span>
+    <span class="sd">&quot;&quot;&quot;An object to store information about local settings and preferences.</span>
 
 <span class="sd">    When initialized, the :py:class:`hSettings` object does the following:</span>
 
@@ -117,7 +117,7 @@
 <span class="sd">    &gt;&gt;&gt; print s.filename</span>
 <span class="sd">    hSettings.plist</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c"># attributes</span>
 
@@ -135,25 +135,35 @@
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s">&#39;&lt;hSettings&gt;&#39;</span>
 
-<div class="viewcode-block" id="hSettings.read"><a class="viewcode-back" href="../../../objects/hsettings.html#hTools2.objects.hsettings.hSettings.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trim</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Read settings from ``.plist`` file into :py:attr:`hSettings.hDict`.&#39;&#39;&#39;</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">):</span>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="hSettings.exists"><a class="viewcode-back" href="../../../objects/hsettings.html#hTools2.objects.hsettings.hSettings.exists">[docs]</a>    <span class="k">def</span> <span class="nf">exists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if the settings file exists. Returns a boolean.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="hSettings.read"><a class="viewcode-back" href="../../../objects/hsettings.html#hTools2.objects.hsettings.hSettings.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read settings from ``.plist`` file into :py:attr:`hSettings.hDict`.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exists</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">hDict</span> <span class="o">=</span> <span class="n">plistlib</span><span class="o">.</span><span class="n">readPlist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">hDict</span> <span class="o">=</span> <span class="p">{}</span>
 </div>
 <div class="viewcode-block" id="hSettings.write"><a class="viewcode-back" href="../../../objects/hsettings.html#hTools2.objects.hsettings.hSettings.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Write contents of :py:attr:`hSettings.hDict` to its ``.plist`` file.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Write contents of :py:attr:`hSettings.hDict` to its ``.plist`` file.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
             <span class="n">plistlib</span><span class="o">.</span><span class="n">writePlist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hDict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">&#39;cannot save settings, :py:attr:`hTools2.ROOT` folder does not exist.</span><span class="se">\n</span><span class="s">&#39;</span>
 </div>
 <div class="viewcode-block" id="hSettings.report"><a class="viewcode-back" href="../../../objects/hsettings.html#hTools2.objects.hsettings.hSettings.report">[docs]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Print all settings data to the console.&#39;&#39;&#39;</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hDict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">print</span> <span class="n">k</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hDict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
-</pre></div></div></div>
+        <span class="sd">&quot;&quot;&quot;Print all settings data to the console.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exists</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;Saving seetings to </span><span class="si">%s</span><span class="s">...&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hDict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">print</span> <span class="n">k</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hDict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="k">print</span> <span class="s">&#39;...done.</span><span class="se">\n</span><span class="s">&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;The settings file `</span><span class="si">%s</span><span class="s">` does not exist.&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span></div></div>
+</pre></div>
 
           </div>
         </div>
@@ -193,7 +203,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Jul 29, 2014.
+      Last updated on Aug 22, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

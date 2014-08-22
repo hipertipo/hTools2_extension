@@ -1,5 +1,8 @@
 # [h] set element glyph in a font
 
+import hTools2.modules.rasterizer
+reload(hTools2.modules.rasterizer)
+
 # imports
 
 try:
@@ -19,11 +22,11 @@ from hTools2.modules.messages import no_font_open
 
 class setElementDialog(hDialog):
 
-    '''
+    """Create an `_element` glyph in the current font.
 
     .. image:: imgs/font/set-element.png
 
-    '''
+    """
 
     # attributes
 

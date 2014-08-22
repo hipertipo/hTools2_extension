@@ -77,7 +77,7 @@
 
 <div class="viewcode-block" id="hSpace"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace">[docs]</a><span class="k">class</span> <span class="nc">hSpace</span><span class="p">:</span>
 
-    <span class="sd">&#39;&#39;&#39;A space describes a parametric range of fonts inside a project.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;A space describes a parametric range of fonts inside a project.&quot;&quot;&quot;</span>
 
     <span class="c"># attributes</span>
 
@@ -110,7 +110,7 @@
         <span class="k">return</span> <span class="s">&#39;&lt;hSpace </span><span class="si">%s</span><span class="s">&gt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">name</span>
 
 <div class="viewcode-block" id="hSpace.import_project_parameters"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.import_project_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">import_project_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Import parameters from ``project`` lib.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Import parameters from ``project`` lib.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;project&#39;</span><span class="p">][</span><span class="s">&#39;parameters&#39;</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">parameters_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">libs</span><span class="p">[</span><span class="s">&#39;project&#39;</span><span class="p">][</span><span class="s">&#39;parameters_order&#39;</span><span class="p">]</span>
@@ -120,14 +120,14 @@
             <span class="k">print</span> <span class="s">&#39;project </span><span class="si">%s</span><span class="s"> has no parameters lib&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">name</span>
 </div>
 <div class="viewcode-block" id="hSpace.set_parameters"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.set_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">set_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Set space attributes from parameters dict.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Set space attributes from parameters dict.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 </div>
 <div class="viewcode-block" id="hSpace.build"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.build">[docs]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Build the defined variation space, using the parameters order, and create individual font names.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Build the defined variation space, using the parameters order, and create individual font names.&quot;&quot;&quot;</span>
         <span class="c"># get parameters</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters_order</span><span class="p">:</span>
@@ -156,7 +156,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">fonts</span> <span class="o">=</span> <span class="n">font_names</span>
 </div>
 <div class="viewcode-block" id="hSpace.ufos"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.ufos">[docs]</a>    <span class="k">def</span> <span class="nf">ufos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Return a list containing the ``.ufo`` paths of all existing fonts in the current space.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Return a list containing the ``.ufo`` paths of all existing fonts in the current space.&quot;&quot;&quot;</span>
         <span class="n">font_paths</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">masters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">masters</span><span class="p">()</span>
         <span class="n">instances</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">instances</span><span class="p">()</span>
@@ -184,7 +184,7 @@
     <span class="c"># ftp</span>
 </div>
 <div class="viewcode-block" id="hSpace.upload_woffs"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.upload_woffs">[docs]</a>    <span class="k">def</span> <span class="nf">upload_woffs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Upload all ``.woffs`` in space to the project&#39;s folder in the FTP server.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Upload all ``.woffs`` in space to the project&#39;s folder in the FTP server.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">ufo_path</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufos</span><span class="p">():</span>
             <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">ufo_path</span><span class="p">)[</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">woff_file</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.woff&#39;</span> <span class="o">%</span> <span class="n">file_name</span>
@@ -202,7 +202,7 @@
     <span class="c"># initialization tools</span>
 </div>
 <div class="viewcode-block" id="hSpace.create_fonts"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.create_fonts">[docs]</a>    <span class="k">def</span> <span class="nf">create_fonts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Create fonts in space, if they don&#39;t exist yet.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Create fonts in space, if they don&#39;t exist yet.&quot;&quot;&quot;</span>
         <span class="k">print</span> <span class="s">&quot;batch creating fonts...</span><span class="se">\n</span><span class="s">&quot;</span>
         <span class="k">for</span> <span class="n">font</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fonts</span><span class="p">:</span>
             <span class="n">font_path</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">.ufo&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">font</span><span class="p">)</span>
@@ -216,7 +216,7 @@
         <span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">...done.</span><span class="se">\n</span><span class="s">&quot;</span>
 </div>
 <div class="viewcode-block" id="hSpace.create_glyphs"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.create_glyphs">[docs]</a>    <span class="k">def</span> <span class="nf">create_glyphs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gstring</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Create all glyphs in all fonts in space.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Create all glyphs in all fonts in space.&quot;&quot;&quot;</span>
         <span class="c"># get glyphs</span>
         <span class="n">glyph_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_glyph_names</span><span class="p">(</span><span class="n">gstring</span><span class="p">)</span>
         <span class="c"># create glyphs</span>
@@ -237,7 +237,7 @@
         <span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">...done.</span><span class="se">\n</span><span class="s">&quot;</span>
 </div>
 <div class="viewcode-block" id="hSpace.build_accents"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.build_accents">[docs]</a>    <span class="k">def</span> <span class="nf">build_accents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gstring</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="p">[]):</span>
-        <span class="sd">&#39;&#39;&#39;Build accents in all fonts in space.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Build accents in all fonts in space.&quot;&quot;&quot;</span>
         <span class="c"># build glyphs</span>
         <span class="k">print</span> <span class="s">&quot;building accented glyphs in space...</span><span class="se">\n</span><span class="s">&quot;</span>
         <span class="k">for</span> <span class="n">ufo_path</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufos</span><span class="p">():</span>
@@ -250,7 +250,7 @@
     <span class="c"># clear data</span>
 </div>
 <div class="viewcode-block" id="hSpace.clear_kerning"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.clear_kerning">[docs]</a>    <span class="k">def</span> <span class="nf">clear_kerning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Delete kerning in all fonts in space.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Delete kerning in all fonts in space.&quot;&quot;&quot;</span>
         <span class="k">print</span> <span class="s">&quot;batch deleting kerning...</span><span class="se">\n</span><span class="s">&quot;</span>
         <span class="k">for</span> <span class="n">ufo_path</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufos</span><span class="p">():</span>
             <span class="n">ufo</span> <span class="o">=</span> <span class="n">RFont</span><span class="p">(</span><span class="n">ufo_path</span><span class="p">,</span> <span class="n">showUI</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -276,7 +276,7 @@
         <span class="k">pass</span>
 </div>
 <div class="viewcode-block" id="hSpace.clear_anchors"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.clear_anchors">[docs]</a>    <span class="k">def</span> <span class="nf">clear_anchors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Remove anchors in all fonts in space.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Remove anchors in all fonts in space.&quot;&quot;&quot;</span>
         <span class="k">print</span> <span class="s">&quot;deleting all anchors in space...&quot;</span>
         <span class="k">for</span> <span class="n">ufo_path</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufos</span><span class="p">():</span>
             <span class="n">font</span> <span class="o">=</span> <span class="n">hFont</span><span class="p">(</span><span class="n">RFont</span><span class="p">(</span><span class="n">ufo_path</span><span class="p">,</span> <span class="n">showUI</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
@@ -285,7 +285,7 @@
     <span class="c"># transfer tools</span>
 </div>
 <div class="viewcode-block" id="hSpace.transfer_glyphs"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.transfer_glyphs">[docs]</a>    <span class="k">def</span> <span class="nf">transfer_glyphs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">gstring</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Batch transfer glyphs from one set of fonts to another.</span>
+        <span class="sd">&quot;&quot;&quot;Batch transfer glyphs from one set of fonts to another.</span>
 
 <span class="sd">        ``gstring``</span>
 <span class="sd">            A string of glyph names and/or group names.</span>
@@ -322,7 +322,7 @@
 <span class="sd">            s.set_parameters(parameters)</span>
 <span class="sd">            s.transfer_glyphs(gstring, var, verbose=False)</span>
 
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">axis</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">dest_list</span> <span class="o">=</span> <span class="n">var</span>
         <span class="c"># define source space</span>
         <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -360,7 +360,7 @@
         <span class="k">print</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">...done.</span><span class="se">\n</span><span class="s">&#39;</span>
 </div>
 <div class="viewcode-block" id="hSpace.transfer_anchors"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.transfer_anchors">[docs]</a>    <span class="k">def</span> <span class="nf">transfer_anchors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">gstring</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Transfer anchors from one variable set of fonts to another.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Transfer anchors from one variable set of fonts to another.&quot;&quot;&quot;</span>
         <span class="n">axis</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">dest_list</span> <span class="o">=</span> <span class="n">var</span>
         <span class="c"># define source space</span>
         <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -399,7 +399,7 @@
         <span class="k">print</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">...done.</span><span class="se">\n</span><span class="s">&#39;</span>
 </div>
 <div class="viewcode-block" id="hSpace.move_anchors"><a class="viewcode-back" href="../../../objects/hspace.html#hTools2.objects.hspace.hSpace.move_anchors">[docs]</a>    <span class="k">def</span> <span class="nf">move_anchors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gstring</span><span class="p">,</span> <span class="n">anchor_names</span><span class="p">,</span> <span class="p">(</span><span class="n">delta_x</span><span class="p">,</span> <span class="n">delta_y</span><span class="p">)):</span>
-        <span class="sd">&#39;&#39;&#39;Move all anchors of given anchor names in glyphs by ``(x,y)`` units.&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Move all anchors of given anchor names in glyphs by ``(x,y)`` units.&quot;&quot;&quot;</span>
         <span class="c"># get glyphs</span>
         <span class="n">glyph_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_glyph_names</span><span class="p">(</span><span class="n">gstring</span><span class="p">)</span>
         <span class="c"># batch move anchors</span>
@@ -755,7 +755,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Jul 29, 2014.
+      Last updated on Aug 22, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>
