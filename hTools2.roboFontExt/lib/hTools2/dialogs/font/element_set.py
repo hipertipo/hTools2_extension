@@ -3,6 +3,9 @@
 import hTools2.modules.rasterizer
 reload(hTools2.modules.rasterizer)
 
+import hTools2.dialogs.misc
+reload(hTools2.dialogs.misc)
+
 # imports
 
 try:
@@ -55,7 +58,7 @@ class setElementDialog(hDialog):
                     label='size')
         # shape
         x = self.padding_x
-        y += self.w.spinner_size.getPosSize()[3]
+        y += self.spinner_height + self.padding_y
         self.w.shape = RadioGroup(
                     (x, y,
                     -self.padding_x,
@@ -76,7 +79,7 @@ class setElementDialog(hDialog):
                     label='curve')
         # set element
         x = self.padding_x
-        y += self.w.spinner_magic.getPosSize()[3]
+        y += self.spinner_height + self.padding_y
         self.w.button_set_element = SquareButton(
                     (x, y,
                     -self.padding_x,
@@ -101,7 +104,7 @@ class setElementDialog(hDialog):
                 font.newGlyph(self.element_glyph)
             # draw element shape
             font[self.element_glyph].prepareUndo('set element')
-            set_element(font, scale, type=shape, magic=magic, element_=self.element_glyph)
+            set_element(font, scale, type=shape, magic=magic, element_src=self.element_glyph)
             font[self.element_glyph].performUndo()
         # no font open
         else:

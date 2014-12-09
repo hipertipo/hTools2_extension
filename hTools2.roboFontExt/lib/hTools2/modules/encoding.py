@@ -16,7 +16,12 @@ from hTools2.modules.color import clear_colors, hls_to_rgb
 # functions
 
 def import_encoding(file_path):
-    """Import glyph names from an encoding file."""
+    """Import glyph names from an encoding file.
+
+    :param str file_path: The path to the encoding file.
+    :returns: A list of glyph names, or ``None`` if the file does not exist.
+
+    """
     if os.path.exists(file_path):
         lines = open(file_path, 'r').readlines()
         glyph_names = []
@@ -28,7 +33,12 @@ def import_encoding(file_path):
         print 'Error, this file does not exist.'
 
 def import_groups_from_encoding(file_path):
-    """Import group and glyphs names from an encoding file."""
+    """Import group and glyphs names from an encoding file.
+
+    :param str file_path: The path to the encoding file.
+    :returns: A dictionary of groups (keys) and glyph names (values), and a list with the order of the groups; or ``None`` if the file does not exist.
+
+    """
     if os.path.exists(file_path):
         lines = open(file_path, 'r').readlines()
         groups = {}
@@ -55,50 +65,59 @@ def import_groups_from_encoding(file_path):
 # font-level tools
 #------------------
 
-def clear_unicodes(f):
-    """Remove unicodes from all glyphs in the font."""
-    for g in f:
-        g.unicodes = []
-    f.update()
+def clear_unicodes(font):
+    """Remove unicodes from all glyphs in the font.
 
-def auto_unicodes(f):
-    """Automatically set unicode values for all glyphs in the font."""
-    clear_unicodes(f)
-    for g in f:
+    :param RFont font: The font as an RFont object.
+
+    """
+    for g in font:
+        g.unicodes = []
+    font.update()
+
+def auto_unicodes(font):
+    """Automatically set unicode values for all glyphs in the font.
+
+    :param RFont font: The font as an RFont object.
+
+    """
+    clear_unicodes(font)
+    for g in font:
         if g is not None:
             auto_unicode(g)
-    f.update()
+    font.update()
 
-def paint_groups(f, crop=False):
+def paint_groups(font, crop=False):
     """Paint the glyphs in the font according to their groups.
 
     If a ``groups_order`` lib is available, it is used to set the order of the glyphs in the font.
 
+    :param RFont font: The font as an RFont object.
+
     """
-    font = CurrentFont()
-    if len(f.groups) > 0:
-        clear_colors(f)
+    if len(font.groups) > 0:
+        clear_colors(font)
         count = 0
         _order = []
-        if f.lib.has_key('groups_order'):
-            groups = f.lib['groups_order']
+        if font.lib.has_key('groups_order'):
+            groups = font.lib['groups_order']
         else:
-            groups = f.groups.keys()
+            groups = font.groups.keys()
         for group in groups:
-            color_step = 1.0 / len(f.groups)
+            color_step = 1.0 / len(font.groups)
             color = color_step * count
             R, G, B = hls_to_rgb(color, 0.5, 1.0)
-            for glyph_name in f.groups[group]:
-                if f.has_key(glyph_name) is not True:
-                    f.newGlyph(glyph_name)
+            for glyph_name in font.groups[group]:
+                if font.has_key(glyph_name) is not True:
+                    font.newGlyph(glyph_name)
                 _order.append(glyph_name)
-                f[glyph_name].mark = (R, G, B, 0.3)
-                f[glyph_name].update()
+                font[glyph_name].mark = (R, G, B, 0.3)
+                font[glyph_name].update()
             count += 1
-        f.glyphOrder = _order
-        f.update()
+        font.glyphOrder = _order
+        font.update()
         if crop:
-            crop_glyphset(f, _order)
+            crop_glyphset(font, _order)
     else:
         print 'font has no groups.\n'
 
@@ -122,7 +141,9 @@ def all_glyphs(groups_dict):
 def auto_unicode(g):
     """Automatically set unicode value(s) for the specified glyph.
 
-    The method uses RoboFab's ``glyph.autoUnicodes()`` function for common glyphs, and complements it with additional values from ``unicodes_extra``."""
+    The method uses RoboFab's ``glyph.autoUnicodes()`` function for common glyphs, and complements it with additional values from ``unicodes_extra``.
+
+    """
     if g.name is not None:
         # handle 'uni' names
         if g.name[:3] == "uni" and len(g.name) == 7:
@@ -164,6 +185,7 @@ def unicode_hexstr_to_int(hexUnicode, replaceUni=True):
     """Converts a unicode hexadecimal value into an integer.
 
     It does exactly the reverse of ``unicode_int_to_hexstr``.
+
     """
     if replaceUni:
         return int(hexUnicode.replace("uni",""), 16)
@@ -192,12 +214,9 @@ unicodes_extra = {
     'f_f_i' : 'FB03',
     'f_f_l' : 'FB04',
     # greek exceptions
-    'Delta' : '2206',
-    'Deltagreek' : '0394',
-    'mu' : '03BC',
-    'mugreek' : '00B5',
+    'Delta' : '0394',
     'Omega' : '03A9',
-    'Omegagreek' : '2126',
+    'mu' : '03BC',
     # superiors
     'zerosuperior' : '2070',
     'onesuperior' : '00B9',
@@ -221,6 +240,8 @@ unicodes_extra = {
     'eightinferior' : '2088',
     'nineinferior' : '2089',
     # spaces
+    'enspace' : '2002',
+    'emspace' : '2003',
     'nbspace' : '00A0',
     'hairspace' : '200A',
     'thinspace' : '2009',
@@ -286,17 +307,18 @@ def chars2glyphnames(char_list):
             glyph_names.append(glyph_name)
     return glyph_names
 
-def glyphname2char(glyph_name):
-    """Get the unicode character for a given glyph name."""
-    if psnames2unicodes.has_key(glyph_name):
-        uni = psnames2unicodes[glyph_name]
-    elif unicodes_extra.has_key(glyph_name):
-        uni = '###%s' % unicodes_extra[glyph_name]
-    else:
-        uni = None
-    return glyph_name, uni
+# def glyphname2char(glyph_name):
+#     """Get the unicode character for a given glyph name."""
+#     if psnames2unicodes.has_key(glyph_name):
+#         uni = psnames2unicodes[glyph_name]
+#     elif unicodes_extra.has_key(glyph_name):
+#         uni = '###%s' % unicodes_extra[glyph_name]
+#     else:
+#         return
+#     uni_hex = '\\u%s' % unicode_int_to_hexstr(uni, _0x=False)
+#     return unicode(uni_hex)
 
-#: A dictionary mapping unicode values to psNames.
+# A dictionary mapping unicode values to psNames.
 unicode2psnames = {
     None : '.notdef',
     32 : 'space',
@@ -995,5 +1017,5 @@ unicode2psnames = {
     64260 : 'ffl',
 }
 
-#: A dictionary mapping psNames to unicode values.
+# A dictionary mapping psNames to unicode values.
 psnames2unicodes = dict([[v, k] for k, v in unicode2psnames.items()])

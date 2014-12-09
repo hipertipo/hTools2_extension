@@ -57,7 +57,7 @@
             
   <div class="section" id="module-hTools2.modules.fontutils">
 <span id="fontutils"></span><h1>fontutils<a class="headerlink" href="#module-hTools2.modules.fontutils" title="Permalink to this headline">¶</a></h1>
-<p>A collection of handy functions for working with fonts.</p>
+<p>A collection of useful functions for working with fonts.</p>
 <dl class="function">
 <dt id="hTools2.modules.fontutils.add_extremes">
 <tt class="descname">add_extremes</tt><big>(</big><em>font</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/fontutils.html#add_extremes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.fontutils.add_extremes" title="Permalink to this definition">¶</a></dt>
@@ -87,6 +87,11 @@
 <tt class="descname">auto_order_direction</tt><big>(</big><em>font</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/fontutils.html#auto_order_direction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.fontutils.auto_order_direction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Automatically set contour order and direction for all glyphs in the font, in one go.</p>
 </dd></dl>
+
+<dl class="function">
+<dt id="hTools2.modules.fontutils.auto_point_start">
+<tt class="descname">auto_point_start</tt><big>(</big><em>font</em><big>)</big><a class="headerlink" href="#hTools2.modules.fontutils.auto_point_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="function">
 <dt id="hTools2.modules.fontutils.clear_guides">
@@ -185,7 +190,23 @@
 <dl class="function">
 <dt id="hTools2.modules.fontutils.rename_glyph">
 <tt class="descname">rename_glyph</tt><big>(</big><em>font</em>, <em>old_name</em>, <em>new_name</em>, <em>overwrite=True</em>, <em>mark=True</em>, <em>verbose=True</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/fontutils.html#rename_glyph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.fontutils.rename_glyph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Rename a glyph in a font from <tt class="docutils literal"><span class="pre">old_name</span></tt> to <tt class="docutils literal"><span class="pre">new_name</span></tt>.</p>
+<dd><p>Rename a glyph in a given font.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>font</strong> (<em>RFont</em>) &#8211; The font which contains the glyph to be renamed.</li>
+<li><strong>old_name</strong> (<em>str</em>) &#8211; The old glyph name to be replaced.</li>
+<li><strong>new_name</strong> (<em>str</em>) &#8211; The new glyph name to be used in place of the old one.</li>
+<li><strong>overwrite</strong> (<em>bool</em>) &#8211; Overwrite existing glyph with the new name.</li>
+<li><strong>mark</strong> (<em>bool</em>) &#8211; Mark the glyph after renaming.</li>
+<li><strong>verbose</strong> (<em>bool</em>) &#8211; Output informative messages to the console.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -285,7 +306,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Aug 22, 2014.
+      Last updated on Nov 07, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

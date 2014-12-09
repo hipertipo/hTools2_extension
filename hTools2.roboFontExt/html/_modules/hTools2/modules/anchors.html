@@ -60,8 +60,7 @@
 <span class="c"># font-level tools</span>
 
 <div class="viewcode-block" id="get_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.get_anchors">[docs]</a><span class="k">def</span> <span class="nf">get_anchors</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">glyph_names</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get anchors from a font as a dictionary.</span>
+    <span class="sd">&quot;&quot;&quot;Get anchors from a font as a dictionary.</span>
 
 <span class="sd">    :param list glyph_names: A list of glyphs to restrict selection.</span>
 <span class="sd">    :returns: A dictionary with anchor names and positions for each glyph.</span>
@@ -82,8 +81,7 @@
     <span class="k">return</span> <span class="n">anchors_dict</span>
 </div>
 <div class="viewcode-block" id="clear_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.clear_anchors">[docs]</a><span class="k">def</span> <span class="nf">clear_anchors</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">glyph_names</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Delete all anchors in the font.</span>
+    <span class="sd">&quot;&quot;&quot;Delete all anchors in the font.</span>
 
 <span class="sd">    :param list glyph_names: A list of glyphs to restrict selection.</span>
 
@@ -149,8 +147,7 @@
     <span class="c"># done</span>
 </div>
 <div class="viewcode-block" id="get_anchors_dict"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.get_anchors_dict">[docs]</a><span class="k">def</span> <span class="nf">get_anchors_dict</span><span class="p">(</span><span class="n">accents_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get an anchors dict from a dict of glyph building recipes.</span>
+    <span class="sd">&quot;&quot;&quot;Get an anchors dict from a dict of glyph building recipes.</span>
 
 <span class="sd">    :returns: A dictionary with anchor names and positions for each glyph.</span>
 
@@ -174,8 +171,7 @@
 <span class="c"># glyph-level tools</span>
 </div>
 <div class="viewcode-block" id="rename_anchor"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.rename_anchor">[docs]</a><span class="k">def</span> <span class="nf">rename_anchor</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Rename named anchor in the given glyph.</span>
+    <span class="sd">&quot;&quot;&quot;Rename named anchor in the given glyph.</span>
 
 <span class="sd">    :param str old_name: Old anchor name to be replace.</span>
 <span class="sd">    :param str new_name: New anchor name.</span>
@@ -192,8 +188,7 @@
     <span class="k">return</span> <span class="n">has_name</span>
 </div>
 <div class="viewcode-block" id="transfer_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.transfer_anchors">[docs]</a><span class="k">def</span> <span class="nf">transfer_anchors</span><span class="p">(</span><span class="n">source_glyph</span><span class="p">,</span> <span class="n">dest_glyph</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Transfer all anchors from one glyph to another.</span>
+    <span class="sd">&quot;&quot;&quot;Transfer all anchors from one glyph to another.</span>
 
 <span class="sd">    :param RGlyph source_glyph: The source glyph for the anchors.</span>
 <span class="sd">    :param RGlyph dest_glyph: The destination glyph.</span>
@@ -217,8 +212,7 @@
     <span class="k">return</span> <span class="n">has_anchor</span>
 </div>
 <div class="viewcode-block" id="move_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.move_anchors">[docs]</a><span class="k">def</span> <span class="nf">move_anchors</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">anchor_names</span><span class="p">,</span> <span class="p">(</span><span class="n">delta_x</span><span class="p">,</span> <span class="n">delta_y</span><span class="p">)):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Move named anchors in the given glyph.</span>
+    <span class="sd">&quot;&quot;&quot;Move named anchors in the given glyph.</span>
 
 <span class="sd">    :param list anchor_names: A list of anchor names to move.</span>
 <span class="sd">    :param int delta_x: The horizontal move distance.</span>
@@ -231,8 +225,7 @@
             <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 </div>
 <div class="viewcode-block" id="create_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.create_anchors">[docs]</a><span class="k">def</span> <span class="nf">create_anchors</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">accent</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">top_delta</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">bottom_delta</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create anchors in glyph.</span>
+    <span class="sd">&quot;&quot;&quot;Create anchors in glyph.</span>
 
 <span class="sd">    :param bool top: Create or not *top* anchors.</span>
 <span class="sd">    :param bool bottom: Create or not *bottom* anchors.</span>
@@ -312,7 +305,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Aug 22, 2014.
+      Last updated on Dec 08, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

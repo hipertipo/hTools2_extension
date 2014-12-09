@@ -3,12 +3,35 @@
 # imports
 
 from vanilla import *
+from hTools2 import hDialog
+
+# constants
+
+D = hDialog()
 
 # objects
 
 class Spinner(Group):
 
-    """An object to add number spinners to vanilla dialogs."""
+    """An object to add number fields with plus/minus-1/10/100 buttons to vanilla dialogs.
+
+        from vanilla import FloatingWindow
+        from hTools2.dialogs.misc import Spinner
+
+        class SpinnerExample:
+
+            def __init__(self):
+                self.w = FloatingWindow((300, 400), 'hello')
+                x = 0
+                y = 10
+                self.w.spinner_1 = Spinner((x, y))
+                y += self.w.spinner_1.getPosSize()[3]
+                self.w.spinner_2 = Spinner((x, y), label='hola')
+                self.w.open()
+
+        SpinnerExample()
+
+    """
 
     # attributes
 
@@ -17,73 +40,95 @@ class Spinner(Group):
 
     # methods
 
-    def __init__(self, (l, t), default='0', scale=1, integer=True, nudge_button=18, padding=10, label=None, digits=2):
-        _x = padding
-        _y = 0
-        w = (nudge_button * 6) - 5
-        h = (nudge_button * 2) + padding
-        super(Spinner, self).__init__(
-                    (l, t,
-                    w + (padding * 2),
-                    h + (padding * 1)))
+    def __init__(self, pos, default='0', scale=1, integer=True, label=None, digits=2, isHorizontal=False, button_pairs=2, col2=None):
+        """Initiate the Spinner object.
+
+        :param tuple pos: A tuple with left, top (x,y) position in parent window.
+        :param str default: The default value to display in the text box.
+        :param int scale: A multiplier for button increment values.
+        :param bool integer: Round values to integers.
+        :param str label: The label text for the spinner. Use ``None`` for no label.
+        :param int digits: Amount of digits after comma in decimal numbers.
+
+        """
+        left, top = pos
+        x = D.padding_x
+        y = 0
+        w = (D.nudge_button * 6) - 5
+        h = (D.nudge_button * 2) + D.padding_y
+        if not col2:
+            col2 = w * 0.5
+        if isHorizontal:
+            width = (w * 2)
+        else:
+            width = w
+        super(Spinner, self).__init__((
+                    left, top,
+                    width + (D.padding_x * 2),
+                    h + (D.padding_y * 1)
+                ))
         self.scale = scale
         self.integer = integer
         self.digits = digits
         # text label and value
         if label is not None:
-            col2 = w / 2.
             self.label = TextBox(
-                        (_x, _y, col2, nudge_button),
+                        (x, y, col2, D.nudge_button),
                         label,
-                        sizeStyle='small')
-            _x += col2
+                        sizeStyle=D.size_style)
+            x += col2
             self.value = EditText(
-                        (_x, _y, col2, nudge_button),
+                        (x, y, col2, D.nudge_button),
                         default,
-                        sizeStyle='small')
+                        sizeStyle=D.size_style)
+            x += col2 + D.padding_x
         else:
             self.value = EditText(
-                        (_x, _y, w, nudge_button),
+                        (x, y, w, D.nudge_button),
                         default,
-                        sizeStyle='small')
+                        sizeStyle=D.size_style)
+            x += w + D.padding_x
         # nudge buttons
-        _x = padding
-        _y += nudge_button + padding
+        if not isHorizontal:
+            x = D.padding_x
+            y += D.nudge_button + D.padding_y
         self.minus_001 = SquareButton(
-                    (_x, _y, nudge_button, nudge_button),
+                    (x, y, D.nudge_button, D.nudge_button),
                     '-',
-                    sizeStyle='small',
+                    sizeStyle=D.size_style,
                     callback=self.minus_001_callback)
-        _x += nudge_button - 1
+        x += D.nudge_button - 1
         self.plus_001 = SquareButton(
-                    (_x, _y, nudge_button, nudge_button),
+                    (x, y, D.nudge_button, D.nudge_button),
                     '+',
-                    sizeStyle='small',
+                    sizeStyle=D.size_style,
                     callback=self.plus_001_callback)
-        _x += nudge_button - 1
-        self.minus_010 = SquareButton(
-                    (_x, _y, nudge_button, nudge_button),
-                    '-',
-                    sizeStyle='small',
-                    callback=self.minus_010_callback)
-        _x += nudge_button - 1
-        self.plus_010 = SquareButton(
-                    (_x, _y, nudge_button, nudge_button),
-                    '+',
-                    sizeStyle='small',
-                    callback=self.plus_010_callback)
-        _x += nudge_button - 1
-        self.minus_100 = SquareButton(
-                    (_x, _y, nudge_button, nudge_button),
-                    '-',
-                    sizeStyle='small',
-                    callback=self.minus_100_callback)
-        _x += nudge_button - 1
-        self.plus_100 = SquareButton(
-                    (_x, _y, nudge_button, nudge_button),
-                    '+',
-                    sizeStyle='small',
-                    callback=self.plus_100_callback)
+        if button_pairs > 0:
+            x += D.nudge_button - 1
+            self.minus_010 = SquareButton(
+                        (x, y, D.nudge_button, D.nudge_button),
+                        '-',
+                        sizeStyle=D.size_style,
+                        callback=self.minus_010_callback)
+            x += D.nudge_button - 1
+            self.plus_010 = SquareButton(
+                        (x, y, D.nudge_button, D.nudge_button),
+                        '+',
+                        sizeStyle=D.size_style,
+                        callback=self.plus_010_callback)
+            if button_pairs > 1:
+                x += D.nudge_button - 1
+                self.minus_100 = SquareButton(
+                            (x, y, D.nudge_button, D.nudge_button),
+                            '-',
+                            sizeStyle=D.size_style,
+                            callback=self.minus_100_callback)
+                x += D.nudge_button - 1
+                self.plus_100 = SquareButton(
+                            (x, y, D.nudge_button, D.nudge_button),
+                            '+',
+                            sizeStyle=D.size_style,
+                            callback=self.plus_100_callback)
 
     # callbacks
 
@@ -134,3 +179,4 @@ class Spinner(Group):
         value = self.cast_value(self.value.get())
         value += (100 * self.scale)
         self.set_value(value)
+

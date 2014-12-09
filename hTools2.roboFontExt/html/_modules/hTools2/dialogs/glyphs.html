@@ -63,6 +63,8 @@
 <span class="kn">from</span> <span class="nn">anchors_rename</span> <span class="kn">import</span> <span class="n">renameAnchorsDialog</span>
 <span class="kn">from</span> <span class="nn">anchors_transfer</span> <span class="kn">import</span> <span class="n">transferAnchorsDialog</span>
 <span class="kn">from</span> <span class="nn">copy_paste</span> <span class="kn">import</span> <span class="n">copyPasteGlyphDialog</span>
+<span class="kn">from</span> <span class="nn">elements_rasterize</span> <span class="kn">import</span> <span class="n">rasterizeGlyphDialog</span>
+<span class="kn">from</span> <span class="nn">elements_randomize</span> <span class="kn">import</span> <span class="n">randomizeElementsDialog</span>
 <span class="kn">from</span> <span class="nn">gridfit</span> <span class="kn">import</span> <span class="n">roundToGridDialog</span>
 <span class="kn">from</span> <span class="nn">interpolate</span> <span class="kn">import</span> <span class="n">interpolateGlyphsDialog</span>
 <span class="kn">from</span> <span class="nn">interpolate_check</span> <span class="kn">import</span> <span class="n">checkGlyphsCompatibilityDialog</span>
@@ -77,10 +79,9 @@
 <span class="kn">from</span> <span class="nn">move</span> <span class="kn">import</span> <span class="n">moveGlyphsDialog</span>
 <span class="kn">from</span> <span class="nn">names_print</span> <span class="kn">import</span> <span class="n">printGlyphsDialog</span>
 <span class="kn">from</span> <span class="nn">names_suffix</span> <span class="kn">import</span> <span class="n">changeSuffixDialog</span>
-<span class="c"># from outliner import outlineGlyphsDialog</span>
+<span class="kn">from</span> <span class="nn">outline</span> <span class="kn">import</span> <span class="n">outlineGlyphsDialog</span>
 <span class="kn">from</span> <span class="nn">paint_select</span> <span class="kn">import</span> <span class="n">paintGlyphsDialog</span>
 <span class="kn">from</span> <span class="nn">points_shift</span> <span class="kn">import</span> <span class="n">shiftPointsDialog</span>
-<span class="kn">from</span> <span class="nn">rasterize</span> <span class="kn">import</span> <span class="n">rasterizeGlyphDialog</span>
 <span class="kn">from</span> <span class="nn">scale</span> <span class="kn">import</span> <span class="n">scaleGlyphsDialog</span>
 <span class="kn">from</span> <span class="nn">skew</span> <span class="kn">import</span> <span class="n">skewGlyphsDialog</span>
 <span class="kn">from</span> <span class="nn">slide</span> <span class="kn">import</span> <span class="n">slideGlyphsDialog</span>
@@ -109,10 +110,11 @@
     <span class="s">&#39;moveGlyphsDialog&#39;</span><span class="p">,</span>
     <span class="s">&#39;printGlyphsDialog&#39;</span><span class="p">,</span>
     <span class="s">&#39;changeSuffixDialog&#39;</span><span class="p">,</span>
-    <span class="c"># &#39;outlineGlyphsDialog&#39;,</span>
+    <span class="s">&#39;outlineGlyphsDialog&#39;</span><span class="p">,</span>
     <span class="s">&#39;paintGlyphsDialog&#39;</span><span class="p">,</span>
     <span class="s">&#39;shiftPointsDialog&#39;</span><span class="p">,</span>
     <span class="s">&#39;rasterizeGlyphDialog&#39;</span><span class="p">,</span>
+    <span class="s">&#39;randomizeElementsDialog&#39;</span><span class="p">,</span>
     <span class="s">&#39;scaleGlyphsDialog&#39;</span><span class="p">,</span>
     <span class="s">&#39;skewGlyphsDialog&#39;</span><span class="p">,</span>
     <span class="s">&#39;slideGlyphsDialog&#39;</span><span class="p">,</span>
@@ -159,7 +161,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Aug 22, 2014.
+      Last updated on Dec 08, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

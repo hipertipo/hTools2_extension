@@ -161,7 +161,7 @@
 <span class="c"># named colors</span>
 <span class="c">#--------------</span>
 
-<span class="c">#: A dictionary with color names and RGBa values.</span></div>
+<span class="c"># A dictionary with color names and RGBa values.</span></div>
 <span class="n">named_colors</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">&#39;red&#39;</span> <span class="p">:</span> <span class="n">hsv_to_rgb</span><span class="p">(</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
     <span class="s">&#39;orange&#39;</span> <span class="p">:</span> <span class="n">hsv_to_rgb</span><span class="p">(</span><span class="o">.</span><span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
@@ -192,7 +192,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">print</span> <span class="s">&#39;name </span><span class="si">%s</span><span class="s"> is not a solarized group or color.</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">name</span>
 
-<span class="c">#: Solarized colors by name and RGB values.</span></div>
+<span class="c"># Solarized colors by name and RGB values.</span></div>
 <span class="n">solarized_colors</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c"># dark</span>
     <span class="s">&#39;base03&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">54</span><span class="p">),</span>
@@ -216,7 +216,7 @@
     <span class="s">&#39;green&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">133</span><span class="p">,</span> <span class="mi">152</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
 <span class="p">}</span>
 
-<span class="c">#: Solarized colors by name, divided in groups.</span>
+<span class="c"># Solarized colors by name, divided in groups.</span>
 <span class="n">solarized_groups</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">&#39;colors&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="s">&#39;yellow&#39;</span><span class="p">,</span> <span class="s">&#39;orange&#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;magenta&#39;</span><span class="p">,</span> <span class="s">&#39;violet&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="s">&#39;cyan&#39;</span><span class="p">,</span> <span class="s">&#39;green&#39;</span> <span class="p">],</span>
     <span class="s">&#39;dark&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="s">&#39;base03&#39;</span><span class="p">,</span> <span class="s">&#39;base02&#39;</span> <span class="p">],</span>
@@ -247,7 +247,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">&#39;name </span><span class="si">%s</span><span class="s"> is not a x11 group or color.</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">name</span>
 
-<span class="c">#: X11 colors by name and `(R,G,B)` values.</span></div>
+<span class="c"># X11 colors by name and `(R,G,B)` values.</span></div>
 <span class="n">x11_colors</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c"># red colors</span>
     <span class="s">&#39;IndianRed&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">205</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">92</span><span class="p">),</span>
@@ -402,7 +402,7 @@
     <span class="s">&#39;Black&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
 <span class="p">}</span>
 
-<span class="c">#: X11 colors by name, divided in groups.</span>
+<span class="c"># X11 colors by name, divided in groups.</span>
 <span class="n">x11_groups</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">&#39;red&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="s">&#39;IndianRed&#39;</span><span class="p">,</span> <span class="s">&#39;LightCoral&#39;</span><span class="p">,</span> <span class="s">&#39;Salmon&#39;</span><span class="p">,</span> <span class="s">&#39;DarkSalmon&#39;</span><span class="p">,</span> <span class="s">&#39;LightSalmon&#39;</span><span class="p">,</span> <span class="s">&#39;Red&#39;</span><span class="p">,</span> <span class="s">&#39;Crimson&#39;</span><span class="p">,</span> <span class="s">&#39;FireBrick&#39;</span><span class="p">,</span> <span class="s">&#39;DarkRed&#39;</span> <span class="p">],</span>
     <span class="s">&#39;pink&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="s">&#39;Pink&#39;</span><span class="p">,</span> <span class="s">&#39;LightPink&#39;</span><span class="p">,</span> <span class="s">&#39;HotPink&#39;</span><span class="p">,</span> <span class="s">&#39;DeepPink&#39;</span><span class="p">,</span> <span class="s">&#39;MediumVioletRed&#39;</span><span class="p">,</span> <span class="s">&#39;PaleVioletRed&#39;</span> <span class="p">],</span>
@@ -455,7 +455,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Aug 22, 2014.
+      Last updated on Dec 08, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>

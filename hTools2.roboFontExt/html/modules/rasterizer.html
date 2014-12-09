@@ -60,23 +60,115 @@
 <dl class="class">
 <dt id="hTools2.modules.rasterizer.RasterGlyph">
 <em class="property">class </em><tt class="descname">RasterGlyph</tt><big>(</big><em>sourceGlyph</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/rasterizer.html#RasterGlyph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.rasterizer.RasterGlyph" title="Permalink to this definition">¶</a></dt>
-<dd><p>An object to scan glyphs and rasterize them into elements/components.</p>
+<dd><p>An object to scan glyphs and rasterize them into element components.</p>
+<dl class="attribute">
+<dt id="hTools2.modules.rasterizer.RasterGlyph.lib_key_coordenates">
+<tt class="descname">lib_key_coordenates</tt><em class="property"> = 'coordenates.rasterizer.com.hipertipo'</em><a class="headerlink" href="#hTools2.modules.rasterizer.RasterGlyph.lib_key_coordenates" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hTools2.modules.rasterizer.RasterGlyph.lib_key_margins">
+<tt class="descname">lib_key_margins</tt><em class="property"> = 'margins.rasterizer.com.hipertipo'</em><a class="headerlink" href="#hTools2.modules.rasterizer.RasterGlyph.lib_key_margins" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="hTools2.modules.rasterizer.RasterGlyph.print_bits">
+<tt class="descname">print_bits</tt><big>(</big><em>black='#'</em>, <em>white='-'</em>, <em>res=(125</em>, <em>125)</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/rasterizer.html#RasterGlyph.print_bits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.rasterizer.RasterGlyph.print_bits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print glyph bits as ASCII text.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="hTools2.modules.rasterizer.RasterGlyph.rasterize">
-<tt class="descname">rasterize</tt><big>(</big><em>destGlyph=None</em>, <em>res=125</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/rasterizer.html#RasterGlyph.rasterize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.rasterizer.RasterGlyph.rasterize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<tt class="descname">rasterize</tt><big>(</big><em>destGlyph=None</em>, <em>res=(125</em>, <em>125)</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/rasterizer.html#RasterGlyph.rasterize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.rasterizer.RasterGlyph.rasterize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render scanned bits into destination glyph using components.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hTools2.modules.rasterizer.RasterGlyph.read_bits_from_lib">
+<tt class="descname">read_bits_from_lib</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/rasterizer.html#RasterGlyph.read_bits_from_lib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.rasterizer.RasterGlyph.read_bits_from_lib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read bit coordenates and margins from the glyph lib into attributes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hTools2.modules.rasterizer.RasterGlyph.save_bits_to_lib">
+<tt class="descname">save_bits_to_lib</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/rasterizer.html#RasterGlyph.save_bits_to_lib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.rasterizer.RasterGlyph.save_bits_to_lib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save bit coordenates and margins from attributes into the glyph lib.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="hTools2.modules.rasterizer.RasterGlyph.scan">
 <tt class="descname">scan</tt><big>(</big><em>res</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/rasterizer.html#RasterGlyph.scan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.rasterizer.RasterGlyph.scan" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Scan glyph and store bits into glyph lib.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>res</strong> (<em>int</em>) &#8211; The grid resolution to use when scanning the glyph, as a tuple of values for x and y.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A boolean indicating sucess or failure of the scan operation.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="function">
+<dt id="hTools2.modules.rasterizer.get_esize">
+<tt class="descname">get_esize</tt><big>(</big><em>font</em>, <em>element_src='_element'</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/rasterizer.html#get_esize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.rasterizer.get_esize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a font&#8217;s element size from its bounding box.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>font</strong> (<em>RFont</em>) &#8211; The font to which the element glyph belongs.</li>
+<li><strong>element_src</strong> (<em>str</em>) &#8211; The name of the element glyph.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="hTools2.modules.rasterizer.randomize_elements">
+<tt class="descname">randomize_elements</tt><big>(</big><em>glyph</em>, <em>esize</em>, <em>rand_size</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/rasterizer.html#randomize_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.rasterizer.randomize_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomize the size of element shapes in the current glyph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>glyph</strong> (<em>RGlyph</em>) &#8211; The glyph in which the element shapes will be transformed.</li>
+<li><strong>esize</strong> (<em>int</em>) &#8211; The current base size of the element shape.</li>
+<li><strong>rand_size</strong> (<em>tuple</em>) &#8211; The scale factors for minimum and maximum random element sizes.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="hTools2.modules.rasterizer.set_element">
-<tt class="descname">set_element</tt><big>(</big><em>f</em>, <em>size</em>, <em>type='rect'</em>, <em>magic=None</em>, <em>element_='_element'</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/rasterizer.html#set_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.rasterizer.set_element" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_element</tt><big>(</big><em>font</em>, <em>size</em>, <em>type='rect'</em>, <em>magic=None</em>, <em>element_src='_element'</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/rasterizer.html#set_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.rasterizer.set_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the shape of the element glyph in the font.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>font</strong> (<em>RFont</em>) &#8211; A font in which to create the element glyph.</li>
+<li><strong>size</strong> (<em>int</em>) &#8211; The size of the element shape.</li>
+<li><strong>type</strong> (<em>str</em>) &#8211; The type of the element shape: <tt class="docutils literal"><span class="pre">rect</span></tt>, <tt class="docutils literal"><span class="pre">oval</span></tt> or <tt class="docutils literal"><span class="pre">element</span></tt>.</li>
+<li><strong>magic</strong> (<em>float</em>) &#8211; A number indicating the roundness of shapes of type <tt class="docutils literal"><span class="pre">element</span></tt>.</li>
+<li><strong>element_src</strong> (<em>str</em>) &#8211; The glyph in which the element shape will be drawn.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -136,7 +228,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Aug 22, 2014.
+      Last updated on Dec 08, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
     </div>
   </body>
