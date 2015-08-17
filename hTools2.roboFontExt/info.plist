@@ -17,7 +17,7 @@
 	<key>name</key>
 	<string>hTools2</string>
 	<key>repository</key>
-	<string>gferreira/hTools2</string>
+	<string>gferreira/hTools2_extension</string>
 	<key>requiresVersionMajor</key>
 	<string>1</string>
 	<key>requiresVersionMinor</key>
