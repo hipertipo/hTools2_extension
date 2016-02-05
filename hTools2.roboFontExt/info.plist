@@ -22,8 +22,10 @@
 	<string>1</string>
 	<key>requiresVersionMinor</key>
 	<string>5</string>
+	<key>summary</key>
+	<string>A bundle of tools to help with common type design tasks.</string>
 	<key>timeStamp</key>
-	<real>1418084596.238163</real>
+	<real>1454677589.508883</real>
 	<key>version</key>
 	<string>1.6</string>
 </dict>

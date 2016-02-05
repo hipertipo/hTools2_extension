@@ -11,12 +11,17 @@ See the `UFO documentation <http://unifiedfontobject.org/versions/ufo2/fontinfo.
 
 import os
 
-from fileutils import get_names_from_path
+from robofab.pens.marginPen import MarginPen
+
+from hTools2.modules.fileutils import get_names_from_path
 
 # set info
 
 def set_font_names(font, family_name, style_name):
-    """Set several font naming fields from ``family`` and ``style`` names."""
+    """
+    Set several font naming fields from ``family`` and ``style`` names.
+
+    """
     full_name = '%s_%s' % (family_name, style_name)
     # main family/style names
     font.info.familyName = family_name
@@ -39,10 +44,13 @@ def set_font_names(font, family_name, style_name):
     font.info.macintoshFONDName = None
 
 def set_names_from_path(font, prefix=None):
-    """Set the font naming fields using parts of the name of the font file."""
+    """
+    Set the font naming fields using parts of the name of the font file.
+
+    """
     family_name, style_name = get_names_from_path(font.path)
     if prefix:
-        family_name = prefix + ' ' + family_name
+        family_name = '%s %s' % (prefix, family_name)
     set_font_names(font, family_name, style_name)
 
 # vertical metrics
@@ -56,11 +64,9 @@ def set_vmetrics(font, xheight, capheight, ascender, descender, emsquare, gridsi
 
 # ps hinting
 
-from robofab.pens.marginPen import MarginPen
-
-def get_stems(font):
-    ref_glyph = 'i'
-    ref_y = font.info.xHeight / 2
+def get_vstems(font):
+    ref_glyph = 'l'
+    ref_y = font.info.xHeight / 2.0
     g = font[ref_glyph]
     pen = MarginPen(g, ref_y, isHorizontal=True)
     g.draw(pen)
@@ -68,13 +74,33 @@ def get_stems(font):
     stem = right_edge - left_edge
     return [ stem ]
 
-def set_stems(font, stems):
+def get_hstems(font):
+    ref_glyph = 'H'
+    g = font[ref_glyph]
+    ref_x = g.width / 2.0
+    pen = MarginPen(g, ref_x, isHorizontal=False)
+    g.draw(pen)
+    bottom_edge, top_edge = pen.getMargins()
+    stem = top_edge - bottom_edge
+    return [ stem ]
+
+def set_stems(font):
+    vstems = get_vstems(font)
+    hstems = get_hstems(font)
+    set_vstems(font, vstems)
+    set_hstems(font, hstems)
+
+def set_vstems(font, stems):
+    font.info.postscriptStemSnapV = stems
+
+def set_hstems(font, stems):
     font.info.postscriptStemSnapH = stems
 
 # print info
 
 def print_font_info(font, options=None):
-    """Print several kinds of font information, using a special method for each section.
+    """
+    Print several kinds of font information, using a special method for each section.
 
     The data and related functions are organized according to the UFO 2 spec.
 

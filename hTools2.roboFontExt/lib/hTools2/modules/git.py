@@ -42,9 +42,10 @@ class GitHandler(object):
             return output
         else:
             return error
-    
-    def status(self, mode='patch'):
-        output = self.command(['status', '--%s' % mode])
+
+    def status(self):
+        # output = self.command(['status', '--%s' % mode])
+        output = self.command(['status'])
         return output
 
     def add(self, file_name=None, all_files=True, track=True):

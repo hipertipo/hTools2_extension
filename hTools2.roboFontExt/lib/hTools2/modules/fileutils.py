@@ -10,6 +10,24 @@ import shutil
 
 # functions
 
+def get_camelcase_parts(camelcase_word):
+
+    breakpoints = []
+    for i, char in enumerate(camelcase_word):
+        if char in string.uppercase:
+            breakpoints.append(i)
+
+    parts = []
+    for i, br in enumerate(breakpoints):
+        start = breakpoints[i]
+        if i < len(breakpoints)-1:
+            end = breakpoints[i+1]
+            parts.append(camelcase_word[start:end])
+        else:
+            parts.append(camelcase_word[start:])
+
+    return parts
+
 def walk(folder, extension):
     """A simple non-recursive ``walk`` function to collect files with a given extension."""
     if folder.endswith("/"):
@@ -52,7 +70,7 @@ def read_names_list_from_file(filepath):
     return names_list
 
 def delete_files(files_list):
-    """Delete the files at the file paths in the list."""
+    """Delete the files at the file paths in the list. Also works with folders (ufo files)."""
     for file_path in files_list:
         if os.path.isdir(file_path):
             shutil.rmtree(file_path)

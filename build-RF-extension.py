@@ -25,6 +25,7 @@ B.addToMenu = []
 B.requiresVersionMajor = '1'
 B.requiresVersionMinor = '5'
 B.infoDictionary["repository"] = 'gferreira/hTools2'
+B.infoDictionary["summary"] = 'A bundle of tools to help with common type design tasks.'
 B.infoDictionary["html"] = 1
 B.save(extension_path, libPath=hTools2_path, htmlPath=hTools2_html, resourcesPath=None, pycOnly=False)
 
