@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>hTools2 &mdash; hTools2</title>
+    <title>hTools2 &#8212; hTools2</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -17,19 +17,21 @@
         VERSION:     '1.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
-    <link rel="top" title="hTools2" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Modules" href="modules/modules.html" />
     <link rel="prev" title="Keyboard shortcuts" href="about/shortcuts.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -44,115 +46,103 @@
         <li class="right" >
           <a href="about/shortcuts.html" title="Keyboard shortcuts"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">hTools2</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">hTools2</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="module-hTools2">
 <span id="htools2"></span><h1>hTools2<a class="headerlink" href="#module-hTools2" title="Permalink to this headline">¶</a></h1>
 <p>hTools2, a UFO-based Python-powered font production toolkit.</p>
-<dl class="data">
-<dt id="hTools2.DEBUG">
-<tt class="descname">DEBUG</tt><em class="property"> = True</em><a class="headerlink" href="#hTools2.DEBUG" title="Permalink to this definition">¶</a></dt>
-<dd><p>Debug mode. Set to <tt class="docutils literal"><span class="pre">True</span></tt> during development to always reload modules.</p>
-</dd></dl>
-
-<dl class="data">
-<dt id="hTools2.ROOT">
-<tt class="descname">ROOT</tt><em class="property"> = '/Volumes/gf_extra/_fonts'</em><a class="headerlink" href="#hTools2.ROOT" title="Permalink to this definition">¶</a></dt>
-<dd><p>The root folder for all font projects.</p>
-</dd></dl>
-
-<dl class="data">
-<dt id="hTools2.VERSION">
-<tt class="descname">VERSION</tt><em class="property"> = 1.6</em><a class="headerlink" href="#hTools2.VERSION" title="Permalink to this definition">¶</a></dt>
-<dd><p>The current version number of <tt class="docutils literal"><span class="pre">hTools2</span></tt>.</p>
-</dd></dl>
-
 <dl class="class">
 <dt id="hTools2.hDialog">
-<em class="property">class </em><tt class="descname">hDialog</tt><a class="reference internal" href="_modules/hTools2.html#hDialog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.hDialog" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">hDialog</code><a class="reference internal" href="_modules/hTools2.html#hDialog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.hDialog" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object collecting constants and default settings for dialogs.</p>
 <dl class="attribute">
 <dt id="hTools2.hDialog.button_height">
-<tt class="descname">button_height</tt><em class="property"> = 25</em><a class="headerlink" href="#hTools2.hDialog.button_height" title="Permalink to this definition">¶</a></dt>
+<code class="descname">button_height</code><em class="property"> = 25</em><a class="headerlink" href="#hTools2.hDialog.button_height" title="Permalink to this definition">¶</a></dt>
 <dd><p>Height of standard button in dialogs.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="hTools2.hDialog.nudge_button">
-<tt class="descname">nudge_button</tt><em class="property"> = 18</em><a class="headerlink" href="#hTools2.hDialog.nudge_button" title="Permalink to this definition">¶</a></dt>
+<code class="descname">nudge_button</code><em class="property"> = 18</em><a class="headerlink" href="#hTools2.hDialog.nudge_button" title="Permalink to this definition">¶</a></dt>
 <dd><p>Size of individual button in nudge button set.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="hTools2.hDialog.padding">
+<code class="descname">padding</code><em class="property"> = 10</em><a class="headerlink" href="#hTools2.hDialog.padding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Padding in dialogs.</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="hTools2.hDialog.padding_x">
-<tt class="descname">padding_x</tt><em class="property"> = 10</em><a class="headerlink" href="#hTools2.hDialog.padding_x" title="Permalink to this definition">¶</a></dt>
-<dd><p>Horizontal padding in dialogs.</p>
+<code class="descname">padding_x</code><em class="property"> = 10</em><a class="headerlink" href="#hTools2.hDialog.padding_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Horizontal padding in dialogs (deprecated).</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="hTools2.hDialog.padding_y">
-<tt class="descname">padding_y</tt><em class="property"> = 10</em><a class="headerlink" href="#hTools2.hDialog.padding_y" title="Permalink to this definition">¶</a></dt>
-<dd><p>Vertical padding in dialogs.</p>
+<code class="descname">padding_y</code><em class="property"> = 10</em><a class="headerlink" href="#hTools2.hDialog.padding_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vertical padding in dialogs (deprecated).</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="hTools2.hDialog.progress_bar">
-<tt class="descname">progress_bar</tt><em class="property"> = 18</em><a class="headerlink" href="#hTools2.hDialog.progress_bar" title="Permalink to this definition">¶</a></dt>
+<code class="descname">progress_bar</code><em class="property"> = 18</em><a class="headerlink" href="#hTools2.hDialog.progress_bar" title="Permalink to this definition">¶</a></dt>
 <dd><p>The height of the progress bar.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="hTools2.hDialog.read_only">
-<tt class="descname">read_only</tt><em class="property"> = False</em><a class="headerlink" href="#hTools2.hDialog.read_only" title="Permalink to this definition">¶</a></dt>
-<dd><p>Can nummerical text input be edited directly with the keyboard? A boolean. Set to <tt class="docutils literal"><span class="pre">True</span></tt> as default.</p>
+<code class="descname">read_only</code><em class="property"> = False</em><a class="headerlink" href="#hTools2.hDialog.read_only" title="Permalink to this definition">¶</a></dt>
+<dd><p>Can nummerical text input be edited directly with the keyboard? A boolean. Set to <code class="docutils literal"><span class="pre">True</span></code> as default.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="hTools2.hDialog.size_style">
-<tt class="descname">size_style</tt><em class="property"> = 'small'</em><a class="headerlink" href="#hTools2.hDialog.size_style" title="Permalink to this definition">¶</a></dt>
-<dd><p>The size style of text and standard dialog elements. Possible options are <tt class="docutils literal"><span class="pre">small</span></tt>, <tt class="docutils literal"><span class="pre">regular</span></tt>, <tt class="docutils literal"><span class="pre">mini</span></tt>.</p>
+<code class="descname">size_style</code><em class="property"> = 'small'</em><a class="headerlink" href="#hTools2.hDialog.size_style" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size style of text and standard dialog elements. Possible options are <code class="docutils literal"><span class="pre">small</span></code>, <code class="docutils literal"><span class="pre">regular</span></code>, <code class="docutils literal"><span class="pre">mini</span></code>.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="hTools2.hDialog.spinner_height">
-<tt class="descname">spinner_height</tt><em class="property"> = 46</em><a class="headerlink" href="#hTools2.hDialog.spinner_height" title="Permalink to this definition">¶</a></dt>
+<code class="descname">spinner_height</code><em class="property"> = 46</em><a class="headerlink" href="#hTools2.hDialog.spinner_height" title="Permalink to this definition">¶</a></dt>
 <dd><p>Height of a spinner element (value and buttons).</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="hTools2.hDialog.square_button">
-<tt class="descname">square_button</tt><em class="property"> = 35</em><a class="headerlink" href="#hTools2.hDialog.square_button" title="Permalink to this definition">¶</a></dt>
+<code class="descname">square_button</code><em class="property"> = 35</em><a class="headerlink" href="#hTools2.hDialog.square_button" title="Permalink to this definition">¶</a></dt>
 <dd><p>Size of square button in cross nudge button set.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="hTools2.hDialog.text_height">
-<tt class="descname">text_height</tt><em class="property"> = 20</em><a class="headerlink" href="#hTools2.hDialog.text_height" title="Permalink to this definition">¶</a></dt>
+<code class="descname">text_height</code><em class="property"> = 20</em><a class="headerlink" href="#hTools2.hDialog.text_height" title="Permalink to this definition">¶</a></dt>
 <dd><p>Height of text elements in dialogs.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="hTools2.hDialog.text_input">
-<tt class="descname">text_input</tt><em class="property"> = 18</em><a class="headerlink" href="#hTools2.hDialog.text_input" title="Permalink to this definition">¶</a></dt>
+<code class="descname">text_input</code><em class="property"> = 18</em><a class="headerlink" href="#hTools2.hDialog.text_input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Height of text elements in dialogs.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="hTools2.hDialog.verbose">
-<tt class="descname">verbose</tt><em class="property"> = True</em><a class="headerlink" href="#hTools2.hDialog.verbose" title="Permalink to this definition">¶</a></dt>
+<code class="descname">verbose</code><em class="property"> = True</em><a class="headerlink" href="#hTools2.hDialog.verbose" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print (or not) messages to the console when running scripts.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="hTools2.hDialog.width">
-<tt class="descname">width</tt><em class="property"> = 123</em><a class="headerlink" href="#hTools2.hDialog.width" title="Permalink to this definition">¶</a></dt>
+<code class="descname">width</code><em class="property"> = 123</em><a class="headerlink" href="#hTools2.hDialog.width" title="Permalink to this definition">¶</a></dt>
 <dd><p>The default width of vertical dialogs (palettes).</p>
 </dd></dl>
 
@@ -164,7 +154,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="about/shortcuts.html"
@@ -172,29 +162,28 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="modules/modules.html"
                         title="next chapter">Modules</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/hTools2.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/hTools2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -209,13 +198,13 @@
         <li class="right" >
           <a href="about/shortcuts.html" title="Keyboard shortcuts"
              >previous</a> |</li>
-        <li><a href="index.html">hTools2</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">hTools2</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Nov 07, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Gustavo Ferreira.
+      Last updated on Mar 28, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

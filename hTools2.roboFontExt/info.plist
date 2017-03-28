@@ -23,10 +23,10 @@
 	<key>requiresVersionMinor</key>
 	<string>5</string>
 	<key>summary</key>
-	<string>A bundle of tools to help with common type design tasks.</string>
+	<string>A collection of tools to help with common type design &amp; font production tasks.</string>
 	<key>timeStamp</key>
-	<real>1484492243.9669681</real>
+	<real>1490710536.1412981</real>
 	<key>version</key>
-	<string>1.7</string>
+	<string>1.8</string>
 </dict>
 </plist>

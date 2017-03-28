@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>hTools2.modules.gstring &mdash; hTools2</title>
+    <title>hTools2.modules.gstring &#8212; hTools2</title>
     
-    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -17,18 +17,19 @@
         VERSION:     '1.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/sidebar.js"></script>
-    <link rel="top" title="hTools2" href="../../../index.html" />
-    <link rel="up" title="hTools2" href="../../hTools2.html" /> 
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -37,85 +38,91 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">hTools2</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../hTools2.html" accesskey="U">hTools2</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../hTools2.html" accesskey="U">hTools2</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for hTools2.modules.gstring</h1><div class="highlight"><pre>
-<span class="c"># [h] hTools2.modules.gstring</span>
+<span></span><span class="c1"># [h] hTools2.modules.gstring</span>
 
-<span class="c"># functions</span>
+<span class="c1"># functions</span>
 
-<div class="viewcode-block" id="make_string"><a class="viewcode-back" href="../../../modules/gstring.html#hTools2.modules.gstring.make_string">[docs]</a><span class="k">def</span> <span class="nf">make_string</span><span class="p">(</span><span class="n">names_list</span><span class="p">,</span> <span class="n">spacer</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="s">&#39;Makes a string of text from a list of `glyph_names`. Optionally, uses a `spacer` glyph between the glyphs.&#39;</span>
-    <span class="k">if</span> <span class="n">spacer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+<div class="viewcode-block" id="make_string"><a class="viewcode-back" href="../../../modules/gstring.html#hTools2.modules.gstring.make_string">[docs]</a><span class="k">def</span> <span class="nf">make_string</span><span class="p">(</span><span class="n">names_list</span><span class="p">,</span> <span class="n">spacer</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Makes a string of text from a list of `glyph_names`. Optionally, uses a `spacer` glyph between the glyphs.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">spacer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">_spacer</span> <span class="o">=</span> <span class="n">spacer</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">_spacer</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="n">_spacer</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="n">_string</span> <span class="o">=</span> <span class="n">_spacer</span>
     <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">names_list</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">unicode2psnames</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">unicode2psnames</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="n">glyph_name</span><span class="p">:</span>
-                <span class="n">char</span> <span class="o">=</span> <span class="nb">unichr</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+                <span class="n">char</span> <span class="o">=</span> <span class="n">unichr</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
                 <span class="n">_string</span> <span class="o">=</span> <span class="n">_string</span> <span class="o">+</span> <span class="n">char</span> <span class="o">+</span> <span class="n">_spacer</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">continue</span>
-    <span class="k">return</span> <span class="n">_string</span>
-</div>
-<div class="viewcode-block" id="make_string_names"><a class="viewcode-back" href="../../../modules/gstring.html#hTools2.modules.gstring.make_string_names">[docs]</a><span class="k">def</span> <span class="nf">make_string_names</span><span class="p">(</span><span class="n">names_list</span><span class="p">,</span> <span class="n">spacer</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Makes a string of slash-separated `glyph_names`. Optionally, uses a `spacer` glyph between the glyphs.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">spacer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">_spacer</span> <span class="o">=</span> <span class="s">&#39;/&#39;</span> <span class="o">+</span> <span class="n">spacer</span>
+    <span class="k">return</span> <span class="n">_string</span></div>
+
+<div class="viewcode-block" id="make_string_names"><a class="viewcode-back" href="../../../modules/gstring.html#hTools2.modules.gstring.make_string_names">[docs]</a><span class="k">def</span> <span class="nf">make_string_names</span><span class="p">(</span><span class="n">names_list</span><span class="p">,</span> <span class="n">spacer</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Makes a string of slash-separated `glyph_names`. Optionally, uses a `spacer` glyph between the glyphs.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">spacer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_spacer</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">spacer</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">_spacer</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-    <span class="n">_glyph_names</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="n">_spacer</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">_glyph_names</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">names_list</span><span class="p">:</span>
-        <span class="n">_glyph_names</span> <span class="o">=</span> <span class="n">_glyph_names</span> <span class="o">+</span> <span class="s">&#39;/&#39;</span> <span class="o">+</span> <span class="n">glyph_name</span> <span class="o">+</span> <span class="n">_spacer</span>
-    <span class="k">return</span> <span class="n">_glyph_names</span>
-</div>
-<div class="viewcode-block" id="all_glyphs"><a class="viewcode-back" href="../../../modules/gstring.html#hTools2.modules.gstring.all_glyphs">[docs]</a><span class="k">def</span> <span class="nf">all_glyphs</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">spacer</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns a string with all glyphs in the given groups dict.&quot;&quot;&quot;</span>
-    <span class="n">all_glyphs</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-    <span class="n">skip</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;invisible&#39;</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">group_name</span> <span class="ow">in</span> <span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">group_name</span> <span class="ow">in</span> <span class="n">skip</span><span class="p">:</span>
-            <span class="k">pass</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">glyph_names_list</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span>
-            <span class="n">all_glyphs</span> <span class="o">+=</span> <span class="n">make_string</span><span class="p">(</span><span class="n">glyph_names_list</span><span class="p">,</span> <span class="n">spacer</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">all_glyphs</span></div>
+        <span class="n">_glyph_names</span> <span class="o">=</span> <span class="n">_glyph_names</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">glyph_name</span> <span class="o">+</span> <span class="n">_spacer</span>
+    <span class="k">return</span> <span class="n">_glyph_names</span></div>
+
+<span class="c1"># def all_glyphs(groups, spacer=None):</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     Returns a string with all glyphs in the given groups dict.</span>
+
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     all_glyphs = &quot;&quot;</span>
+<span class="c1">#     skip = [&#39;invisible&#39;]</span>
+<span class="c1">#     for group_name in groups.keys():</span>
+<span class="c1">#         if group_name in skip:</span>
+<span class="c1">#             pass</span>
+<span class="c1">#         else:</span>
+<span class="c1">#             glyph_names_list = groups[group_name]</span>
+<span class="c1">#             all_glyphs += make_string(glyph_names_list, spacer)</span>
+<span class="c1">#     return all_glyphs</span>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -124,15 +131,15 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">hTools2</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../hTools2.html" >hTools2</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../hTools2.html" >hTools2</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Dec 08, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Gustavo Ferreira.
+      Last updated on Mar 28, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

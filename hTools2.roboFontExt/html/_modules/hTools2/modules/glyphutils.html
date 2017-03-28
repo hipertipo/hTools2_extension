@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>hTools2.modules.glyphutils &mdash; hTools2</title>
+    <title>hTools2.modules.glyphutils &#8212; hTools2</title>
     
-    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -17,18 +17,19 @@
         VERSION:     '1.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/sidebar.js"></script>
-    <link rel="top" title="hTools2" href="../../../index.html" />
-    <link rel="up" title="hTools2" href="../../hTools2.html" /> 
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -37,84 +38,103 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">hTools2</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../hTools2.html" accesskey="U">hTools2</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../hTools2.html" accesskey="U">hTools2</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for hTools2.modules.glyphutils</h1><div class="highlight"><pre>
-<span class="c"># [h] hTools2.modules.glyphutils</span>
+<span></span><span class="c1"># [h] hTools2.modules.glyphutils</span>
 
 <span class="sd">&quot;&quot;&quot;A collection of functions for working with glyphs.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">floor</span><span class="p">,</span> <span class="n">ceil</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">floor</span><span class="p">,</span> <span class="n">ceil</span>
 
-<span class="c">#---------</span>
-<span class="c"># margins</span>
-<span class="c">#---------</span>
+<span class="c1">#---------</span>
+<span class="c1"># margins</span>
+<span class="c1">#---------</span>
 
 <div class="viewcode-block" id="center_glyph"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.center_glyph">[docs]</a><span class="k">def</span> <span class="nf">center_glyph</span><span class="p">(</span><span class="n">glyph</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Center the ``glyph`` in its advance width, leaving ``leftMargin`` and ``rightMargin`` with equal values.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Center the ``glyph`` in its advance width, leaving ``leftMargin`` and ``rightMargin`` with equal values.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">whitespace</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">leftMargin</span> <span class="o">+</span> <span class="n">glyph</span><span class="o">.</span><span class="n">rightMargin</span>
     <span class="n">glyph</span><span class="o">.</span><span class="n">leftMargin</span> <span class="o">=</span> <span class="n">whitespace</span> <span class="o">/</span> <span class="mi">2</span>
-    <span class="n">glyph</span><span class="o">.</span><span class="n">rightMargin</span> <span class="o">=</span> <span class="n">whitespace</span> <span class="o">/</span> <span class="mi">2</span>
-</div>
+    <span class="n">glyph</span><span class="o">.</span><span class="n">rightMargin</span> <span class="o">=</span> <span class="n">whitespace</span> <span class="o">/</span> <span class="mi">2</span></div>
+
 <div class="viewcode-block" id="round_width"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.round_width">[docs]</a><span class="k">def</span> <span class="nf">round_width</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Round ``glyph.width`` to a multiple of ``gridsize``.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Round ``glyph.width`` to a multiple of ``gridsize``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_width</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">width</span><span class="p">)</span> <span class="o">/</span> <span class="n">gridsize</span>
     <span class="n">glyph</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">_width</span><span class="p">)</span> <span class="o">*</span> <span class="n">gridsize</span>
-    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
-<div class="viewcode-block" id="round_margins"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.round_margins">[docs]</a><span class="k">def</span> <span class="nf">round_margins</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Round left and/or right margins to multiples of ``gridsize``.&quot;&quot;&quot;</span>
+    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="round_margins"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.round_margins">[docs]</a><span class="k">def</span> <span class="nf">round_margins</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Round left and/or right margins to multiples of ``gridsize``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">left</span><span class="p">:</span>
         <span class="n">_left</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">leftMargin</span><span class="p">)</span> <span class="o">/</span> <span class="n">gridsize</span>
         <span class="n">glyph</span><span class="o">.</span><span class="n">leftMargin</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">_left</span><span class="p">)</span> <span class="o">*</span> <span class="n">gridsize</span>
         <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
     <span class="k">if</span> <span class="n">right</span><span class="p">:</span>
         <span class="n">_right</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">rightMargin</span><span class="p">)</span> <span class="o">/</span> <span class="n">gridsize</span>
         <span class="n">glyph</span><span class="o">.</span><span class="n">rightMargin</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">_right</span><span class="p">)</span> <span class="o">*</span> <span class="n">gridsize</span>
-        <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
-<span class="c">#-------------</span>
-<span class="c"># glyph names</span>
-<span class="c">#-------------</span>
-</div>
+<span class="c1">#-------------</span>
+<span class="c1"># glyph names</span>
+<span class="c1">#-------------</span>
+
 <div class="viewcode-block" id="has_suffix"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.has_suffix">[docs]</a><span class="k">def</span> <span class="nf">has_suffix</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">suffix</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check if the name of ``glyph`` has the extension ``suffix``, and returns ``True`` or ``False``.&quot;&quot;&quot;</span>
-    <span class="n">has_suffix</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="n">nameParts</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)</span>
-    <span class="c"># check for suffix</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if the name of ``glyph`` has the extension ``suffix``, and returns ``True`` or ``False``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">has_suffix</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">nameParts</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+    <span class="c1"># check for suffix</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nameParts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">nameParts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">suffix</span><span class="p">:</span>
-            <span class="n">has_suffix</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="c"># check for no suffix</span>
+            <span class="n">has_suffix</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1"># check for no suffix</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nameParts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">suffix</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">has_suffix</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="k">return</span> <span class="n">has_suffix</span>
-</div>
-<div class="viewcode-block" id="change_suffix"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.change_suffix">[docs]</a><span class="k">def</span> <span class="nf">change_suffix</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">old_suffix</span><span class="p">,</span> <span class="n">new_suffix</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return a new modified name for ``glyph``, using ``new_suffix`` in place of ``old_suffix``.&quot;&quot;&quot;</span>
-    <span class="n">base_name</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">new_suffix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">new_name</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">base_name</span><span class="p">,</span> <span class="n">new_suffix</span><span class="p">)</span>
+            <span class="n">has_suffix</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">has_suffix</span></div>
+
+<div class="viewcode-block" id="change_suffix"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.change_suffix">[docs]</a><span class="k">def</span> <span class="nf">change_suffix</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">old_suffix</span><span class="p">,</span> <span class="n">new_suffix</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a new modified name for ``glyph``, using ``new_suffix`` in place of ``old_suffix``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base_name</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">new_suffix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">new_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">base_name</span><span class="p">,</span> <span class="n">new_suffix</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">new_name</span> <span class="o">=</span> <span class="n">base_name</span>
-    <span class="k">return</span> <span class="n">new_name</span>
+    <span class="k">return</span> <span class="n">new_name</span></div>
 
-<span class="c">#---------------</span>
-<span class="c"># round to grid</span>
-<span class="c">#---------------</span>
-</div>
+<span class="c1">#---------------</span>
+<span class="c1"># round to grid</span>
+<span class="c1">#---------------</span>
+
 <div class="viewcode-block" id="round_points"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.round_points">[docs]</a><span class="k">def</span> <span class="nf">round_points</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span> <span class="n">sizeY</span><span class="p">)):</span>
-    <span class="sd">&quot;&quot;&quot;Round the position of all ``points`` in ``glyph`` to the gridsize ``(sizeX,sizeY)``.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Round the position of all ``points`` in ``glyph`` to the gridsize ``(sizeX,sizeY)``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">contours</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">contour</span><span class="o">.</span><span class="n">points</span><span class="p">:</span>
             <span class="n">_x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
@@ -123,10 +143,13 @@
             <span class="n">_y_round</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">_y</span> <span class="o">/</span> <span class="n">sizeY</span><span class="p">)</span> <span class="o">*</span> <span class="n">sizeY</span>
             <span class="n">point</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">_x_round</span>
             <span class="n">point</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">_y_round</span>
-    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
+    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="round_bpoints"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.round_bpoints">[docs]</a><span class="k">def</span> <span class="nf">round_bpoints</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span> <span class="n">sizeY</span><span class="p">)):</span>
-    <span class="sd">&quot;&quot;&quot;Round the position of all ``bPoints`` in ``glyph`` to the gridsize ``(sizeX,sizeY)``.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Round the position of all ``bPoints`` in ``glyph`` to the gridsize ``(sizeX,sizeY)``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">contours</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">b_point</span> <span class="ow">in</span> <span class="n">contour</span><span class="o">.</span><span class="n">bPoints</span><span class="p">:</span>
             <span class="n">_x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">b_point</span><span class="o">.</span><span class="n">anchor</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -134,10 +157,13 @@
             <span class="n">_x_round</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">_x</span> <span class="o">/</span> <span class="n">sizeX</span><span class="p">)</span> <span class="o">*</span> <span class="n">sizeX</span>
             <span class="n">_y_round</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">_y</span> <span class="o">/</span> <span class="n">sizeY</span><span class="p">)</span> <span class="o">*</span> <span class="n">sizeY</span>
             <span class="n">b_point</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="p">(</span><span class="n">_x_round</span><span class="p">,</span> <span class="n">_y_round</span><span class="p">)</span>
-    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
+    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="round_anchors"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.round_anchors">[docs]</a><span class="k">def</span> <span class="nf">round_anchors</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span> <span class="n">sizeY</span><span class="p">)):</span>
-    <span class="sd">&quot;&quot;&quot;Round the position of all ``anchors`` in ``glyph`` to the gridsize ``(sizeX,sizeY)``.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Round the position of all ``anchors`` in ``glyph`` to the gridsize ``(sizeX,sizeY)``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">anchor</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">:</span>
             <span class="n">_x_round</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">anchor</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">sizeX</span><span class="p">)</span>
@@ -147,76 +173,90 @@
             <span class="n">x_delta</span> <span class="o">=</span> <span class="n">x_new</span> <span class="o">-</span> <span class="n">anchor</span><span class="o">.</span><span class="n">x</span>
             <span class="n">y_delta</span> <span class="o">=</span> <span class="n">y_new</span> <span class="o">-</span> <span class="n">anchor</span><span class="o">.</span><span class="n">y</span>
             <span class="n">anchor</span><span class="o">.</span><span class="n">move</span><span class="p">((</span><span class="n">x_delta</span><span class="p">,</span> <span class="n">y_delta</span><span class="p">))</span>
-        <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
-<span class="c">#---------------</span>
-<span class="c"># select points</span>
-<span class="c">#---------------</span>
-</div>
-<div class="viewcode-block" id="select_points_x"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.select_points_x">[docs]</a><span class="k">def</span> <span class="nf">select_points_x</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">linePos</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Select all points in ``glyph`` to left/right of ``linePos(x)``.&quot;&quot;&quot;</span>
+<span class="c1">#---------------</span>
+<span class="c1"># select points</span>
+<span class="c1">#---------------</span>
+
+<div class="viewcode-block" id="select_points_x"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.select_points_x">[docs]</a><span class="k">def</span> <span class="nf">select_points_x</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">linePos</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Select all points in ``glyph`` to left/right of ``linePos(x)``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">contours</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">points</span><span class="p">:</span>
-            <span class="c"># select points to the left of the line</span>
-            <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s">&#39;left&#39;</span><span class="p">:</span>
+            <span class="c1"># select points to the left of the line</span>
+            <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s1">&#39;left&#39;</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">linePos</span><span class="p">:</span>
-                    <span class="n">p</span><span class="o">.</span><span class="n">selected</span> <span class="o">=</span> <span class="bp">True</span>
-            <span class="c"># select points to the right of the line</span>
+                    <span class="n">p</span><span class="o">.</span><span class="n">selected</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="c1"># select points to the right of the line</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">linePos</span><span class="p">:</span>
-                    <span class="n">p</span><span class="o">.</span><span class="n">selected</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
-<div class="viewcode-block" id="select_points_y"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.select_points_y">[docs]</a><span class="k">def</span> <span class="nf">select_points_y</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">linePos</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s">&#39;top&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Select all points in ``glyph`` above/below the ``linePos(y)``.&quot;&quot;&quot;</span>
+                    <span class="n">p</span><span class="o">.</span><span class="n">selected</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="select_points_y"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.select_points_y">[docs]</a><span class="k">def</span> <span class="nf">select_points_y</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">linePos</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Select all points in ``glyph`` above/below the ``linePos(y)``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">contours</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">points</span><span class="p">:</span>
-            <span class="c"># select points above the line</span>
-            <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s">&#39;top&#39;</span><span class="p">:</span>
+            <span class="c1"># select points above the line</span>
+            <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s1">&#39;top&#39;</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">linePos</span><span class="p">:</span>
-                    <span class="n">p</span><span class="o">.</span><span class="n">selected</span> <span class="o">=</span> <span class="bp">True</span>
-            <span class="c"># select points below the line</span>
+                    <span class="n">p</span><span class="o">.</span><span class="n">selected</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="c1"># select points below the line</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">linePos</span><span class="p">:</span>
-                    <span class="n">p</span><span class="o">.</span><span class="n">selected</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
+                    <span class="n">p</span><span class="o">.</span><span class="n">selected</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="deselect_points"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.deselect_points">[docs]</a><span class="k">def</span> <span class="nf">deselect_points</span><span class="p">(</span><span class="n">glyph</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Deselect any selected ``point`` in ``glyph``.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Deselect any selected ``point`` in ``glyph``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">contours</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">points</span><span class="p">:</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">selected</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">selected</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
-<span class="c">#--------------</span>
-<span class="c"># shift points</span>
-<span class="c">#--------------</span>
-</div>
-<div class="viewcode-block" id="shift_selected_points_x"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.shift_selected_points_x">[docs]</a><span class="k">def</span> <span class="nf">shift_selected_points_x</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">anchors</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">bPoints</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Shift the selected points in ``glyph`` horizontally by ``delta`` units.&quot;&quot;&quot;</span>
-    <span class="c"># shift bPoints</span>
+<span class="c1">#--------------</span>
+<span class="c1"># shift points</span>
+<span class="c1">#--------------</span>
+
+<div class="viewcode-block" id="shift_selected_points_x"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.shift_selected_points_x">[docs]</a><span class="k">def</span> <span class="nf">shift_selected_points_x</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">anchors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bPoints</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Shift the selected points in ``glyph`` horizontally by ``delta`` units.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># shift bPoints</span>
     <span class="k">if</span> <span class="n">bPoints</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">contours</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">bPoints</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">selected</span><span class="p">:</span>
-                    <span class="c"># shift anchor point</span>
+                    <span class="c1"># shift anchor point</span>
                     <span class="n">px</span><span class="p">,</span> <span class="n">py</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">anchor</span>
                     <span class="n">px</span> <span class="o">+=</span> <span class="n">delta</span>
                     <span class="n">p</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">px</span><span class="p">,</span> <span class="n">py</span>
-                    <span class="c"># shift handles</span>
+                    <span class="c1"># shift handles</span>
                     <span class="n">bcpIn_x</span><span class="p">,</span> <span class="n">bcpIn_y</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">bcpIn</span>
                     <span class="n">bcpOut_x</span><span class="p">,</span> <span class="n">bcpOut_y</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">bcpOut</span>
                     <span class="n">bcpIn_x</span> <span class="o">+=</span> <span class="n">delta</span>
                     <span class="n">bcpOut_x</span> <span class="o">+=</span> <span class="n">delta</span>
                     <span class="n">p</span><span class="o">.</span><span class="n">bcpIn</span> <span class="o">=</span> <span class="n">bcpIn_x</span><span class="p">,</span> <span class="n">bcpIn_y</span>
                     <span class="n">p</span><span class="o">.</span><span class="n">bcpOut</span> <span class="o">=</span> <span class="n">bcpOut_x</span><span class="p">,</span> <span class="n">bcpOut_y</span>
-    <span class="c"># shift points</span>
+
+    <span class="c1"># shift points</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">contours</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">points</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">selected</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">selected</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
                     <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">delta</span>
-    <span class="c"># shift anchors</span>
+
+    <span class="c1"># shift anchors</span>
     <span class="k">if</span> <span class="n">anchors</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">:</span>
@@ -226,34 +266,40 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">linePos</span><span class="p">:</span>
                         <span class="n">a</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">delta</span>
-    <span class="c"># done</span>
-    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
-<div class="viewcode-block" id="shift_selected_points_y"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.shift_selected_points_y">[docs]</a><span class="k">def</span> <span class="nf">shift_selected_points_y</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">anchors</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">bPoints</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Shift the selected points in ``glyph`` vertically by ``delta`` units.&quot;&quot;&quot;</span>
-    <span class="c"># shift bPoints</span>
+
+    <span class="c1"># done</span>
+    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="shift_selected_points_y"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.shift_selected_points_y">[docs]</a><span class="k">def</span> <span class="nf">shift_selected_points_y</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">anchors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bPoints</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Shift the selected points in ``glyph`` vertically by ``delta`` units.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># shift bPoints</span>
     <span class="k">if</span> <span class="n">bPoints</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">contours</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">bPoints</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">selected</span><span class="p">:</span>
-                    <span class="c"># shift anchor point</span>
+                    <span class="c1"># shift anchor point</span>
                     <span class="n">px</span><span class="p">,</span> <span class="n">py</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">anchor</span>
                     <span class="n">py</span> <span class="o">+=</span> <span class="n">delta</span>
                     <span class="n">p</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">px</span><span class="p">,</span> <span class="n">py</span>
-                    <span class="c"># shift handles</span>
+                    <span class="c1"># shift handles</span>
                     <span class="n">bcpIn_x</span><span class="p">,</span> <span class="n">bcpIn_y</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">bcpIn</span>
                     <span class="n">bcpOut_x</span><span class="p">,</span> <span class="n">bcpOut_y</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">bcpOut</span>
                     <span class="n">bcpIn_y</span> <span class="o">+=</span> <span class="n">delta</span>
                     <span class="n">bcpOut_y</span> <span class="o">+=</span> <span class="n">delta</span>
                     <span class="n">p</span><span class="o">.</span><span class="n">bcpIn</span> <span class="o">=</span> <span class="n">bcpIn_x</span><span class="p">,</span> <span class="n">bcpIn_y</span>
                     <span class="n">p</span><span class="o">.</span><span class="n">bcpOut</span> <span class="o">=</span> <span class="n">bcpOut_x</span><span class="p">,</span> <span class="n">bcpOut_y</span>
-    <span class="c"># shift points</span>
+
+    <span class="c1"># shift points</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">contours</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">points</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">selected</span><span class="p">:</span>
                     <span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">delta</span>
-    <span class="c"># shift anchors</span>
+
+    <span class="c1"># shift anchors</span>
     <span class="k">if</span> <span class="n">anchors</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">:</span>
@@ -263,72 +309,73 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">linePos</span><span class="p">:</span>
                         <span class="n">a</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">delta</span>
-    <span class="c"># done</span>
-    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
-<span class="c">#---------------</span>
-<span class="c"># center glyphs</span>
-<span class="c">#---------------</span>
-</div>
+    <span class="c1"># done</span>
+    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+<span class="c1">#---------------</span>
+<span class="c1"># center glyphs</span>
+<span class="c1">#---------------</span>
+
 <div class="viewcode-block" id="draw_bounds"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.draw_bounds">[docs]</a><span class="k">def</span> <span class="nf">draw_bounds</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">y3</span><span class="p">)):</span>
-    <span class="c"># x guides</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">90</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;x_min&quot;</span><span class="p">)</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="n">x2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">90</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;x_max&quot;</span><span class="p">)</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="n">x3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">90</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;x_mid&quot;</span><span class="p">)</span>
-    <span class="c"># y guides</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;y_min&quot;</span><span class="p">)</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;y_max&quot;</span><span class="p">)</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">y3</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;y_mid&quot;</span><span class="p">)</span>
-    <span class="c"># done</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
+    <span class="c1"># x guides</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">90</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x_min&quot;</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="n">x2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">90</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x_max&quot;</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="n">x3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">90</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x_mid&quot;</span><span class="p">)</span>
+    <span class="c1"># y guides</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y_min&quot;</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y_max&quot;</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">y3</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y_mid&quot;</span><span class="p">)</span>
+    <span class="c1"># done</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="get_bounds"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.get_bounds">[docs]</a><span class="k">def</span> <span class="nf">get_bounds</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">layer_names</span><span class="p">):</span>
-    <span class="n">lowest_x</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="n">lowest_y</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="n">highest_x</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="n">highest_y</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">lowest_x</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">lowest_y</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">highest_x</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">highest_y</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">for</span> <span class="n">layer_name</span> <span class="ow">in</span> <span class="n">layer_names</span><span class="p">:</span>
         <span class="n">glyph</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">getLayer</span><span class="p">(</span><span class="n">layer_name</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">glyph</span><span class="o">.</span><span class="n">box</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">glyph</span><span class="o">.</span><span class="n">box</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">xMin</span><span class="p">,</span> <span class="n">yMin</span><span class="p">,</span> <span class="n">xMax</span><span class="p">,</span> <span class="n">yMax</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">box</span>
-            <span class="c"># lowest x</span>
+            <span class="c1"># lowest x</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">lowest_x</span><span class="p">:</span>
                 <span class="n">lowest_x</span> <span class="o">=</span> <span class="n">xMin</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">xMin</span> <span class="o">&lt;</span> <span class="n">lowest_x</span><span class="p">:</span>
                    <span class="n">lowest_x</span> <span class="o">=</span> <span class="n">xMin</span>
-            <span class="c"># lowest y</span>
+            <span class="c1"># lowest y</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">lowest_y</span><span class="p">:</span>
                 <span class="n">lowest_y</span> <span class="o">=</span> <span class="n">yMin</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">yMin</span> <span class="o">&lt;</span> <span class="n">lowest_y</span><span class="p">:</span>
                    <span class="n">lowest_y</span> <span class="o">=</span> <span class="n">yMin</span>
-            <span class="c"># highest x</span>
+            <span class="c1"># highest x</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">highest_x</span><span class="p">:</span>
                 <span class="n">highest_x</span> <span class="o">=</span> <span class="n">xMax</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">xMax</span> <span class="o">&gt;</span> <span class="n">highest_x</span><span class="p">:</span>
                     <span class="n">highest_x</span> <span class="o">=</span> <span class="n">xMax</span>
-            <span class="c"># highest y</span>
+            <span class="c1"># highest y</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">highest_y</span><span class="p">:</span>
                 <span class="n">highest_y</span> <span class="o">=</span> <span class="n">yMax</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">yMax</span> <span class="o">&gt;</span> <span class="n">highest_y</span><span class="p">:</span>
                     <span class="n">highest_y</span> <span class="o">=</span> <span class="n">yMax</span>
-    <span class="c"># done</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">lowest_x</span><span class="p">,</span> <span class="n">lowest_y</span><span class="p">,</span> <span class="n">highest_x</span><span class="p">,</span> <span class="n">highest_y</span><span class="p">)</span>
-</div>
+    <span class="c1"># done</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">lowest_x</span><span class="p">,</span> <span class="n">lowest_y</span><span class="p">,</span> <span class="n">highest_x</span><span class="p">,</span> <span class="n">highest_y</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="get_middle"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.get_middle">[docs]</a><span class="k">def</span> <span class="nf">get_middle</span><span class="p">((</span><span class="n">lo_x</span><span class="p">,</span> <span class="n">lo_y</span><span class="p">,</span> <span class="n">hi_x</span><span class="p">,</span> <span class="n">hi_y</span><span class="p">)):</span>
     <span class="n">width_all</span> <span class="o">=</span> <span class="n">hi_x</span> <span class="o">-</span> <span class="n">lo_x</span>
     <span class="n">height_all</span> <span class="o">=</span> <span class="n">hi_y</span> <span class="o">-</span> <span class="n">lo_y</span>
     <span class="n">middle_x</span> <span class="o">=</span> <span class="n">lo_x</span> <span class="o">+</span> <span class="p">(</span><span class="n">width_all</span> <span class="o">*</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">middle_y</span> <span class="o">=</span> <span class="n">lo_x</span> <span class="o">+</span> <span class="p">(</span><span class="n">height_all</span> <span class="o">*</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">middle_x</span><span class="p">,</span> <span class="n">middle_y</span><span class="p">)</span>
-</div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">middle_x</span><span class="p">,</span> <span class="n">middle_y</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="center_layers"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.center_layers">[docs]</a><span class="k">def</span> <span class="nf">center_layers</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">layer_names</span><span class="p">,</span> <span class="p">(</span><span class="n">middle_x</span><span class="p">,</span> <span class="n">middle_y</span><span class="p">)):</span>
     <span class="k">for</span> <span class="n">layer_name</span> <span class="ow">in</span> <span class="n">layer_names</span><span class="p">:</span>
         <span class="n">glyph</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">getLayer</span><span class="p">(</span><span class="n">layer_name</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">glyph</span><span class="o">.</span><span class="n">box</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">glyph</span><span class="o">.</span><span class="n">box</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">xMin</span><span class="p">,</span> <span class="n">yMin</span><span class="p">,</span> <span class="n">xMax</span><span class="p">,</span> <span class="n">yMax</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">box</span>
             <span class="n">w</span> <span class="o">=</span> <span class="n">xMax</span> <span class="o">-</span> <span class="n">xMin</span>
             <span class="n">h</span> <span class="o">=</span> <span class="n">yMax</span> <span class="o">-</span> <span class="n">yMin</span>
@@ -337,9 +384,9 @@
             <span class="n">shift_x</span> <span class="o">=</span> <span class="n">middle_x</span> <span class="o">-</span> <span class="n">center_x</span>
             <span class="n">shift_y</span> <span class="o">=</span> <span class="n">middle_y</span> <span class="o">-</span> <span class="n">center_y</span>
             <span class="n">glyph</span><span class="o">.</span><span class="n">move</span><span class="p">((</span><span class="n">shift_x</span><span class="p">,</span> <span class="n">shift_y</span><span class="p">))</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
-<div class="viewcode-block" id="center_glyph_layers"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.center_glyph_layers">[docs]</a><span class="k">def</span> <span class="nf">center_glyph_layers</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">layers</span><span class="p">,</span> <span class="n">guides</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="center_glyph_layers"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.center_glyph_layers">[docs]</a><span class="k">def</span> <span class="nf">center_glyph_layers</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">layers</span><span class="p">,</span> <span class="n">guides</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="n">_bounds</span> <span class="o">=</span> <span class="n">get_bounds</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">layers</span><span class="p">)</span>
     <span class="n">_middle</span> <span class="o">=</span> <span class="n">get_middle</span><span class="p">(</span><span class="n">_bounds</span><span class="p">)</span>
     <span class="n">center_layers</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">layers</span><span class="p">,</span> <span class="n">_middle</span><span class="p">)</span>
@@ -347,42 +394,45 @@
         <span class="n">clear_guides</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
         <span class="n">_bounds</span> <span class="o">=</span> <span class="n">get_bounds</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">layers</span><span class="p">)</span>
         <span class="n">_middle</span> <span class="o">=</span> <span class="n">get_middle</span><span class="p">(</span><span class="n">_bounds</span><span class="p">)</span>
-        <span class="n">draw_bounds</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">_bounds</span><span class="p">,</span> <span class="n">_middle</span><span class="p">)</span>
+        <span class="n">draw_bounds</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">_bounds</span><span class="p">,</span> <span class="n">_middle</span><span class="p">)</span></div>
 
-<span class="c">#------------</span>
-<span class="c"># glyph libs</span>
-<span class="c">#------------</span>
-</div>
+<span class="c1">#------------</span>
+<span class="c1"># glyph libs</span>
+<span class="c1">#------------</span>
+
 <div class="viewcode-block" id="check_lib"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.check_lib">[docs]</a><span class="k">def</span> <span class="nf">check_lib</span><span class="p">(</span><span class="n">glyph</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">True</span>
-        <span class="k">print</span> <span class="s">&#39;glyph libs:&#39;</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+        <span class="nb">print</span> <span class="s1">&#39;glyph libs:&#39;</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s">&quot;glyph doesn&#39;t have any libs.</span><span class="se">\n</span><span class="s">&quot;</span>
-        <span class="k">return</span> <span class="bp">False</span>
-</div>
+        <span class="nb">print</span> <span class="s2">&quot;glyph doesn&#39;t have any libs.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
 <div class="viewcode-block" id="clear_glyph_libs"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.clear_glyph_libs">[docs]</a><span class="k">def</span> <span class="nf">clear_glyph_libs</span><span class="p">(</span><span class="n">glyph</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Delete all libs in ``glyph``.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">check_lib</span><span class="p">(</span><span class="n">glyph</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">check_lib</span><span class="p">(</span><span class="n">glyph</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">del</span> <span class="n">glyph</span><span class="o">.</span><span class="n">lib</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
-        <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
-<span class="c">#------------</span>
-<span class="c"># guidelines</span>
-<span class="c">#------------</span>
-</div>
+<span class="c1">#------------</span>
+<span class="c1"># guidelines</span>
+<span class="c1">#------------</span>
+
 <div class="viewcode-block" id="clear_guides"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.clear_guides">[docs]</a><span class="k">def</span> <span class="nf">clear_guides</span><span class="p">(</span><span class="n">glyph</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">guide</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">guides</span><span class="p">:</span>
         <span class="n">glyph</span><span class="o">.</span><span class="n">removeGuide</span><span class="p">(</span><span class="n">guide</span><span class="p">)</span>
-    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
-<span class="c">#------</span>
-<span class="c"># bcps</span>
-<span class="c">#------</span>
-</div>
+<span class="c1">#------</span>
+<span class="c1"># bcps</span>
+<span class="c1">#------</span>
+
 <div class="viewcode-block" id="equalize_bcps"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.equalize_bcps">[docs]</a><span class="k">def</span> <span class="nf">equalize_bcps</span><span class="p">(</span><span class="n">glyph</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Equalize ``bcps`` from selected points in glyph.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Equalize ``bcps`` from selected points in glyph.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">glyph</span><span class="o">.</span><span class="n">prepareUndo</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">contours</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">contour</span><span class="o">.</span><span class="n">bPoints</span><span class="p">:</span>
@@ -394,42 +444,43 @@
                 <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">point</span><span class="o">.</span><span class="n">bcpIn</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
                     <span class="n">point</span><span class="o">.</span><span class="n">bcpOut</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">glyph</span><span class="o">.</span><span class="n">performUndo</span><span class="p">()</span>
-</div>
+    <span class="n">glyph</span><span class="o">.</span><span class="n">performUndo</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="retract_bcps"><a class="viewcode-back" href="../../../modules/glyphutils.html#hTools2.modules.glyphutils.retract_bcps">[docs]</a><span class="k">def</span> <span class="nf">retract_bcps</span><span class="p">(</span><span class="n">glyph</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Retract ``bcps`` from selected points in glyph.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retract ``bcps`` from selected points in glyph.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">glyph</span><span class="o">.</span><span class="n">prepareUndo</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">glyph</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">contour</span><span class="o">.</span><span class="n">bPoints</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">point</span><span class="o">.</span><span class="n">selected</span><span class="p">:</span>
                 <span class="n">point</span><span class="o">.</span><span class="n">bcpIn</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
                 <span class="n">point</span><span class="o">.</span><span class="n">bcpOut</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">glyph</span><span class="o">.</span><span class="n">performUndo</span><span class="p">()</span>
-</pre></div></div>
+    <span class="n">glyph</span><span class="o">.</span><span class="n">performUndo</span><span class="p">()</span></div>
+
+</pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -438,15 +489,15 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">hTools2</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../hTools2.html" >hTools2</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../hTools2.html" >hTools2</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Dec 08, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Gustavo Ferreira.
+      Last updated on Mar 28, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>hTools2.modules.fontutils &mdash; hTools2</title>
+    <title>hTools2.modules.fontutils &#8212; hTools2</title>
     
-    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -17,18 +17,19 @@
         VERSION:     '1.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/sidebar.js"></script>
-    <link rel="top" title="hTools2" href="../../../index.html" />
-    <link rel="up" title="hTools2" href="../../hTools2.html" /> 
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -37,163 +38,132 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">hTools2</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../hTools2.html" accesskey="U">hTools2</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../hTools2.html" accesskey="U">hTools2</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for hTools2.modules.fontutils</h1><div class="highlight"><pre>
-<span class="c"># [h] hTools2.modules.fontutils</span>
+<span></span><span class="c1"># [h] hTools2.modules.fontutils</span>
 
-<span class="sd">&quot;&quot;&quot;A collection of handy functions for working with fonts.&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;A collection of useful functions for working with fonts.&quot;&quot;&quot;</span>
 
-<span class="c"># imports</span>
+<span class="c1"># imports</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="k">import</span> <span class="n">randint</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">mojo.roboFont</span> <span class="kn">import</span> <span class="n">CurrentGlyph</span><span class="p">,</span> <span class="n">CurrentFont</span><span class="p">,</span> <span class="n">NewFont</span>
-    <span class="kn">from</span> <span class="nn">lib.tools.defaults</span> <span class="kn">import</span> <span class="n">getDefault</span>
+    <span class="kn">from</span> <span class="nn">mojo.roboFont</span> <span class="k">import</span> <span class="n">CurrentGlyph</span><span class="p">,</span> <span class="n">CurrentFont</span><span class="p">,</span> <span class="n">NewFont</span>
+    <span class="kn">from</span> <span class="nn">lib.tools.defaults</span> <span class="k">import</span> <span class="n">getDefault</span>
 
 <span class="k">except</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">robofab.world</span> <span class="kn">import</span> <span class="n">CurrentGlyph</span><span class="p">,</span> <span class="n">CurrentFont</span><span class="p">,</span> <span class="n">NewFont</span>
+    <span class="kn">from</span> <span class="nn">robofab.world</span> <span class="k">import</span> <span class="n">CurrentGlyph</span><span class="p">,</span> <span class="n">CurrentFont</span><span class="p">,</span> <span class="n">NewFont</span>
 
-<span class="kn">from</span> <span class="nn">hTools2.modules.glyphutils</span> <span class="kn">import</span> <span class="n">round_points</span><span class="p">,</span> <span class="n">round_width</span>
-<span class="kn">from</span> <span class="nn">hTools2.modules.color</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">hTools2.modules.glyphutils</span> <span class="k">import</span> <span class="n">round_points</span><span class="p">,</span> <span class="n">round_width</span>
+<span class="kn">from</span> <span class="nn">hTools2.modules.color</span> <span class="k">import</span> <span class="o">*</span>
 
-<span class="c">#--------</span>
-<span class="c"># glyphs</span>
-<span class="c">#--------</span>
+<span class="c1">#--------</span>
+<span class="c1"># glyphs</span>
+<span class="c1">#--------</span>
 
-<div class="viewcode-block" id="get_glyphs"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.get_glyphs">[docs]</a><span class="k">def</span> <span class="nf">get_glyphs</span><span class="p">(</span><span class="n">font</span><span class="p">):</span> <span class="c"># current_glyph=True, font_selection=True, </span>
-    <span class="sd">&quot;&quot;&quot;Return current glyph selection in the font as glyph names or ``RGlyph`` objects.&quot;&quot;&quot;</span>
-    <span class="c"># get glyphs</span>
+<div class="viewcode-block" id="get_glyphs"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.get_glyphs">[docs]</a><span class="k">def</span> <span class="nf">get_glyphs</span><span class="p">(</span><span class="n">font</span><span class="p">):</span> <span class="c1"># current_glyph=True, font_selection=True,</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return current glyph selection in the font as glyph names or ``RGlyph`` objects.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># get glyphs</span>
     <span class="n">current_glyph</span> <span class="o">=</span> <span class="n">CurrentGlyph</span><span class="p">()</span>
     <span class="n">font_selection</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">selection</span>
-    <span class="c"># get RoboFont&#39;s window mode</span>
-    <span class="n">single_window</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span> <span class="p">][</span><span class="n">getDefault</span><span class="p">(</span><span class="s">&quot;singleWindowMode&quot;</span><span class="p">)]</span>
-    <span class="c"># handle multi-window mode</span>
+    <span class="c1"># get RoboFont&#39;s window mode</span>
+    <span class="n">single_window</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">][</span><span class="n">getDefault</span><span class="p">(</span><span class="s2">&quot;singleWindowMode&quot;</span><span class="p">)]</span>
+    <span class="c1"># handle multi-window mode</span>
     <span class="n">glyphs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">single_window</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">current_glyph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current_glyph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">glyphs</span> <span class="o">+=</span> <span class="p">[</span><span class="n">current_glyph</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">glyphs</span> <span class="o">+=</span> <span class="n">font_selection</span>
-    <span class="c"># multi-window: return</span>
+    <span class="c1"># multi-window: return</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">current_glyph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current_glyph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">glyphs</span> <span class="o">+=</span> <span class="p">[</span><span class="n">current_glyph</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
             <span class="n">glyphs</span> <span class="o">+=</span> <span class="n">font_selection</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">glyphs</span> <span class="o">+=</span> <span class="n">font_selection</span>
-    <span class="c"># done</span>
-    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">glyphs</span><span class="p">))</span>
-</div>
-<div class="viewcode-block" id="print_selected_glyphs"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.print_selected_glyphs">[docs]</a><span class="k">def</span> <span class="nf">print_selected_glyphs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Print the selected glyphs to the output window.&quot;&quot;&quot;</span>
+    <span class="c1"># done</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">glyphs</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="print_selected_glyphs"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.print_selected_glyphs">[docs]</a><span class="k">def</span> <span class="nf">print_selected_glyphs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Print the selected glyphs to the output window.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">glyph_names</span> <span class="o">=</span> <span class="n">get_glyphs</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">sort</span><span class="p">:</span>
         <span class="n">glyph_names</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-    <span class="c"># mode 0 : plain glyph names string</span>
+    <span class="c1"># mode 0 : plain glyph names string</span>
     <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">glyph_names</span><span class="p">:</span>
-            <span class="k">print</span> <span class="n">glyph_name</span><span class="p">,</span>
-        <span class="k">print</span>
-    <span class="c"># mode 1 : plain glyph names list</span>
+            <span class="nb">print</span> <span class="n">glyph_name</span><span class="p">,</span>
+        <span class="nb">print</span>
+    <span class="c1"># mode 1 : plain glyph names list</span>
     <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">glyph_names</span><span class="p">:</span>
-            <span class="k">print</span> <span class="n">glyph_name</span>
-        <span class="k">print</span>
-    <span class="c"># mode 2 : Python string</span>
+            <span class="nb">print</span> <span class="n">glyph_name</span>
+        <span class="nb">print</span>
+    <span class="c1"># mode 2 : Python string</span>
     <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="s">&#39;&quot;&#39;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span>
         <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">glyph_names</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> &#39;</span> <span class="o">%</span> <span class="n">glyph_name</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">glyph_name</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="s">&#39;&quot;&#39;</span>
-        <span class="k">print</span> <span class="n">s</span>
-        <span class="k">print</span>
-    <span class="c"># mode 3 : Python list</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;&quot;&#39;</span>
+        <span class="nb">print</span> <span class="n">s</span>
+        <span class="nb">print</span>
+    <span class="c1"># mode 3 : Python list</span>
     <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="s">&#39;[&#39;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;[&#39;</span>
         <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">glyph_names</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">+=</span> <span class="s">&#39;&quot;</span><span class="si">%s</span><span class="s">&quot;, &#39;</span> <span class="o">%</span> <span class="n">glyph_name</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="s">&#39;]&#39;</span>
-        <span class="k">print</span> <span class="n">s</span>
-        <span class="k">print</span>
-    <span class="c"># not</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;&quot;</span><span class="si">%s</span><span class="s1">&quot;, &#39;</span> <span class="o">%</span> <span class="n">glyph_name</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;]&#39;</span>
+        <span class="nb">print</span> <span class="n">s</span>
+        <span class="nb">print</span>
+    <span class="c1"># not</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s">&quot;invalid mode.</span><span class="se">\n</span><span class="s">&quot;</span>
-</div>
+        <span class="nb">print</span> <span class="s2">&quot;invalid mode.</span><span class="se">\n</span><span class="s2">&quot;</span></div>
+
 <div class="viewcode-block" id="parse_glyphs_groups"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.parse_glyphs_groups">[docs]</a><span class="k">def</span> <span class="nf">parse_glyphs_groups</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Parse a ``gstring`` and a groups dict into a list of glyph names.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse a ``gstring`` and a groups dict into a list of glyph names.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">glyph_names</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
-        <span class="c"># group names</span>
-        <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;@&#39;</span><span class="p">:</span>
+        <span class="c1"># group names</span>
+        <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;@&#39;</span><span class="p">:</span>
             <span class="n">group_name</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
             <span class="k">if</span> <span class="n">groups</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">group_name</span><span class="p">):</span>
                 <span class="n">glyph_names</span> <span class="o">+=</span> <span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">print</span> <span class="s">&#39;project does not have a group called </span><span class="si">%s</span><span class="s">.</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">group_name</span>
-        <span class="c"># glyph names</span>
+                <span class="nb">print</span> <span class="s1">&#39;project does not have a group called </span><span class="si">%s</span><span class="s1">.</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">group_name</span>
+        <span class="c1"># glyph names</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">glyph_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">glyph_names</span>
-</div>
-<div class="viewcode-block" id="rename_glyph"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.rename_glyph">[docs]</a><span class="k">def</span> <span class="nf">rename_glyph</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">mark</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Rename a glyph in a font from ``old_name`` to ``new_name``.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">font</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">old_name</span><span class="p">):</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="n">old_name</span><span class="p">]</span>
-        <span class="c"># if new name already exists in font</span>
-        <span class="k">if</span> <span class="n">font</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">new_name</span><span class="p">):</span>
-            <span class="c"># option [1] (default): overwrite</span>
-            <span class="k">if</span> <span class="n">overwrite</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="k">print</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">renaming &quot;</span><span class="si">%s</span><span class="s">&quot; to &quot;</span><span class="si">%s</span><span class="s">&quot; (overwriting existing glyph)...&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
-                <span class="n">font</span><span class="o">.</span><span class="n">removeGlyph</span><span class="p">(</span><span class="n">new_name</span><span class="p">)</span>
-                <span class="n">g</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">new_name</span>
-                <span class="k">if</span> <span class="n">mark</span><span class="p">:</span>
-                    <span class="n">g</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="n">named_colors</span><span class="p">[</span><span class="s">&#39;orange&#39;</span><span class="p">]</span>
-                <span class="n">g</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-            <span class="c"># option [2]: skip, do not overwrite</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="k">print</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">skipping &quot;</span><span class="si">%s</span><span class="s">&quot;, &quot;</span><span class="si">%s</span><span class="s">&quot; already exists in font.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">mark</span><span class="p">:</span>
-                    <span class="n">g</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="n">named_colors</span><span class="p">[</span><span class="s">&#39;red&#39;</span><span class="p">]</span>
-                <span class="n">g</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-        <span class="c"># if new name not already in font, simply rename glyph</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="k">print</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">renaming &quot;</span><span class="si">%s</span><span class="s">&quot; to &quot;</span><span class="si">%s</span><span class="s">&quot;...&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">new_name</span>
-            <span class="k">if</span> <span class="n">mark</span><span class="p">:</span>
-                <span class="n">g</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="n">named_colors</span><span class="p">[</span><span class="s">&#39;green&#39;</span><span class="p">]</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-        <span class="c"># done glyph</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="k">print</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">skipping &quot;</span><span class="si">%s</span><span class="s">&quot;, glyph does not exist in font.&#39;</span> <span class="o">%</span> <span class="n">old_name</span>
-    <span class="c"># done font</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
-<div class="viewcode-block" id="rename_glyphs_from_list"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.rename_glyphs_from_list">[docs]</a><span class="k">def</span> <span class="nf">rename_glyphs_from_list</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">names_list</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">mark</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s">&#39;renaming glyphs...</span><span class="se">\n</span><span class="s">&#39;</span>
-    <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">names_list</span><span class="p">:</span>
-        <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span> <span class="o">=</span> <span class="n">pair</span>
-        <span class="n">rename_glyph</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">,</span> <span class="n">mark</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="k">print</span>
-        <span class="k">print</span> <span class="s">&#39;...done.</span><span class="se">\n</span><span class="s">&#39;</span>
-</div>
-<div class="viewcode-block" id="mark_composed_glyphs"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.mark_composed_glyphs">[docs]</a><span class="k">def</span> <span class="nf">mark_composed_glyphs</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;Orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">35</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Mark all composed glyphs in the font.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">glyph_names</span></div>
+
+<div class="viewcode-block" id="mark_composed_glyphs"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.mark_composed_glyphs">[docs]</a><span class="k">def</span> <span class="nf">mark_composed_glyphs</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">35</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mark all composed glyphs in the font.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">x11_colors</span><span class="p">[</span><span class="n">color</span><span class="p">]</span>
     <span class="n">mark_color</span> <span class="o">=</span> <span class="n">convert_to_1</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
     <span class="n">mark_color</span> <span class="o">+=</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,)</span>
@@ -201,227 +171,444 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">components</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">glyph</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="n">mark_color</span>
             <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
-<span class="c">#--------</span>
-<span class="c"># groups</span>
-<span class="c">#--------</span>
-</div>
+<span class="c1">#-----------------</span>
+<span class="c1"># renaming glyphs</span>
+<span class="c1">#-----------------</span>
+
+<div class="viewcode-block" id="rename_glyph"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.rename_glyph">[docs]</a><span class="k">def</span> <span class="nf">rename_glyph</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Rename a glyph in a given font.</span>
+
+<span class="sd">     :param RFont font: The font which contains the glyph to be renamed.</span>
+<span class="sd">     :param str old_name: The old glyph name to be replaced.</span>
+<span class="sd">     :param str new_name: The new glyph name to be used in place of the old one.</span>
+<span class="sd">     :param bool overwrite: Overwrite existing glyph with the new name.</span>
+<span class="sd">     :param bool mark: Mark the glyph after renaming.</span>
+<span class="sd">     :param bool verbose: Output informative messages to the console.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">font</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">old_name</span><span class="p">):</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="n">old_name</span><span class="p">]</span>
+        <span class="c1"># if new name already exists in font</span>
+        <span class="k">if</span> <span class="n">font</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">new_name</span><span class="p">):</span>
+            <span class="c1"># option [1] (default): overwrite</span>
+            <span class="k">if</span> <span class="n">overwrite</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">renaming &quot;</span><span class="si">%s</span><span class="s1">&quot; to &quot;</span><span class="si">%s</span><span class="s1">&quot; (overwriting existing glyph)...&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+                <span class="n">font</span><span class="o">.</span><span class="n">removeGlyph</span><span class="p">(</span><span class="n">new_name</span><span class="p">)</span>
+                <span class="n">g</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">new_name</span>
+                <span class="k">if</span> <span class="n">mark</span><span class="p">:</span>
+                    <span class="n">g</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="n">named_colors</span><span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">]</span>
+                <span class="n">g</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="c1"># option [2]: skip, do not overwrite</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">skipping &quot;</span><span class="si">%s</span><span class="s1">&quot;, &quot;</span><span class="si">%s</span><span class="s1">&quot; already exists in font.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">mark</span><span class="p">:</span>
+                    <span class="n">g</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="n">named_colors</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">]</span>
+                <span class="n">g</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="c1"># if new name not already in font, simply rename glyph</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">renaming &quot;</span><span class="si">%s</span><span class="s1">&quot; to &quot;</span><span class="si">%s</span><span class="s1">&quot;...&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">new_name</span>
+            <span class="k">if</span> <span class="n">mark</span><span class="p">:</span>
+                <span class="n">g</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="n">named_colors</span><span class="p">[</span><span class="s1">&#39;green&#39;</span><span class="p">]</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="c1"># done glyph</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">skipping &quot;</span><span class="si">%s</span><span class="s1">&quot;, glyph does not exist in font.&#39;</span> <span class="o">%</span> <span class="n">old_name</span>
+    <span class="c1"># done font</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="rename_glyphs_from_list"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.rename_glyphs_from_list">[docs]</a><span class="k">def</span> <span class="nf">rename_glyphs_from_list</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">names_list</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s1">&#39;renaming glyphs...</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">names_list</span><span class="p">:</span>
+        <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span> <span class="o">=</span> <span class="n">pair</span>
+        <span class="n">rename_glyph</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">,</span> <span class="n">mark</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span>
+        <span class="nb">print</span> <span class="s1">&#39;...done.</span><span class="se">\n</span><span class="s1">&#39;</span></div>
+
+<div class="viewcode-block" id="rename_glyphs_in_font"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.rename_glyphs_in_font">[docs]</a><span class="k">def</span> <span class="nf">rename_glyphs_in_font</span><span class="p">(</span><span class="n">ufo</span><span class="p">,</span> <span class="n">names_list</span><span class="p">,</span> <span class="n">glyphs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">glyphs</span><span class="p">:</span>
+        <span class="n">rename_glyphs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">names_list</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">features</span><span class="p">:</span>
+        <span class="n">rename_features</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">names_list</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">components</span><span class="p">:</span>
+        <span class="n">rename_components</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">names_list</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="rename_glyphs"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.rename_glyphs">[docs]</a><span class="k">def</span> <span class="nf">rename_glyphs</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">names_list</span><span class="p">):</span>
+    <span class="n">rename_glyphs_from_list</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">names_list</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="rename_features"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.rename_features">[docs]</a><span class="k">def</span> <span class="nf">rename_features</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">names_list</span><span class="p">):</span>
+    <span class="n">features_old</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">features_new</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="nb">print</span> <span class="s1">&#39;renaming glyph names in OpenType features...</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">features_old</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span> <span class="ow">in</span> <span class="n">names_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">old_name</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">renaming &quot;</span><span class="si">%s</span><span class="s1">&quot; to &quot;</span><span class="si">%s</span><span class="s1">&quot;...&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+        <span class="n">features_new</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">line</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">features_new</span>
+    <span class="nb">print</span>
+    <span class="nb">print</span> <span class="s1">&#39;...done.</span><span class="se">\n</span><span class="s1">&#39;</span></div>
+
+<div class="viewcode-block" id="rename_components"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.rename_components">[docs]</a><span class="k">def</span> <span class="nf">rename_components</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">names_list</span><span class="p">,</span> <span class="n">mark</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">font</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">components</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">components</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span> <span class="ow">in</span> <span class="n">names_list</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">component</span><span class="o">.</span><span class="n">baseGlyph</span> <span class="o">==</span> <span class="n">old_name</span><span class="p">:</span>
+                        <span class="n">component</span><span class="o">.</span><span class="n">baseGlyph</span> <span class="o">=</span> <span class="n">new_name</span>
+                        <span class="k">if</span> <span class="n">mark</span><span class="p">:</span>
+                            <span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.4</span></div>
+
+<div class="viewcode-block" id="rename_features_file"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.rename_features_file">[docs]</a><span class="k">def</span> <span class="nf">rename_features_file</span><span class="p">(</span><span class="n">fea_path</span><span class="p">,</span> <span class="n">names_list</span><span class="p">):</span>
+    <span class="n">features_old</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fea_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">features_new</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nb">print</span> <span class="s1">&#39;renaming glyph names in features file...</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">features_old</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span> <span class="ow">in</span> <span class="n">names_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">old_name</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">renaming &quot;</span><span class="si">%s</span><span class="s1">&quot; to &quot;</span><span class="si">%s</span><span class="s1">&quot;...&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+        <span class="n">features_new</span> <span class="o">+=</span> <span class="n">line</span>
+    <span class="n">fea_txt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">features_new</span><span class="p">)</span>
+    <span class="n">fea_dest</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fea_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">fea_dest</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fea_txt</span><span class="p">)</span>
+    <span class="n">fea_dest</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="nb">print</span>
+    <span class="nb">print</span> <span class="s1">&#39;...done.</span><span class="se">\n</span><span class="s1">&#39;</span></div>
+
+<div class="viewcode-block" id="rename_encoding"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.rename_encoding">[docs]</a><span class="k">def</span> <span class="nf">rename_encoding</span><span class="p">(</span><span class="n">enc_path</span><span class="p">,</span> <span class="n">names_list</span><span class="p">):</span>
+    <span class="n">enc_src</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">enc_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nb">print</span> <span class="s1">&#39;renaming glyph names in encoding file...</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">enc_src</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span> <span class="ow">in</span> <span class="n">names_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">old_name</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">renaming &quot;</span><span class="si">%s</span><span class="s1">&quot; to &quot;</span><span class="si">%s</span><span class="s1">&quot;...&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+        <span class="c1"># check to avoid duplicates</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="n">enc</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+    <span class="n">enc_dest</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">enc_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">enc_dest</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">enc</span><span class="p">)</span>
+    <span class="n">enc_dest</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="nb">print</span>
+    <span class="nb">print</span> <span class="s1">&#39;...done.</span><span class="se">\n</span><span class="s1">&#39;</span></div>
+
+<span class="c1">#--------</span>
+<span class="c1"># groups</span>
+<span class="c1">#--------</span>
+
 <div class="viewcode-block" id="delete_groups"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.delete_groups">[docs]</a><span class="k">def</span> <span class="nf">delete_groups</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Delete all groups in the font.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delete all groups in the font.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="k">del</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
+    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="get_spacing_groups"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.get_spacing_groups">[docs]</a><span class="k">def</span> <span class="nf">get_spacing_groups</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return a dictionary containing the ``left`` and ``right`` spacing groups in the font.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a dictionary containing the ``left`` and ``right`` spacing groups in the font.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_groups</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">_groups</span><span class="p">[</span><span class="s">&#39;left&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">_groups</span><span class="p">[</span><span class="s">&#39;right&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">_groups</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">_groups</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">_group</span> <span class="ow">in</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">_group</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;_&#39;</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">_group</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;left&#39;</span><span class="p">:</span>
-                <span class="n">_groups</span><span class="p">[</span><span class="s">&#39;left&#39;</span><span class="p">][</span><span class="n">_group</span><span class="p">]</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_group</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">_group</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;right&#39;</span><span class="p">:</span>
-                <span class="n">_groups</span><span class="p">[</span><span class="s">&#39;right&#39;</span><span class="p">][</span><span class="n">_group</span><span class="p">]</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_group</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">_groups</span>
-</div>
+        <span class="k">if</span> <span class="n">_group</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;_&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">_group</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;left&#39;</span><span class="p">:</span>
+                <span class="n">_groups</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="n">_group</span><span class="p">]</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_group</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">_group</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span>
+                <span class="n">_groups</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">][</span><span class="n">_group</span><span class="p">]</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_group</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">_groups</span></div>
+
 <div class="viewcode-block" id="print_groups"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.print_groups">[docs]</a><span class="k">def</span> <span class="nf">print_groups</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Print all groups and glyphs in the font.&quot;&quot;&quot;</span>
-    <span class="c"># 0 : formatted text</span>
-    <span class="c"># 1 : OpenType classes format</span>
-    <span class="c"># 2 : Python lists</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Print all groups and glyphs in the font.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 0 : formatted text</span>
+    <span class="c1"># 1 : OpenType classes format</span>
+    <span class="c1"># 2 : Python lists</span>
     <span class="n">groups</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s">&#39;printing groups in font </span><span class="si">%s</span><span class="s">...&#39;</span> <span class="o">%</span> <span class="n">get_full_name</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
-        <span class="k">print</span>
-        <span class="c">#----------------------------------</span>
-        <span class="c"># print groups as OpenType classes</span>
-        <span class="c">#----------------------------------</span>
+        <span class="nb">print</span> <span class="s1">&#39;printing groups in font </span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="n">get_full_name</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+        <span class="nb">print</span>
+
+        <span class="c1"># 1. print groups as OpenType classes</span>
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">_groups</span> <span class="o">=</span> <span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
             <span class="n">_groups</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">_groups</span><span class="p">:</span>
-              <span class="c"># group names can have spaces, convert to underscore</span>
-              <span class="n">groupName_parts</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">)</span>
-              <span class="n">otClassName</span> <span class="o">=</span> <span class="s">&quot;@</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">groupName_parts</span><span class="p">)</span>
-              <span class="c"># collect glyphs in group</span>
-              <span class="n">otGlyphs</span> <span class="o">=</span> <span class="s">&quot;[&quot;</span>
+              <span class="c1"># group names can have spaces, convert to underscore</span>
+              <span class="n">groupName_parts</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+              <span class="n">otClassName</span> <span class="o">=</span> <span class="s2">&quot;@</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">groupName_parts</span><span class="p">)</span>
+              <span class="c1"># collect glyphs in group</span>
+              <span class="n">otGlyphs</span> <span class="o">=</span> <span class="s2">&quot;[&quot;</span>
               <span class="k">for</span> <span class="n">gName</span> <span class="ow">in</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group</span><span class="p">]:</span>
-                  <span class="n">otGlyphs</span> <span class="o">=</span> <span class="n">otGlyphs</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">gName</span>
-              <span class="n">otGlyphs</span> <span class="o">=</span> <span class="n">otGlyphs</span> <span class="o">+</span> <span class="s">&quot; ]&quot;</span>
-              <span class="c"># print class in OpenType syntax</span>
-              <span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> = </span><span class="si">%s</span><span class="s">;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">otClassName</span><span class="p">,</span> <span class="n">otGlyphs</span><span class="p">)</span>
-        <span class="c">#------------------------------</span>
-        <span class="c"># print groups as Python lists</span>
-        <span class="c">#------------------------------</span>
-        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="c"># print groups order (if available)</span>
-            <span class="k">if</span> <span class="n">font</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&#39;groups_order&#39;</span><span class="p">):</span>
-                <span class="k">print</span> <span class="n">font</span><span class="o">.</span><span class="n">lib</span><span class="p">[</span><span class="s">&#39;groups_order&#39;</span><span class="p">]</span>
-                <span class="k">print</span>
-            <span class="c"># print groups</span>
-            <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                <span class="k">print</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> = </span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group</span><span class="p">])</span>
-        <span class="c">#----------------------</span>
-        <span class="c"># print groups as text</span>
-        <span class="c">#----------------------</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c"># print groups order (if available)</span>
-            <span class="k">if</span> <span class="n">font</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&#39;groups_order&#39;</span><span class="p">):</span>
-                <span class="k">print</span> <span class="s">&#39;groups order:</span><span class="se">\n</span><span class="s">&#39;</span>
-                <span class="k">for</span> <span class="n">group_name</span> <span class="ow">in</span> <span class="n">font</span><span class="o">.</span><span class="n">lib</span><span class="p">[</span><span class="s">&#39;groups_order&#39;</span><span class="p">]:</span>
-                    <span class="k">print</span> <span class="s">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">group_name</span>
-                <span class="k">print</span>
-            <span class="c"># print groups</span>
-            <span class="k">print</span> <span class="s">&#39;groups:</span><span class="se">\n</span><span class="s">&#39;</span>
-            <span class="k">for</span> <span class="n">group_name</span> <span class="ow">in</span> <span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                <span class="k">print</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">:&#39;</span> <span class="o">%</span> <span class="n">group_name</span>
-                <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]:</span>
-                    <span class="k">print</span> <span class="n">glyph_name</span><span class="p">,</span>
-                <span class="k">print</span>
-                <span class="k">print</span>
-        <span class="k">print</span>
-        <span class="k">print</span> <span class="s">&#39;...done.</span><span class="se">\n</span><span class="s">&#39;</span>
-    <span class="c"># font has no groups</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s">&#39;font </span><span class="si">%s</span><span class="s"> has no groups.</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">font</span>
+                  <span class="n">otGlyphs</span> <span class="o">=</span> <span class="n">otGlyphs</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">gName</span>
+              <span class="n">otGlyphs</span> <span class="o">=</span> <span class="n">otGlyphs</span> <span class="o">+</span> <span class="s2">&quot; ]&quot;</span>
+              <span class="c1"># print class in OpenType syntax</span>
+              <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">otClassName</span><span class="p">,</span> <span class="n">otGlyphs</span><span class="p">)</span>
 
-<span class="c">#-----------</span>
-<span class="c"># font info</span>
-<span class="c">#-----------</span>
-</div>
+        <span class="c1"># 2. print groups as Python lists</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1"># print groups order (if available)</span>
+            <span class="k">if</span> <span class="n">font</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;groups_order&#39;</span><span class="p">):</span>
+                <span class="nb">print</span> <span class="n">font</span><span class="o">.</span><span class="n">lib</span><span class="p">[</span><span class="s1">&#39;groups_order&#39;</span><span class="p">]</span>
+                <span class="nb">print</span>
+            <span class="c1"># print groups</span>
+            <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="nb">print</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> = </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group</span><span class="p">])</span>
+
+        <span class="c1"># 0. print groups as text</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># print groups order (if available)</span>
+            <span class="k">if</span> <span class="n">font</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;groups_order&#39;</span><span class="p">):</span>
+                <span class="nb">print</span> <span class="s1">&#39;groups order:</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="k">for</span> <span class="n">group_name</span> <span class="ow">in</span> <span class="n">font</span><span class="o">.</span><span class="n">lib</span><span class="p">[</span><span class="s1">&#39;groups_order&#39;</span><span class="p">]:</span>
+                    <span class="nb">print</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">group_name</span>
+                <span class="nb">print</span>
+            <span class="c1"># print groups</span>
+            <span class="nb">print</span> <span class="s1">&#39;groups:</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="k">for</span> <span class="n">group_name</span> <span class="ow">in</span> <span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="nb">print</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">:&#39;</span> <span class="o">%</span> <span class="n">group_name</span>
+                <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">font</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]:</span>
+                    <span class="nb">print</span> <span class="n">glyph_name</span><span class="p">,</span>
+                <span class="nb">print</span>
+                <span class="nb">print</span>
+        <span class="nb">print</span>
+        <span class="nb">print</span> <span class="s1">&#39;...done.</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+    <span class="c1"># font has no groups</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s1">&#39;font </span><span class="si">%s</span><span class="s1"> has no groups.</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">font</span></div>
+
+<div class="viewcode-block" id="convert_groups_to_classes"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.convert_groups_to_classes">[docs]</a><span class="k">def</span> <span class="nf">convert_groups_to_classes</span><span class="p">(</span><span class="n">src_ufo</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">OpenFont</span><span class="p">(</span><span class="n">src_ufo</span><span class="p">,</span> <span class="n">showUI</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">left_classes</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">right_classes</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="n">side</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">glyphs</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span>
+            <span class="n">left_classes</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">glyphs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right_classes</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">glyphs</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">class_</span> <span class="ow">in</span> <span class="n">right_classes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">class_</span> <span class="ow">in</span> <span class="n">left_classes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">right_classes</span><span class="p">[</span><span class="n">class_</span><span class="p">]</span> <span class="o">==</span> <span class="n">left_classes</span><span class="p">[</span><span class="n">class_</span><span class="p">]:</span>
+                <span class="n">class_name</span> <span class="o">=</span> <span class="s1">&#39;_</span><span class="si">%s</span><span class="s1">1&#39;</span> <span class="o">%</span> <span class="n">class_</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">classes</span><span class="p">[</span><span class="n">class_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">right_classes</span><span class="p">[</span><span class="n">class_</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">class_name</span> <span class="o">=</span> <span class="s1">&#39;_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">class_</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">classes</span><span class="p">[</span><span class="n">class_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">right_classes</span><span class="p">[</span><span class="n">class_</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">class_</span> <span class="ow">in</span> <span class="n">left_classes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">class_name</span> <span class="o">=</span> <span class="s1">&#39;_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">class_</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">classes</span><span class="p">[</span><span class="n">class_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">left_classes</span><span class="p">[</span><span class="n">class_</span><span class="p">]</span>
+    <span class="n">classes_txt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">class_</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">classes</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="n">classes_txt</span> <span class="o">+=</span> <span class="s1">&#39;@</span><span class="si">%s</span><span class="s1"> = [</span><span class="si">%s</span><span class="s1">];</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">class_</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">classes</span><span class="p">[</span><span class="n">class_</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">classes_txt</span></div>
+
+<span class="c1">#-----------</span>
+<span class="c1"># font info</span>
+<span class="c1">#-----------</span>
+
 <div class="viewcode-block" id="get_full_name"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.get_full_name">[docs]</a><span class="k">def</span> <span class="nf">get_full_name</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return the full name of the font, usually family name + style name.&quot;&quot;&quot;</span>
-    <span class="n">full_name</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">familyName</span><span class="p">,</span> <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">styleName</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">full_name</span>
-</div>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the full name of the font, usually family name + style name.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">full_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">familyName</span><span class="p">,</span> <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">styleName</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">full_name</span></div>
+
 <div class="viewcode-block" id="full_name"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.full_name">[docs]</a><span class="k">def</span> <span class="nf">full_name</span><span class="p">(</span><span class="n">family</span><span class="p">,</span> <span class="n">style</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Build the full name of the font from ``family`` and ``style`` names.</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build the full name of the font from ``family`` and ``style`` names.</span>
 
 <span class="sd">    Names are separated by a space. If the ``style`` is Regular, use only the ``family`` name.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">style</span> <span class="o">==</span> <span class="s">&#39;Regular&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">style</span> <span class="o">==</span> <span class="s1">&#39;Regular&#39;</span><span class="p">:</span>
         <span class="n">full_name</span> <span class="o">=</span> <span class="n">family</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">full_name</span> <span class="o">=</span> <span class="n">family</span> <span class="o">+</span> <span class="s">&#39; &#39;</span> <span class="o">+</span> <span class="n">style</span>
-    <span class="k">return</span> <span class="n">full_name</span>
-</div>
+        <span class="n">full_name</span> <span class="o">=</span> <span class="n">family</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">style</span>
+    <span class="k">return</span> <span class="n">full_name</span></div>
+
 <div class="viewcode-block" id="font_name"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.font_name">[docs]</a><span class="k">def</span> <span class="nf">font_name</span><span class="p">(</span><span class="n">family</span><span class="p">,</span> <span class="n">style</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Same as ``full_name()``, but ``family`` and ``style`` names are separated by a hyphen instead of space.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">style</span> <span class="o">==</span> <span class="s">&#39;Regular&#39;</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Same as ``full_name()``, but ``family`` and ``style`` names are separated by a hyphen instead of space.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">style</span> <span class="o">==</span> <span class="s1">&#39;Regular&#39;</span><span class="p">:</span>
         <span class="n">font_name</span> <span class="o">=</span> <span class="n">family</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">font_name</span> <span class="o">=</span> <span class="n">family</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">style</span>
-    <span class="k">return</span> <span class="n">font_name</span>
-</div>
+        <span class="n">font_name</span> <span class="o">=</span> <span class="n">family</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">style</span>
+    <span class="k">return</span> <span class="n">font_name</span></div>
+
 <div class="viewcode-block" id="set_unique_ps_id"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.set_unique_ps_id">[docs]</a><span class="k">def</span> <span class="nf">set_unique_ps_id</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Set random unique PostScript ID.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set random unique PostScript ID.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
-    <span class="n">_psID</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s%s%s%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span> <span class="p">)</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">postscriptUniqueID</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_psID</span><span class="p">)</span>
-</div>
+    <span class="n">_psID</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s%s%s%s%s%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span> <span class="p">)</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">postscriptUniqueID</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">_psID</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="set_foundry_info"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.set_foundry_info">[docs]</a><span class="k">def</span> <span class="nf">set_foundry_info</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">fontInfoDict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Set foundry info from data in dict.&quot;&quot;&quot;</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">year</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;year&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameDesigner</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;designer&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameDesignerURL</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;designerURL&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameManufacturerURL</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;vendorURL&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameManufacturer</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;vendor&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeOS2VendorID</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;vendor&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">copyright</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;copyright&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">trademark</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;trademark&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameLicense</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;license&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameLicenseURL</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;licenseURL&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameDescription</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;notice&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">versionMajor</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;versionMajor&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">versionMinor</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;versionMinor&#39;</span><span class="p">]</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameUniqueID</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> : </span><span class="si">%s</span><span class="s"> : </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fontInfoDict</span><span class="p">[</span><span class="s">&#39;foundry&#39;</span><span class="p">],</span> <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">postscriptFullName</span><span class="p">,</span> <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set foundry info from data in dict.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">year</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameDesigner</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;designer&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameDesignerURL</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;designerURL&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameManufacturerURL</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;vendorURL&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameManufacturer</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;vendor&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeOS2VendorID</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;vendor&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">copyright</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;copyright&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">trademark</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;trademark&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameLicense</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;license&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameLicenseURL</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;licenseURL&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameDescription</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;notice&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">versionMajor</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;versionMajor&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">versionMinor</span> <span class="o">=</span> <span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;versionMinor&#39;</span><span class="p">]</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNameUniqueID</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> : </span><span class="si">%s</span><span class="s2"> : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fontInfoDict</span><span class="p">[</span><span class="s1">&#39;foundry&#39;</span><span class="p">],</span> <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">postscriptFullName</span><span class="p">,</span> <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
     <span class="n">set_unique_ps_id</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
+    <span class="n">f</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="set_font_names"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.set_font_names">[docs]</a><span class="k">def</span> <span class="nf">set_font_names</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">family_name</span><span class="p">,</span> <span class="n">style_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Set font names from ``family_name`` and ``style_name``.&quot;&quot;&quot;</span>
-    <span class="c"># family name</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set font names from ``family_name`` and ``style_name``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># family name</span>
     <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">familyName</span> <span class="o">=</span> <span class="n">family_name</span>
     <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">openTypeNamePreferredFamilyName</span> <span class="o">=</span> <span class="n">family_name</span>
-    <span class="c"># style name</span>
+    <span class="c1"># style name</span>
     <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">styleName</span> <span class="o">=</span> <span class="n">style_name</span>
     <span class="n">f</span><span class="o">.</span><span class="n">infoopenTypeNamePreferredSubfamilyName</span> <span class="o">=</span> <span class="n">style_name</span>
-    <span class="c"># fallback name</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">styleMapFamilyName</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">family_name</span><span class="p">,</span> <span class="n">style_name</span><span class="p">)</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">styleMapStyleName</span> <span class="o">=</span> <span class="s">&quot;regular&quot;</span>
-    <span class="c"># composed names</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">postscriptFontName</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">family_name</span><span class="p">,</span> <span class="n">style_name</span><span class="p">)</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">postscriptFullName</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">family_name</span><span class="p">,</span> <span class="n">style_name</span><span class="p">)</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">macintoshFONDName</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">family_name</span><span class="p">,</span> <span class="n">style_name</span><span class="p">)</span>
+    <span class="c1"># fallback name</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">styleMapFamilyName</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">family_name</span><span class="p">,</span> <span class="n">style_name</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">styleMapStyleName</span> <span class="o">=</span> <span class="s2">&quot;regular&quot;</span>
+    <span class="c1"># composed names</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">postscriptFontName</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">-</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">family_name</span><span class="p">,</span> <span class="n">style_name</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">postscriptFullName</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">family_name</span><span class="p">,</span> <span class="n">style_name</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">macintoshFONDName</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">-</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">family_name</span><span class="p">,</span> <span class="n">style_name</span><span class="p">)</span>
     <span class="n">set_unique_ps_id</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-    <span class="c"># done</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="c1"># done</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
-<span class="c">#------------</span>
-<span class="c"># guidelines</span>
-<span class="c">#------------</span>
-</div>
+<span class="c1">#------------</span>
+<span class="c1"># guidelines</span>
+<span class="c1">#------------</span>
+
 <div class="viewcode-block" id="clear_guides"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.clear_guides">[docs]</a><span class="k">def</span> <span class="nf">clear_guides</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">guide</span> <span class="ow">in</span> <span class="n">font</span><span class="o">.</span><span class="n">guides</span><span class="p">:</span>
-        <span class="n">font</span><span class="o">.</span><span class="n">removeGuide</span><span class="p">(</span><span class="n">guide</span><span class="p">)</span>
-</div>
+        <span class="n">font</span><span class="o">.</span><span class="n">removeGuide</span><span class="p">(</span><span class="n">guide</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="create_guides"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.create_guides">[docs]</a><span class="k">def</span> <span class="nf">create_guides</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">guides_dict</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">guide_name</span> <span class="ow">in</span> <span class="n">guides_list</span><span class="p">:</span>
         <span class="n">font</span><span class="o">.</span><span class="n">addGuide</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">guide_name</span><span class="p">)</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
+    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="print_guides"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.print_guides">[docs]</a><span class="k">def</span> <span class="nf">print_guides</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">guide</span> <span class="ow">in</span> <span class="n">font</span><span class="o">.</span><span class="n">guides</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> x:</span><span class="si">%s</span><span class="s"> y:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">guide</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">guide</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">guide</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-    <span class="k">print</span>
+        <span class="nb">print</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> x:</span><span class="si">%s</span><span class="s1"> y:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">guide</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">guide</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">guide</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="nb">print</span></div>
 
-<span class="c">#-----------</span>
-<span class="c"># transform</span>
-<span class="c">#-----------</span>
-</div>
+<span class="c1">#--------</span>
+<span class="c1"># layers</span>
+<span class="c1">#--------</span>
+
+<div class="viewcode-block" id="clear_layers"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.clear_layers">[docs]</a><span class="k">def</span> <span class="nf">clear_layers</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">font</span><span class="o">.</span><span class="n">layerOrder</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">font</span><span class="o">.</span><span class="n">removeLayer</span><span class="p">(</span><span class="n">font</span><span class="o">.</span><span class="n">layerOrder</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+<span class="c1">#-----------------</span>
+<span class="c1"># transformations</span>
+<span class="c1">#-----------------</span>
+
 <div class="viewcode-block" id="decompose"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.decompose">[docs]</a><span class="k">def</span> <span class="nf">decompose</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Decompose all composed glyph in the font.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decompose all composed glyph in the font.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">glyph</span> <span class="ow">in</span> <span class="n">font</span><span class="p">:</span>
-        <span class="n">glyph</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
-</div>
+        <span class="n">glyph</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="auto_contour_order"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.auto_contour_order">[docs]</a><span class="k">def</span> <span class="nf">auto_contour_order</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Automatically set contour order for all glyphs in the font.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Automatically set contour order for all glyphs in the font.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">glyph</span> <span class="ow">in</span> <span class="n">font</span><span class="p">:</span>
-        <span class="n">glyph</span><span class="o">.</span><span class="n">correctDirection</span><span class="p">()</span>
-</div>
+        <span class="n">glyph</span><span class="o">.</span><span class="n">correctDirection</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="auto_contour_direction"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.auto_contour_direction">[docs]</a><span class="k">def</span> <span class="nf">auto_contour_direction</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Automatically set contour directions for all glyphs in the font.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Automatically set contour directions for all glyphs in the font.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">glyph</span> <span class="ow">in</span> <span class="n">font</span><span class="p">:</span>
-        <span class="n">glyph</span><span class="o">.</span><span class="n">correctDirection</span><span class="p">()</span>
-</div>
+        <span class="n">glyph</span><span class="o">.</span><span class="n">correctDirection</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="auto_order_direction"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.auto_order_direction">[docs]</a><span class="k">def</span> <span class="nf">auto_order_direction</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Automatically set contour order and direction for all glyphs in the font, in one go.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Automatically set contour order and direction for all glyphs in the font, in one go.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">glyph</span> <span class="ow">in</span> <span class="n">font</span><span class="p">:</span>
         <span class="n">glyph</span><span class="o">.</span><span class="n">autoContourOrder</span><span class="p">()</span>
-        <span class="n">glyph</span><span class="o">.</span><span class="n">correctDirection</span><span class="p">()</span>
-</div>
-<div class="viewcode-block" id="add_extremes"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.add_extremes">[docs]</a><span class="k">def</span> <span class="nf">add_extremes</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Add extreme points to all glyphs in the font, if they are missing.&quot;&quot;&quot;</span>
+        <span class="n">glyph</span><span class="o">.</span><span class="n">correctDirection</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="auto_point_start"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.auto_point_start">[docs]</a><span class="k">def</span> <span class="nf">auto_point_start</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">glyph</span> <span class="ow">in</span> <span class="n">font</span><span class="p">:</span>
-        <span class="n">glyph</span><span class="o">.</span><span class="n">extremePoints</span><span class="p">()</span>
-</div>
+        <span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">glyph</span><span class="p">:</span>
+            <span class="n">contour</span><span class="o">.</span><span class="n">autoStartSegment</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="add_extremes"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.add_extremes">[docs]</a><span class="k">def</span> <span class="nf">add_extremes</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add extreme points to all glyphs in the font, if they are missing.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">glyph</span> <span class="ow">in</span> <span class="n">font</span><span class="p">:</span>
+        <span class="n">glyph</span><span class="o">.</span><span class="n">extremePoints</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="remove_overlap"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.remove_overlap">[docs]</a><span class="k">def</span> <span class="nf">remove_overlap</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Remove overlaps in all glyphs of the font.&quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">glyph</span> <span class="ow">in</span> <span class="n">font</span><span class="p">:</span>
-        <span class="n">glyph</span><span class="o">.</span><span class="n">removeOverlap</span><span class="p">()</span>
-</div>
+        <span class="n">glyph</span><span class="o">.</span><span class="n">removeOverlap</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="align_to_grid"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.align_to_grid">[docs]</a><span class="k">def</span> <span class="nf">align_to_grid</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span> <span class="n">sizeY</span><span class="p">)):</span>
-    <span class="sd">&quot;&quot;&quot;Align all points of all glyphs in the font to a grid with size ``(sizeX,sizeY)``.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Align all points of all glyphs in the font to a grid with size ``(sizeX,sizeY)``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">glyph</span> <span class="ow">in</span> <span class="n">font</span><span class="p">:</span>
         <span class="n">round_points</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span> <span class="n">sizeY</span><span class="p">))</span>
         <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
+    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="scale_glyphs"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.scale_glyphs">[docs]</a><span class="k">def</span> <span class="nf">scale_glyphs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">factor_x</span><span class="p">,</span> <span class="n">factor_y</span><span class="p">)):</span>
-    <span class="sd">&quot;&quot;&quot;Scale all glyphs in the font by the given ``(x,y)`` factor.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Scale all glyphs in the font by the given ``(x,y)`` factor.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">components</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">leftMargin</span><span class="p">,</span> <span class="n">rightMargin</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">leftMargin</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">rightMargin</span>
@@ -429,59 +616,63 @@
             <span class="n">g</span><span class="o">.</span><span class="n">leftMargin</span> <span class="o">=</span> <span class="n">leftMargin</span> <span class="o">*</span> <span class="n">factor_x</span>
             <span class="n">g</span><span class="o">.</span><span class="n">rightMargin</span> <span class="o">=</span> <span class="n">rightMargin</span> <span class="o">*</span> <span class="n">factor_x</span>
             <span class="n">g</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
+    <span class="n">f</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="move_glyphs"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.move_glyphs">[docs]</a><span class="k">def</span> <span class="nf">move_glyphs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">delta_x</span><span class="p">,</span> <span class="n">delta_y</span><span class="p">)):</span>
-    <span class="sd">&quot;&quot;&quot;Move all glyphs in the font by the given ``(x,y)`` distance.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Move all glyphs in the font by the given ``(x,y)`` distance.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">g</span><span class="o">.</span><span class="n">move</span><span class="p">((</span><span class="n">delta_x</span><span class="p">,</span> <span class="n">delta_y</span><span class="p">))</span>
         <span class="n">g</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
-<div class="viewcode-block" id="round_to_grid"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.round_to_grid">[docs]</a><span class="k">def</span> <span class="nf">round_to_grid</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">,</span> <span class="n">glyphs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">glyphs</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="round_to_grid"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.round_to_grid">[docs]</a><span class="k">def</span> <span class="nf">round_to_grid</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">,</span> <span class="n">glyphs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">glyphs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">glyphs</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">glyphs</span><span class="p">:</span>
         <span class="n">round_points</span><span class="p">(</span><span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">],</span> <span class="p">(</span><span class="n">gridsize</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">))</span>
         <span class="n">round_width</span><span class="p">(</span><span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">],</span> <span class="n">gridsize</span><span class="p">)</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
-<span class="c">#------</span>
-<span class="c"># misc</span>
-<span class="c">#------</span>
-</div>
+<span class="c1">#------</span>
+<span class="c1"># misc</span>
+<span class="c1">#------</span>
+
 <div class="viewcode-block" id="temp_font"><a class="viewcode-back" href="../../../modules/fontutils.html#hTools2.modules.fontutils.temp_font">[docs]</a><span class="k">def</span> <span class="nf">temp_font</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Return a temporary font for importing single ``.glyfs``.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">CurrentFont</span><span class="p">()</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a temporary font for importing single ``.glyfs``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">CurrentFont</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">NewFont</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">CurrentFont</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">t</span>
-</pre></div></div>
+    <span class="k">return</span> <span class="n">t</span></div>
+
+</pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -490,15 +681,15 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">hTools2</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../hTools2.html" >hTools2</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../hTools2.html" >hTools2</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Dec 08, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Gustavo Ferreira.
+      Last updated on Mar 28, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

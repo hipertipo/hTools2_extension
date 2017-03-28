@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>anchors &mdash; hTools2</title>
+    <title>anchors &#8212; hTools2</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -17,20 +17,21 @@
         VERSION:     '1.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/sidebar.js"></script>
-    <link rel="top" title="hTools2" href="../index.html" />
-    <link rel="up" title="Modules" href="modules.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="color" href="color.html" />
     <link rel="prev" title="Modules" href="modules.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -45,22 +46,22 @@
         <li class="right" >
           <a href="modules.html" title="Modules"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">hTools2</a> &raquo;</li>
-          <li><a href="modules.html" accesskey="U">Modules</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">Modules</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
-  <div class="section" id="module-hTools2.modules.anchors">
-<span id="anchors"></span><h1>anchors<a class="headerlink" href="#module-hTools2.modules.anchors" title="Permalink to this headline">¶</a></h1>
-<p>Tools to create, move, delete and transfer anchors.</p>
+  <div class="section" id="anchors">
+<h1>anchors<a class="headerlink" href="#anchors" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-hTools2.modules.anchors"></span><p>Tools to create, move, delete and transfer anchors.</p>
 <dl class="function">
 <dt id="hTools2.modules.anchors.clear_anchors">
-<tt class="descname">clear_anchors</tt><big>(</big><em>font</em>, <em>glyph_names=None</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#clear_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.clear_anchors" title="Permalink to this definition">¶</a></dt>
+<code class="descname">clear_anchors</code><span class="sig-paren">(</span><em>font</em>, <em>glyph_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#clear_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.clear_anchors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete all anchors in the font.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -74,7 +75,7 @@
 
 <dl class="function">
 <dt id="hTools2.modules.anchors.create_anchors">
-<tt class="descname">create_anchors</tt><big>(</big><em>glyph</em>, <em>top=True</em>, <em>bottom=True</em>, <em>accent=False</em>, <em>top_delta=20</em>, <em>bottom_delta=20</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#create_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.create_anchors" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_anchors</code><span class="sig-paren">(</span><em>glyph</em>, <em>top=True</em>, <em>bottom=True</em>, <em>accent=False</em>, <em>top_pos=20</em>, <em>bottom_pos=20</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#create_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.create_anchors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create anchors in glyph.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -84,8 +85,8 @@
 <li><strong>top</strong> (<em>bool</em>) &#8211; Create or not <em>top</em> anchors.</li>
 <li><strong>bottom</strong> (<em>bool</em>) &#8211; Create or not <em>bottom</em> anchors.</li>
 <li><strong>accent</strong> (<em>bool</em>) &#8211; Create ot not accent anchors with underscore prefix.</li>
-<li><strong>top_delta</strong> (<em>int</em>) &#8211; Distance from <em>top</em> anchors to the font&#8217;s x-height.</li>
-<li><strong>bottom_delta</strong> (<em>int</em>) &#8211; Distance from <em>bottom</em> anchors to the font&#8217;s baseline.</li>
+<li><strong>top_pos</strong> (<em>int</em>) &#8211; Position of the <em>top</em> anchors.</li>
+<li><strong>bottom_pos</strong> (<em>int</em>) &#8211; Position of the <em>bottom</em> anchors.</li>
 </ul>
 </td>
 </tr>
@@ -95,13 +96,18 @@
 
 <dl class="function">
 <dt id="hTools2.modules.anchors.find_lost_anchors">
-<tt class="descname">find_lost_anchors</tt><big>(</big><em>font</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#find_lost_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.find_lost_anchors" title="Permalink to this definition">¶</a></dt>
+<code class="descname">find_lost_anchors</code><span class="sig-paren">(</span><em>font</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#find_lost_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.find_lost_anchors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find anchors which are lost outside of the bounding box.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="hTools2.modules.anchors.get_accents_anchors_dict">
+<code class="descname">get_accents_anchors_dict</code><span class="sig-paren">(</span><em>accents_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#get_accents_anchors_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.get_accents_anchors_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
 <dt id="hTools2.modules.anchors.get_anchors">
-<tt class="descname">get_anchors</tt><big>(</big><em>font</em>, <em>glyph_names=None</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#get_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.get_anchors" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_anchors</code><span class="sig-paren">(</span><em>font</em>, <em>glyph_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#get_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.get_anchors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get anchors from a font as a dictionary.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -117,7 +123,7 @@
 
 <dl class="function">
 <dt id="hTools2.modules.anchors.get_anchors_dict">
-<tt class="descname">get_anchors_dict</tt><big>(</big><em>accents_dict</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#get_anchors_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.get_anchors_dict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_anchors_dict</code><span class="sig-paren">(</span><em>accents_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#get_anchors_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.get_anchors_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get an anchors dict from a dict of glyph building recipes.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -131,7 +137,7 @@
 
 <dl class="function">
 <dt id="hTools2.modules.anchors.move_anchors">
-<tt class="descname">move_anchors</tt><big>(</big><em>glyph</em>, <em>anchor_names</em>, <em>(delta_x</em>, <em>delta_y)</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#move_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.move_anchors" title="Permalink to this definition">¶</a></dt>
+<code class="descname">move_anchors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#move_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.move_anchors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Move named anchors in the given glyph.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -150,13 +156,13 @@
 
 <dl class="function">
 <dt id="hTools2.modules.anchors.remove_duplicate_anchors">
-<tt class="descname">remove_duplicate_anchors</tt><big>(</big><em>font</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#remove_duplicate_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.remove_duplicate_anchors" title="Permalink to this definition">¶</a></dt>
+<code class="descname">remove_duplicate_anchors</code><span class="sig-paren">(</span><em>font</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#remove_duplicate_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.remove_duplicate_anchors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete duplicate anchors with same name and position.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="hTools2.modules.anchors.rename_anchor">
-<tt class="descname">rename_anchor</tt><big>(</big><em>glyph</em>, <em>old_name</em>, <em>new_name</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#rename_anchor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.rename_anchor" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rename_anchor</code><span class="sig-paren">(</span><em>glyph</em>, <em>old_name</em>, <em>new_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#rename_anchor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.rename_anchor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rename named anchor in the given glyph.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -177,7 +183,7 @@
 
 <dl class="function">
 <dt id="hTools2.modules.anchors.transfer_anchors">
-<tt class="descname">transfer_anchors</tt><big>(</big><em>source_glyph</em>, <em>dest_glyph</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#transfer_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.transfer_anchors" title="Permalink to this definition">¶</a></dt>
+<code class="descname">transfer_anchors</code><span class="sig-paren">(</span><em>source_glyph</em>, <em>dest_glyph</em>, <em>clear=True</em>, <em>proportional=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/anchors.html#transfer_anchors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.anchors.transfer_anchors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transfer all anchors from one glyph to another.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -202,7 +208,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="modules.html"
@@ -210,29 +216,28 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="color.html"
                         title="next chapter">color</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/modules/anchors.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/anchors.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -247,14 +252,14 @@
         <li class="right" >
           <a href="modules.html" title="Modules"
              >previous</a> |</li>
-        <li><a href="../index.html">hTools2</a> &raquo;</li>
-          <li><a href="modules.html" >Modules</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >Modules</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Sep 09, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Gustavo Ferreira.
+      Last updated on Mar 28, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

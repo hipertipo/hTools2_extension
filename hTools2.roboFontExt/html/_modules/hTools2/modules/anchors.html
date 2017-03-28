@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>hTools2.modules.anchors &mdash; hTools2</title>
+    <title>hTools2.modules.anchors &#8212; hTools2</title>
     
-    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -17,18 +17,19 @@
         VERSION:     '1.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/sidebar.js"></script>
-    <link rel="top" title="hTools2" href="../../../index.html" />
-    <link rel="up" title="hTools2" href="../../hTools2.html" /> 
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -37,29 +38,29 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">hTools2</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../hTools2.html" accesskey="U">hTools2</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../hTools2.html" accesskey="U">hTools2</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for hTools2.modules.anchors</h1><div class="highlight"><pre>
-<span class="c"># [h] hTools2.modules.anchors</span>
+<span></span><span class="c1"># [h] hTools2.modules.anchors</span>
 
 <span class="sd">&quot;&quot;&quot;Tools to create, move, delete and transfer anchors.&quot;&quot;&quot;</span>
 
-<span class="c"># imports</span>
+<span class="c1"># imports</span>
 
-<span class="kn">from</span> <span class="nn">hTools2.modules.color</span> <span class="kn">import</span> <span class="n">clear_colors</span><span class="p">,</span> <span class="n">random_color</span>
+<span class="kn">from</span> <span class="nn">hTools2.modules.color</span> <span class="k">import</span> <span class="n">clear_colors</span><span class="p">,</span> <span class="n">random_color</span>
 
-<span class="c"># font-level tools</span>
+<span class="c1"># font-level tools</span>
 
-<div class="viewcode-block" id="get_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.get_anchors">[docs]</a><span class="k">def</span> <span class="nf">get_anchors</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">glyph_names</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="get_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.get_anchors">[docs]</a><span class="k">def</span> <span class="nf">get_anchors</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">glyph_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Get anchors from a font as a dictionary.</span>
 
 <span class="sd">    :param list glyph_names: A list of glyphs to restrict selection.</span>
@@ -67,7 +68,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">anchors_dict</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">if</span> <span class="n">glyph_names</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">glyph_names</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">_glyph_names</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">_glyph_names</span> <span class="o">=</span> <span class="n">glyph_names</span>
@@ -78,24 +79,24 @@
             <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">anchors</span><span class="p">:</span>
                 <span class="n">anchors</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">a</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">position</span><span class="p">))</span>
             <span class="n">anchors_dict</span><span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchors</span>
-    <span class="k">return</span> <span class="n">anchors_dict</span>
-</div>
-<div class="viewcode-block" id="clear_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.clear_anchors">[docs]</a><span class="k">def</span> <span class="nf">clear_anchors</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">glyph_names</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">anchors_dict</span></div>
+
+<div class="viewcode-block" id="clear_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.clear_anchors">[docs]</a><span class="k">def</span> <span class="nf">clear_anchors</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">glyph_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Delete all anchors in the font.</span>
 
 <span class="sd">    :param list glyph_names: A list of glyphs to restrict selection.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">glyph_names</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">glyph_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">glyph_names</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">glyph_names</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">anchors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">prepareUndo</span><span class="p">(</span><span class="s">&#39;clear anchors&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">font</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">glyph_name</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">anchors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">prepareUndo</span><span class="p">(</span><span class="s1">&#39;clear anchors&#39;</span><span class="p">)</span>
             <span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">clearAnchors</span><span class="p">()</span>
             <span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
             <span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">performUndo</span><span class="p">()</span>
-    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
+    <span class="n">font</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="find_lost_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.find_lost_anchors">[docs]</a><span class="k">def</span> <span class="nf">find_lost_anchors</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Find anchors which are lost outside of the bounding box.&quot;&quot;&quot;</span>
     <span class="n">clear_colors</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
@@ -107,16 +108,16 @@
                 <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">unitsPerEm</span><span class="p">:</span>
                     <span class="n">lost_anchors</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">g</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">position</span><span class="p">))</span>
                     <span class="n">g</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="n">c</span>
-    <span class="k">return</span> <span class="n">lost_anchors</span>
-</div>
+    <span class="k">return</span> <span class="n">lost_anchors</span></div>
+
 <div class="viewcode-block" id="remove_duplicate_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.remove_duplicate_anchors">[docs]</a><span class="k">def</span> <span class="nf">remove_duplicate_anchors</span><span class="p">(</span><span class="n">font</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Delete duplicate anchors with same name and position.&quot;&quot;&quot;</span>
-    <span class="c"># save existing anchors</span>
+    <span class="c1"># save existing anchors</span>
     <span class="n">old_anchors</span> <span class="o">=</span> <span class="n">get_anchors</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
-    <span class="c"># collect clean anchors</span>
+    <span class="c1"># collect clean anchors</span>
     <span class="n">new_anchors</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">old_anchors</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="c"># glyphs with more than 1 anchor</span>
+        <span class="c1"># glyphs with more than 1 anchor</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">old_anchors</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">clean_anchors</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">old_anchors</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]):</span>
@@ -124,52 +125,66 @@
                     <span class="n">clean_anchors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
                     <span class="n">previous</span> <span class="o">=</span> <span class="n">a</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="c"># same name and pos: skip</span>
+                    <span class="c1"># same name and pos: skip</span>
                     <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">previous</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
                         <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">previous</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">previous</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]:</span>
                             <span class="k">pass</span>
                         <span class="k">else</span><span class="p">:</span>
                             <span class="n">clean_anchors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
                 <span class="n">previous</span> <span class="o">=</span> <span class="n">a</span>
-            <span class="c"># done glyph</span>
+            <span class="c1"># done glyph</span>
             <span class="n">new_anchors</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean_anchors</span>
-        <span class="c"># glyphs with only 1 anchor</span>
+        <span class="c1"># glyphs with only 1 anchor</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">new_anchors</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_anchors</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span>
-    <span class="c"># remove all anchors</span>
+    <span class="c1"># remove all anchors</span>
     <span class="n">clear_anchors</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
-    <span class="c"># place new anchors</span>
+    <span class="c1"># place new anchors</span>
     <span class="k">for</span> <span class="n">glyph_name</span> <span class="ow">in</span> <span class="n">new_anchors</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">anchor</span> <span class="ow">in</span> <span class="n">new_anchors</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]:</span>
             <span class="n">name</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">anchor</span>
             <span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">appendAnchor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
-            <span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-    <span class="c"># done</span>
-</div>
+            <span class="n">font</span><span class="p">[</span><span class="n">glyph_name</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+    <span class="c1"># done</span>
+
 <div class="viewcode-block" id="get_anchors_dict"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.get_anchors_dict">[docs]</a><span class="k">def</span> <span class="nf">get_anchors_dict</span><span class="p">(</span><span class="n">accents_dict</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Get an anchors dict from a dict of glyph building recipes.</span>
 
 <span class="sd">    :returns: A dictionary with anchor names and positions for each glyph.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># get anchors</span>
+    <span class="c1"># get anchors</span>
     <span class="n">anchors_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">accented_glyph</span> <span class="ow">in</span> <span class="n">accents_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="c"># get base glyph and accents</span>
+        <span class="c1"># get base glyph and accents</span>
         <span class="n">base</span><span class="p">,</span> <span class="n">accents</span> <span class="o">=</span> <span class="n">accents_dict</span><span class="p">[</span><span class="n">accented_glyph</span><span class="p">]</span>
-        <span class="c"># create entry</span>
+        <span class="c1"># create entry</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">anchors_dict</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">base</span><span class="p">):</span>
             <span class="n">anchors_dict</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="c"># add anchor to lib</span>
+        <span class="c1"># add anchor to lib</span>
         <span class="k">for</span> <span class="n">accent</span> <span class="ow">in</span> <span class="n">accents</span><span class="p">:</span>
             <span class="n">anchor_name</span> <span class="o">=</span> <span class="n">accent</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">anchor_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">anchors_dict</span><span class="p">[</span><span class="n">base</span><span class="p">]:</span>
                 <span class="n">anchors_dict</span><span class="p">[</span><span class="n">base</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">anchor_name</span><span class="p">)</span>
-    <span class="c"># done</span>
-    <span class="k">return</span> <span class="n">anchors_dict</span>
+    <span class="c1"># done</span>
+    <span class="k">return</span> <span class="n">anchors_dict</span></div>
 
-<span class="c"># glyph-level tools</span>
-</div>
+<div class="viewcode-block" id="get_accents_anchors_dict"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.get_accents_anchors_dict">[docs]</a><span class="k">def</span> <span class="nf">get_accents_anchors_dict</span><span class="p">(</span><span class="n">accents_dict</span><span class="p">):</span>
+    <span class="c1"># get anchors</span>
+    <span class="n">anchors_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">accented_glyph</span> <span class="ow">in</span> <span class="n">accents_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="c1"># get base glyph and accents</span>
+        <span class="n">base</span><span class="p">,</span> <span class="n">accents</span> <span class="o">=</span> <span class="n">accents_dict</span><span class="p">[</span><span class="n">accented_glyph</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">accent_name</span><span class="p">,</span> <span class="n">accent_anchor</span> <span class="ow">in</span> <span class="n">accents</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">anchors_dict</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">accent_name</span><span class="p">):</span>
+                <span class="n">anchors_dict</span><span class="p">[</span><span class="n">accent_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">accent_anchor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">anchors_dict</span><span class="p">[</span><span class="n">accent_name</span><span class="p">]:</span>
+                <span class="n">anchors_dict</span><span class="p">[</span><span class="n">accent_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accent_anchor</span><span class="p">)</span>
+    <span class="c1"># done</span>
+    <span class="k">return</span> <span class="n">anchors_dict</span></div>
+
+<span class="c1"># glyph-level tools</span>
+
 <div class="viewcode-block" id="rename_anchor"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.rename_anchor">[docs]</a><span class="k">def</span> <span class="nf">rename_anchor</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Rename named anchor in the given glyph.</span>
 
@@ -178,16 +193,16 @@
 <span class="sd">    :returns: A boolean indicating if the glyph has any anchor with the given *old_name*.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">has_name</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">has_name</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">old_name</span><span class="p">:</span>
-                <span class="n">has_name</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">has_name</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="n">a</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">new_name</span>
                 <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">has_name</span>
-</div>
-<div class="viewcode-block" id="transfer_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.transfer_anchors">[docs]</a><span class="k">def</span> <span class="nf">transfer_anchors</span><span class="p">(</span><span class="n">source_glyph</span><span class="p">,</span> <span class="n">dest_glyph</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">has_name</span></div>
+
+<div class="viewcode-block" id="transfer_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.transfer_anchors">[docs]</a><span class="k">def</span> <span class="nf">transfer_anchors</span><span class="p">(</span><span class="n">source_glyph</span><span class="p">,</span> <span class="n">dest_glyph</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">proportional</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Transfer all anchors from one glyph to another.</span>
 
 <span class="sd">    :param RGlyph source_glyph: The source glyph for the anchors.</span>
@@ -195,22 +210,27 @@
 <span class="sd">    :returns: A boolean indicating if the source glyph has any anchor.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">has_anchor</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">has_anchor</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">source_glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span>
-        <span class="c"># collect anchors in source glyph</span>
-        <span class="n">has_anchor</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="c1"># collect anchors in source glyph</span>
+        <span class="n">has_anchor</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">anchorsDict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">source_glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">:</span>
             <span class="n">anchorsDict</span><span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">position</span>
-        <span class="c"># clear anchors in dest glyph</span>
-        <span class="n">dest_glyph</span><span class="o">.</span><span class="n">clearAnchors</span><span class="p">()</span>
-        <span class="c"># place anchors in dest glyph</span>
+        <span class="c1"># clear anchors in dest glyph</span>
+        <span class="k">if</span> <span class="n">clear</span><span class="p">:</span>
+            <span class="n">dest_glyph</span><span class="o">.</span><span class="n">clearAnchors</span><span class="p">()</span>
+        <span class="c1"># place anchors in dest glyph</span>
         <span class="k">for</span> <span class="n">anchor</span> <span class="ow">in</span> <span class="n">anchorsDict</span><span class="p">:</span>
-            <span class="n">dest_glyph</span><span class="o">.</span><span class="n">appendAnchor</span><span class="p">(</span><span class="n">anchor</span><span class="p">,</span> <span class="n">anchorsDict</span><span class="p">[</span><span class="n">anchor</span><span class="p">])</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">anchorsDict</span><span class="p">[</span><span class="n">anchor</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">proportional</span><span class="p">:</span>
+                <span class="n">factor</span> <span class="o">=</span> <span class="n">dest_glyph</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">source_glyph</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
+                <span class="n">x</span> <span class="o">*=</span> <span class="n">factor</span>
+            <span class="n">dest_glyph</span><span class="o">.</span><span class="n">appendAnchor</span><span class="p">(</span><span class="n">anchor</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
             <span class="n">dest_glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-    <span class="c"># done</span>
-    <span class="k">return</span> <span class="n">has_anchor</span>
-</div>
+    <span class="c1"># done</span>
+    <span class="k">return</span> <span class="n">has_anchor</span></div>
+
 <div class="viewcode-block" id="move_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.move_anchors">[docs]</a><span class="k">def</span> <span class="nf">move_anchors</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">anchor_names</span><span class="p">,</span> <span class="p">(</span><span class="n">delta_x</span><span class="p">,</span> <span class="n">delta_y</span><span class="p">)):</span>
     <span class="sd">&quot;&quot;&quot;Move named anchors in the given glyph.</span>
 
@@ -222,74 +242,73 @@
     <span class="k">for</span> <span class="n">anchor</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">anchor</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">anchor_names</span><span class="p">:</span>
             <span class="n">anchor</span><span class="o">.</span><span class="n">move</span><span class="p">((</span><span class="n">delta_x</span><span class="p">,</span> <span class="n">delta_y</span><span class="p">))</span>
-            <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</div>
-<div class="viewcode-block" id="create_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.create_anchors">[docs]</a><span class="k">def</span> <span class="nf">create_anchors</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">accent</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">top_delta</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">bottom_delta</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+            <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="create_anchors"><a class="viewcode-back" href="../../../modules/anchors.html#hTools2.modules.anchors.create_anchors">[docs]</a><span class="k">def</span> <span class="nf">create_anchors</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">accent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">top_pos</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">bottom_pos</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create anchors in glyph.</span>
 
 <span class="sd">    :param bool top: Create or not *top* anchors.</span>
 <span class="sd">    :param bool bottom: Create or not *bottom* anchors.</span>
 <span class="sd">    :param bool accent: Create ot not accent anchors with underscore prefix.</span>
-<span class="sd">    :param int top_delta: Distance from *top* anchors to the font&#39;s x-height.</span>
-<span class="sd">    :param int bottom_delta: Distance from *bottom* anchors to the font&#39;s baseline.</span>
+<span class="sd">    :param int top_pos: Position of the *top* anchors.</span>
+<span class="sd">    :param int bottom_pos: Position of the *bottom* anchors.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># make anchors list</span>
+    <span class="c1"># make anchors list</span>
     <span class="n">anchor_names</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="n">top</span><span class="p">:</span>
-        <span class="n">anchor_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;top&#39;</span><span class="p">)</span>
+        <span class="n">anchor_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">bottom</span><span class="p">:</span>
-        <span class="n">anchor_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;bottom&#39;</span><span class="p">)</span>
-    <span class="c"># run</span>
+        <span class="n">anchor_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+    <span class="c1"># run</span>
     <span class="n">font</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">getParent</span><span class="p">()</span>
-    <span class="n">has_anchor</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">has_anchor</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">anchors</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="c"># get existing anchors</span>
+    <span class="c1"># get existing anchors</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span>
-        <span class="n">has_anchor</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">has_anchor</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">glyph</span><span class="o">.</span><span class="n">anchors</span><span class="p">:</span>
             <span class="n">anchors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-    <span class="c"># add only new anchors</span>
+    <span class="c1"># add only new anchors</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">glyph</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span>
     <span class="k">for</span> <span class="n">anchor_name</span> <span class="ow">in</span> <span class="n">anchor_names</span><span class="p">:</span>
-        <span class="c"># add underscore if accent</span>
+        <span class="c1"># add underscore if accent</span>
         <span class="k">if</span> <span class="n">accent</span><span class="p">:</span>
-            <span class="n">anchor_name</span> <span class="o">=</span> <span class="s">&#39;_&#39;</span> <span class="o">+</span> <span class="n">anchor_name</span>
+            <span class="n">anchor_name</span> <span class="o">=</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">anchor_name</span>
         <span class="k">if</span> <span class="n">anchor_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">anchors</span><span class="p">:</span>
-            <span class="c"># make anchor y-position</span>
-            <span class="k">if</span> <span class="n">anchor_name</span> <span class="ow">in</span> <span class="p">[</span> <span class="s">&#39;top&#39;</span><span class="p">,</span> <span class="s">&#39;_top&#39;</span> <span class="p">]:</span>
-                <span class="n">y</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">xHeight</span> <span class="o">+</span> <span class="n">top_delta</span>
+            <span class="c1"># make anchor y-position</span>
+            <span class="k">if</span> <span class="n">anchor_name</span> <span class="ow">in</span> <span class="p">[</span> <span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="s1">&#39;_top&#39;</span> <span class="p">]:</span>
+                <span class="c1"># y = font.info.xHeight + top_delta</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">top_pos</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">bottom_delta</span>
-            <span class="c"># place anchor</span>
+                <span class="c1"># y = 0 - bottom_delta</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">bottom_pos</span>
+            <span class="c1"># place anchor</span>
             <span class="n">glyph</span><span class="o">.</span><span class="n">appendAnchor</span><span class="p">(</span><span class="n">anchor_name</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-    <span class="c"># done glyph</span>
+    <span class="c1"># done glyph</span>
     <span class="n">glyph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -298,15 +317,15 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">hTools2</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../hTools2.html" >hTools2</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../hTools2.html" >hTools2</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Dec 08, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Gustavo Ferreira.
+      Last updated on Mar 28, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

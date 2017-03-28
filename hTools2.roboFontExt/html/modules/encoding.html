@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>encoding &mdash; hTools2</title>
+    <title>encoding &#8212; hTools2</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -17,20 +17,21 @@
         VERSION:     '1.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/sidebar.js"></script>
-    <link rel="top" title="hTools2" href="../index.html" />
-    <link rel="up" title="Modules" href="modules.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="fileutils" href="fileutils.html" />
     <link rel="prev" title="color" href="color.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -45,138 +46,129 @@
         <li class="right" >
           <a href="color.html" title="color"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">hTools2</a> &raquo;</li>
-          <li><a href="modules.html" accesskey="U">Modules</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">Modules</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="module-hTools2.modules.encoding">
 <span id="encoding"></span><h1>encoding<a class="headerlink" href="#module-hTools2.modules.encoding" title="Permalink to this headline">¶</a></h1>
-<p>Unicode tools, glyph name to hex/uni conversion etc.</p>
+<p>Tools to work with encoding files, character sets etc.</p>
 <dl class="function">
 <dt id="hTools2.modules.encoding.all_glyphs">
-<tt class="descname">all_glyphs</tt><big>(</big><em>groups_dict</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#all_glyphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.all_glyphs" title="Permalink to this definition">¶</a></dt>
+<code class="descname">all_glyphs</code><span class="sig-paren">(</span><em>groups_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#all_glyphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.all_glyphs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of all glyphs in all groups in the dict.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hTools2.modules.encoding.auto_OS2_unicode_ranges">
+<code class="descname">auto_OS2_unicode_ranges</code><span class="sig-paren">(</span><em>ufo</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#auto_OS2_unicode_ranges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.auto_OS2_unicode_ranges" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
-<dt id="hTools2.modules.encoding.auto_unicode">
-<tt class="descname">auto_unicode</tt><big>(</big><em>g</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#auto_unicode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.auto_unicode" title="Permalink to this definition">¶</a></dt>
-<dd><p>Automatically set unicode value(s) for the specified glyph.</p>
-<p>The method uses RoboFab&#8217;s <tt class="docutils literal"><span class="pre">glyph.autoUnicodes()</span></tt> function for common glyphs, and complements it with additional values from <tt class="docutils literal"><span class="pre">unicodes_extra</span></tt>.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="hTools2.modules.encoding.auto_unicodes">
-<tt class="descname">auto_unicodes</tt><big>(</big><em>font</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#auto_unicodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.auto_unicodes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Automatically set unicode values for all glyphs in the font.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>font</strong> (<em>RFont</em>) &#8211; The font as an RFont object.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="hTools2.modules.encoding.char2glyphname">
-<tt class="descname">char2glyphname</tt><big>(</big><em>char</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#char2glyphname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.char2glyphname" title="Permalink to this definition">¶</a></dt>
+<dt id="hTools2.modules.encoding.char2psname">
+<code class="descname">char2psname</code><span class="sig-paren">(</span><em>char</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#char2psname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.char2psname" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the PostScript glyph name for a given unicode character.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="hTools2.modules.encoding.chars2glyphnames">
-<tt class="descname">chars2glyphnames</tt><big>(</big><em>char_list</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#chars2glyphnames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.chars2glyphnames" title="Permalink to this definition">¶</a></dt>
+<dt id="hTools2.modules.encoding.char2unicode">
+<code class="descname">char2unicode</code><span class="sig-paren">(</span><em>char</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#char2unicode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.char2unicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the unicode value for a given unicode character.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hTools2.modules.encoding.chars2psnames">
+<code class="descname">chars2psnames</code><span class="sig-paren">(</span><em>char_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#chars2psnames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.chars2psnames" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of PostScript glyph names for a list of unicode characters.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="hTools2.modules.encoding.clear_unicodes">
-<tt class="descname">clear_unicodes</tt><big>(</big><em>font</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#clear_unicodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.clear_unicodes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove unicodes from all glyphs in the font.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>font</strong> (<em>RFont</em>) &#8211; The font as an RFont object.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+<dt id="hTools2.modules.encoding.check_unicode_coverage">
+<code class="descname">check_unicode_coverage</code><span class="sig-paren">(</span><em>font</em>, <em>blocks</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#check_unicode_coverage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.check_unicode_coverage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="function">
 <dt id="hTools2.modules.encoding.crop_glyphset">
-<tt class="descname">crop_glyphset</tt><big>(</big><em>font</em>, <em>glyph_names</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#crop_glyphset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.crop_glyphset" title="Permalink to this definition">¶</a></dt>
+<code class="descname">crop_glyphset</code><span class="sig-paren">(</span><em>font</em>, <em>glyph_names</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#crop_glyphset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.crop_glyphset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduce the font&#8217;s character set, keeping only glyphs with names in the given list.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hTools2.modules.encoding.extract_encoding">
+<code class="descname">extract_encoding</code><span class="sig-paren">(</span><em>ufo_path</em>, <em>enc_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#extract_encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.extract_encoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract encoding data from an ufo&#8217;s glyphOrder attribute.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hTools2.modules.encoding.get_OS2_unicode_ranges">
+<code class="descname">get_OS2_unicode_ranges</code><span class="sig-paren">(</span><em>unicode_blocks</em>, <em>OS2_unicode_ranges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#get_OS2_unicode_ranges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.get_OS2_unicode_ranges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="hTools2.modules.encoding.get_OS2_unicode_ranges_from_file">
+<code class="descname">get_OS2_unicode_ranges_from_file</code><span class="sig-paren">(</span><em>OS2_unicode_ranges_file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#get_OS2_unicode_ranges_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.get_OS2_unicode_ranges_from_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="hTools2.modules.encoding.get_unicode_blocks">
+<code class="descname">get_unicode_blocks</code><span class="sig-paren">(</span><em>font</em>, <em>blocks_codepoints</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#get_unicode_blocks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.get_unicode_blocks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="hTools2.modules.encoding.get_unicode_blocks_from_file">
+<code class="descname">get_unicode_blocks_from_file</code><span class="sig-paren">(</span><em>blocks_file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#get_unicode_blocks_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.get_unicode_blocks_from_file" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="hTools2.modules.encoding.import_encoding">
-<tt class="descname">import_encoding</tt><big>(</big><em>file_path</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#import_encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.import_encoding" title="Permalink to this definition">¶</a></dt>
+<code class="descname">import_encoding</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#import_encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.import_encoding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Import glyph names from an encoding file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> (<em>str</em>) &#8211; The path to the encoding file.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of glyph names, or <tt class="docutils literal"><span class="pre">None</span></tt> if the file does not exist.</td>
-</tr>
-</tbody>
-</table>
+<p>file_path: The path to the encoding file.</p>
+<p>Returns a list of glyph names, or <code class="docutils literal"><span class="pre">None</span></code> if the file does not exist.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="hTools2.modules.encoding.import_groups_from_encoding">
-<tt class="descname">import_groups_from_encoding</tt><big>(</big><em>file_path</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#import_groups_from_encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.import_groups_from_encoding" title="Permalink to this definition">¶</a></dt>
-<dd><p>Import group and glyphs names from an encoding file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> (<em>str</em>) &#8211; The path to the encoding file.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of groups (keys) and glyph names (values), and a list with the order of the groups; or <tt class="docutils literal"><span class="pre">None</span></tt> if the file does not exist.</td>
-</tr>
-</tbody>
-</table>
+<code class="descname">import_groups_from_encoding</code><span class="sig-paren">(</span><em>enc_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#import_groups_from_encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.import_groups_from_encoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import groups and glyph names from a structured encoding file.</p>
+<p>Returns an OrderedDict with group names (keys) and glyph names (values).</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="hTools2.modules.encoding.paint_groups">
-<tt class="descname">paint_groups</tt><big>(</big><em>font</em>, <em>crop=False</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#paint_groups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.paint_groups" title="Permalink to this definition">¶</a></dt>
-<dd><p>Paint the glyphs in the font according to their groups.</p>
-<p>If a <tt class="docutils literal"><span class="pre">groups_order</span></tt> lib is available, it is used to set the order of the glyphs in the font.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>font</strong> (<em>RFont</em>) &#8211; The font as an RFont object.</td>
-</tr>
-</tbody>
-</table>
+<code class="descname">paint_groups</code><span class="sig-paren">(</span><em>font</em>, <em>crop=False</em>, <em>order=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#paint_groups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.paint_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Paint glyphs in the font according to their groups.</p>
+<p>If a <code class="docutils literal"><span class="pre">groups_order</span></code> font lib is available, it is used to set the order of the glyphs in the font.</p>
+<p>font: The font as an RFont object.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="hTools2.modules.encoding.unicode_hexstr_to_int">
-<tt class="descname">unicode_hexstr_to_int</tt><big>(</big><em>hexUnicode</em>, <em>replaceUni=True</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#unicode_hexstr_to_int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.unicode_hexstr_to_int" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a unicode hexadecimal value into an integer.</p>
-<p>It does exactly the reverse of <tt class="docutils literal"><span class="pre">unicode_int_to_hexstr</span></tt>.</p>
+<dt id="hTools2.modules.encoding.psname2char">
+<code class="descname">psname2char</code><span class="sig-paren">(</span><em>glyph_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#psname2char"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.psname2char" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the unicode character for a given glyph name.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="hTools2.modules.encoding.unicode_int_to_hexstr">
-<tt class="descname">unicode_int_to_hexstr</tt><big>(</big><em>intUnicode</em>, <em>_0x=False</em>, <em>uni=False</em><big>)</big><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#unicode_int_to_hexstr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.unicode_int_to_hexstr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts unicode integers to hexadecimal.</p>
-<p>See also the reverse function <tt class="docutils literal"><span class="pre">unicode_hexstr_to_int</span></tt>.</p>
-<p>Note that <tt class="docutils literal"><span class="pre">glyph.unicodes</span></tt> is a list (a glyph can have many unicodes), so we need to pass the first value only.</p>
-<p>The optional parameters <tt class="docutils literal"><span class="pre">uni</span></tt> and <tt class="docutils literal"><span class="pre">_0x</span></tt> add the respective prefixes.</p>
+<dt id="hTools2.modules.encoding.psname2unicode">
+<code class="descname">psname2unicode</code><span class="sig-paren">(</span><em>glyph_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#psname2unicode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.psname2unicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the unicode value for a given glyph name.</p>
 </dd></dl>
+
+<dl class="function">
+<dt id="hTools2.modules.encoding.set_OS2_unicode_ranges">
+<code class="descname">set_OS2_unicode_ranges</code><span class="sig-paren">(</span><em>ufo</em>, <em>blocks</em>, <em>OS2_ranges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#set_OS2_unicode_ranges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.set_OS2_unicode_ranges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="hTools2.modules.encoding.set_glyph_order">
+<code class="descname">set_glyph_order</code><span class="sig-paren">(</span><em>font</em>, <em>enc_path</em>, <em>verbose=False</em>, <em>create_templates=True</em>, <em>create_glyphs=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hTools2/modules/encoding.html#set_glyph_order"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hTools2.modules.encoding.set_glyph_order" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 
@@ -184,7 +176,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="color.html"
@@ -192,29 +184,28 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="fileutils.html"
                         title="next chapter">fileutils</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/modules/encoding.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/encoding.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -229,14 +220,14 @@
         <li class="right" >
           <a href="color.html" title="color"
              >previous</a> |</li>
-        <li><a href="../index.html">hTools2</a> &raquo;</li>
-          <li><a href="modules.html" >Modules</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >Modules</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Dec 08, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Gustavo Ferreira.
+      Last updated on Mar 28, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>hTools2 &mdash; hTools2</title>
+    <title>hTools2 &#8212; hTools2</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -17,18 +17,19 @@
         VERSION:     '1.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/sidebar.js"></script>
-    <link rel="top" title="hTools2" href="../index.html" />
-    <link rel="up" title="Module code" href="index.html" /> 
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -37,101 +38,90 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../index.html">hTools2</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for hTools2</h1><div class="highlight"><pre>
-<span class="c"># [h] hTools2</span>
+<span></span><span class="c1"># [h] hTools2</span>
 
 <span class="sd">&quot;&quot;&quot;hTools2, a UFO-based Python-powered font production toolkit.&quot;&quot;&quot;</span>
 
-<span class="c"># constants</span>
-
-<span class="c">#: The root folder for all font projects.</span>
-<span class="n">ROOT</span> <span class="o">=</span> <span class="s">&#39;/Volumes/gf_extra/_fonts&#39;</span>
-
-<span class="c">#: Debug mode. Set to ``True`` during development to always reload modules.</span>
-<span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span>
-
-<span class="c">#: The current version number of ``hTools2``.</span>
-<span class="n">VERSION</span> <span class="o">=</span> <span class="mf">1.6</span>
-
-<span class="c"># objects</span>
+<span class="c1"># objects</span>
 
 <div class="viewcode-block" id="hDialog"><a class="viewcode-back" href="../hTools2.html#hTools2.hDialog">[docs]</a><span class="k">class</span> <span class="nc">hDialog</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;An object collecting constants and default settings for dialogs.&quot;&quot;&quot;</span>
 
-    <span class="c">#: Horizontal padding in dialogs.</span>
-    <span class="n">padding_x</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="c1">#: Padding in dialogs.</span>
+    <span class="n">padding</span> <span class="o">=</span> <span class="mi">10</span>
 
-    <span class="c">#: Vertical padding in dialogs.</span>
-    <span class="n">padding_y</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="c1">#: Horizontal padding in dialogs (deprecated).</span>
+    <span class="n">padding_x</span> <span class="o">=</span> <span class="n">padding</span>
 
-    <span class="c">#: Height of text elements in dialogs.</span>
+    <span class="c1">#: Vertical padding in dialogs (deprecated).</span>
+    <span class="n">padding_y</span> <span class="o">=</span> <span class="n">padding</span>
+
+    <span class="c1">#: Height of text elements in dialogs.</span>
     <span class="n">text_height</span> <span class="o">=</span> <span class="mi">20</span>
 
-    <span class="c">#: Height of text elements in dialogs.</span>
+    <span class="c1">#: Height of text elements in dialogs.</span>
     <span class="n">text_input</span> <span class="o">=</span> <span class="mi">18</span>
 
-    <span class="c">#: Height of standard button in dialogs.</span>
+    <span class="c1">#: Height of standard button in dialogs.</span>
     <span class="n">button_height</span> <span class="o">=</span> <span class="mi">25</span>
 
-    <span class="c">#: Size of individual button in nudge button set.</span>
+    <span class="c1">#: Size of individual button in nudge button set.</span>
     <span class="n">nudge_button</span> <span class="o">=</span> <span class="mi">18</span>
 
-    <span class="c">#: Size of square button in cross nudge button set.</span>
+    <span class="c1">#: Size of square button in cross nudge button set.</span>
     <span class="n">square_button</span> <span class="o">=</span> <span class="mi">35</span>
 
-    <span class="c">#: Can nummerical text input be edited directly with the keyboard? A boolean. Set to ``True`` as default.</span>
-    <span class="n">read_only</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="c1">#: Can nummerical text input be edited directly with the keyboard? A boolean. Set to ``True`` as default.</span>
+    <span class="n">read_only</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="c">#: The size style of text and standard dialog elements. Possible options are ``small``, ``regular``, ``mini``.</span>
-    <span class="n">size_style</span> <span class="o">=</span> <span class="s">&#39;small&#39;</span>
+    <span class="c1">#: The size style of text and standard dialog elements. Possible options are ``small``, ``regular``, ``mini``.</span>
+    <span class="n">size_style</span> <span class="o">=</span> <span class="s1">&#39;small&#39;</span>
 
-    <span class="c">#: The default width of vertical dialogs (palettes).</span>
+    <span class="c1">#: The default width of vertical dialogs (palettes).</span>
     <span class="n">width</span> <span class="o">=</span> <span class="mi">123</span>
 
-    <span class="c">#: The height of the progress bar.</span>
+    <span class="c1">#: The height of the progress bar.</span>
     <span class="n">progress_bar</span> <span class="o">=</span> <span class="mi">18</span>
 
-    <span class="c">#: Print (or not) messages to the console when running scripts.</span>
-    <span class="n">verbose</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="c1">#: Print (or not) messages to the console when running scripts.</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span>
 
-    <span class="c">#: Height of a spinner element (value and buttons).</span>
-    <span class="n">spinner_height</span> <span class="o">=</span> <span class="p">(</span><span class="n">nudge_button</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding_y</span> </div>
+    <span class="c1">#: Height of a spinner element (value and buttons).</span>
+    <span class="n">spinner_height</span> <span class="o">=</span> <span class="p">(</span><span class="n">nudge_button</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding_y</span></div>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -140,14 +130,14 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../index.html">hTools2</a> &raquo;</li>
-          <li><a href="index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hTools2</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2013, Gustavo Ferreira.
-      Last updated on Dec 08, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Gustavo Ferreira.
+      Last updated on Mar 28, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>
